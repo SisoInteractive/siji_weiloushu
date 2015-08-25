@@ -86,22 +86,28 @@ input {
 }
 .scene01 .cursor.active {
   opacity: 1;
-  transition: all .8s;
-  transition-delay: .4s;
+  -webkit-transition: all .8s;
+          transition: all .8s;
+  -webkit-transition-delay: .4s;
+          transition-delay: .4s;
 }
 .scene01 .item01 .title {
   left: 51px;
   top: 342px;
-  transform: translate3d(30%, 0, 0);
-  transition: all 0.6s ease-out;
+  -webkit-transform: translate3d(30%, 0, 0);
+          transform: translate3d(30%, 0, 0);
+  -webkit-transition: all 0.6s ease-out;
+          transition: all 0.6s ease-out;
 }
 .scene01 .item01 .stone {
   width: 31px;
   height: 28px;
   top: 283.5px;
   left: 274.5px;
-  transform: translate3d(-150%, 0, 0);
-  transition: all 0.6s ease-out;
+  -webkit-transform: translate3d(-150%, 0, 0);
+          transform: translate3d(-150%, 0, 0);
+  -webkit-transition: all 0.6s ease-out;
+          transition: all 0.6s ease-out;
 }
 .scene01 .item01 .stone .stone-block01 {
   top: 0;
@@ -130,16 +136,20 @@ input {
 .scene01 .item02 .title {
   left: 44px;
   top: 272.5px;
-  transform: translate3d(30%, 0, 0);
-  transition: all 0.6s ease-out;
+  -webkit-transform: translate3d(30%, 0, 0);
+          transform: translate3d(30%, 0, 0);
+  -webkit-transition: all 0.6s ease-out;
+          transition: all 0.6s ease-out;
 }
 .scene01 .item02 .stone {
   width: 31px;
   height: 28px;
   top: 375px;
   left: 264px;
-  transform: translate3d(-130%, 0, 0);
-  transition: all 0.6s ease-out;
+  -webkit-transform: translate3d(-130%, 0, 0);
+          transform: translate3d(-130%, 0, 0);
+  -webkit-transition: all 0.6s ease-out;
+          transition: all 0.6s ease-out;
 }
 .scene01 .item02 .stone .stone-block01 {
   top: -35.5px;
@@ -168,16 +178,20 @@ input {
 .scene01 .item03 .title {
   left: 188.5px;
   top: 356px;
-  transform: translate3d(-30%, 0, 0);
-  transition: all 0.6s ease-out;
+  -webkit-transform: translate3d(-30%, 0, 0);
+          transform: translate3d(-30%, 0, 0);
+  -webkit-transition: all 0.6s ease-out;
+          transition: all 0.6s ease-out;
 }
 .scene01 .item03 .stone {
   width: 31px;
   height: 28px;
   top: 236px;
   left: 73.5px;
-  transform: translate3d(150%, 0, 0);
-  transition: all 0.6s ease-out;
+  -webkit-transform: translate3d(150%, 0, 0);
+          transform: translate3d(150%, 0, 0);
+  -webkit-transition: all 0.6s ease-out;
+          transition: all 0.6s ease-out;
 }
 .scene01 .item03 .stone .stone-block01 {
   top: 71px;
@@ -206,16 +220,20 @@ input {
 .scene01 .item04 .title {
   left: 37px;
   top: 299px;
-  transform: translate3d(30%, 0, 0);
-  transition: all 0.6s ease-out;
+  -webkit-transform: translate3d(30%, 0, 0);
+          transform: translate3d(30%, 0, 0);
+  -webkit-transition: all 0.6s ease-out;
+          transition: all 0.6s ease-out;
 }
 .scene01 .item04 .stone {
   width: 31px;
   height: 28px;
   top: 283.5px;
   left: 274.5px;
-  transform: translate3d(-150%, 0, 0);
-  transition: all 0.6s ease-out;
+  -webkit-transform: translate3d(-150%, 0, 0);
+          transform: translate3d(-150%, 0, 0);
+  -webkit-transition: all 0.6s ease-out;
+          transition: all 0.6s ease-out;
 }
 .scene01 .item04 .stone .stone-block01 {
   top: 0;
@@ -258,16 +276,20 @@ input {
 .scene01 .item03.active .title,
 .scene01 .item04.active .title {
   opacity: 1;
-  transform: translate3d(0, 0, 0);
-  transition-delay: .8s;
+  -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
+  -webkit-transition-delay: .8s;
+          transition-delay: .8s;
 }
 .scene01 .item01.active .stone,
 .scene01 .item02.active .stone,
 .scene01 .item03.active .stone,
 .scene01 .item04.active .stone {
   opacity: 1;
-  transform: translate3d(0, 0, 0);
-  transition-delay: .4s;
+  -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
+  -webkit-transition-delay: .4s;
+          transition-delay: .4s;
 }
 .scene01 .item01.active .stone-block01,
 .scene01 .item02.active .stone-block01,
@@ -284,13 +306,27 @@ input {
   -webkit-animation: fadeIn 1.2s ease 1.5s 1 forwards;
 }
 /* animation */
+@-webkit-keyframes fly {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 1;
+    -webkit-transform: translate3d(0, -10px, 0);
+            transform: translate3d(0, -10px, 0);
+  }
+  100% {
+    opacity: 1;
+  }
+}
 @keyframes fly {
   0% {
     opacity: 1;
   }
   50% {
     opacity: 1;
-    transform: translate3d(0, -10px, 0);
+    -webkit-transform: translate3d(0, -10px, 0);
+            transform: translate3d(0, -10px, 0);
   }
   100% {
     opacity: 1;

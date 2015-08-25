@@ -177,13 +177,11 @@ module.exports = function (grunt){
     grunt.registerTask('cleanDir', ['clean:build']); //ok
     grunt.registerTask('copyFileToDist', ['copy:build']); //ok
     grunt.registerTask('compileLess', ['less:build']); //ok
-    grunt.registerTask('concatCompressorCss', ['cssmin:build']); //ok
-    grunt.registerTask('makeJs', ['concat:build', 'uglify:build']); //ok
-    grunt.registerTask('injectFileToHtml', ['injector']); //ok
-    grunt.registerTask('removeUnuseFile', ['string-replace:deploy']); //ok
+    grunt.registerTask('autoPrefixer', ['autoprefixer:build']); //ok
+    grunt.registerTask('removeUnusedFile', ['string-replace:deploy']); //ok
+
     // main task
-    //grunt.registerTask('deploy', ['cleanDir', 'copyFileToDist', 'compileLess', 'concatCompressorCss', 'makeJs', 'injectFileToHtml']);
-    grunt.registerTask('deploy', ['cleanDir', 'copyFileToDist', 'compileLess', 'removeUnuseFile']);
+    grunt.registerTask('deploy', ['cleanDir', 'copyFileToDist', 'compileLess', 'autoPrefixer', 'removeUnusedFile']);
     grunt.registerTask('live', ['watch']);
 
 
