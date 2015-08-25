@@ -144,11 +144,20 @@ input {
   .bird { -webkit-animation: fly 2s ease .2s infinite forwards; }
 
   .stone01 { opacity: 1; }
-  .title { opacity: 1; transform: translate3d(0, 0,0); transition-delay: 1.5s;
-  }
+
+  .title { opacity: 1; transform: translate3d(0, 0,0); transition-delay: 1.5s; }
 //  .title { -webkit-animation: fadeInLeft .7s ease .4s 1 forwards; }
-  .stone-txt { -webkit-animation: bounceIn .7s ease 1.8s 1 forwards; }
-  .stone-block { -webkit-animation: bounceIn .7s ease 1.8s 1 forwards; }
+}
+
+.scene01 .stone01 { opacity: 1; transform: translate3d(-160%, 0, 0); transition-delay: 1.5s; }
+
+.scene01 .stone01.active {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  transition: all 1s ease-out;
+
+  .stone-txt { -webkit-animation: bounceIn .7s ease 1.5s 1 forwards; }
+  .stone-block { -webkit-animation: bounceIn .7s ease 1.5s 1 forwards; }
 }
 
 

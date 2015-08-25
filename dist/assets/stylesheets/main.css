@@ -128,11 +128,21 @@ input {
   transform: translate3d(0, 0, 0);
   transition-delay: 1.5s;
 }
-.scene01.swiper-slide-active .stone-txt {
-  -webkit-animation: bounceIn .7s ease 1.8s 1 forwards;
+.scene01 .stone01 {
+  opacity: 1;
+  transform: translate3d(-160%, 0, 0);
+  transition-delay: 1.5s;
 }
-.scene01.swiper-slide-active .stone-block {
-  -webkit-animation: bounceIn .7s ease 1.8s 1 forwards;
+.scene01 .stone01.active {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  transition: all 1s ease-out;
+}
+.scene01 .stone01.active .stone-txt {
+  -webkit-animation: bounceIn .7s ease 1.5s 1 forwards;
+}
+.scene01 .stone01.active .stone-block {
+  -webkit-animation: bounceIn .7s ease 1.5s 1 forwards;
 }
 /* animation */
 @keyframes fly {
