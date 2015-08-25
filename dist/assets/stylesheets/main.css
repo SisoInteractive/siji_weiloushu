@@ -63,10 +63,6 @@ input {
   opacity: 0;
 }
 /* scene01 */
-.scene01 .bird {
-  animation: fly 4s infinite;
-  -webkit-animation: fly 4s infinite;
-}
 .scene01 #stone-body {
   position: absolute;
   top: 171px;
@@ -80,10 +76,6 @@ input {
 .scene01 .title {
   left: 51px;
   top: 342px;
-}
-.scene01 .stone .animated {
-  animation-delay: .3s;
-  -webkit-animation-delay: .3s;
 }
 .scene01 .stone01 {
   width: 31px;
@@ -117,7 +109,7 @@ input {
 }
 /* scene01 active */
 .scene01.swiper-slide-active .logo {
-  -webkit-animation: fadeIn .7s ease .2s 1 forwards;
+  -webkit-animation: fadeIn 1.7s ease .2s 1 forwards;
 }
 .scene01.swiper-slide-active .tips,
 .scene01.swiper-slide-active .brand {
