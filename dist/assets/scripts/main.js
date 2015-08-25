@@ -166,10 +166,39 @@ var app = {
         var stoneKeyframeIndexes = [1, 9, 16, 24];
 
         var waveFrameIndexes = [1, 169];
+        var curStoneIndex = 0;
 
         //  play stone animation
         that.curFrameIndex = 1;
-        drawStoneSprite(that.curFrameIndex, stoneFrameIndexes[1]);
+
+        /**  play the first time animation */
+        (function (curFrameIndex, endFrameIndex) {
+            drawFirstTime(curFrameIndex, endFrameIndex);
+
+            function drawFirstTime (curFrameIndex, endFrameIndex) {
+                //  check whether currentFrame is the last frame of the current scene.
+                if (curFrameIndex == endFrameIndex) {
+                    drawStone(curFrameIndex);
+
+                    //  show para
+                    $('.scene01 .item').removeClass('active');
+                    $('.scene01 .item').eq(curStoneIndex).addClass('active');
+
+                    /** play the second time animation */
+                    that.playTimer = setTimeout(function () {
+                        drawStoneSprite(that.curFrameIndex, stoneFrameIndexes[1]);
+                    });
+                } else {
+                    drawStone(curFrameIndex);
+
+                    // drawStone next frame
+                    that.playTimer = setTimeout(function () {
+                        //  drawStone direction
+                        that.direct == "forward" ? drawFirstTime(parseInt(curFrameIndex)+1, endFrameIndex) : drawFirstTime(parseInt(curFrameIndex)-1, endFrameIndex);
+                    }, 1000/6);
+                }
+            }
+        })(stoneFrameIndexes[0], stoneFrameIndexes[1]);
 
         //  play wave animation
         drawWaveSprite(waveFrameIndexes[0], waveFrameIndexes[1]);
