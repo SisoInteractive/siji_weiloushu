@@ -3,16 +3,9 @@
 "use strict";
 
 var app = {
-    sprites: [],
-
-    paper: {
-        canvas: {
-            dom: null,
-            width: 0,
-            height: 0
-        },
-
-        ctx: null
+    sprites: {
+        stone: [],
+        wave: []
     },
 
     direct: 'forward',
@@ -25,11 +18,11 @@ var app = {
         //  set images generator
         var imgPath = "assets/images/";
         //  img amounts, use the amounts order to general image objects
-        var imgAmounts = 24;
+        var imgAmounts = 24+90;
         var loadedAmounts = 0;
         var isLoaded = false;
 
-        //  load fixed scene frames
+        //  load stone scene frames
         for (var i = 1; i <= 24; i++) {
             var img = new Image();
             img.src = imgPath + 's01-stone-body' + fixZero(i) + '.png';
@@ -37,7 +30,7 @@ var app = {
             img.index = i;
 
             img.onload = function () {
-                that.sprites[this.index] = this;
+                that.sprites.stone[this.index] = this;
                 loadedAmounts++;
 
                 /* check img load progress */
@@ -65,11 +58,41 @@ var app = {
             };
         }
 
-        //  init paper info
-        that.paper.ctx = ctx;
-        that.paper.canvas.dom = Canvas;
-        that.paper.canvas.width = Canvas.width;
-        that.paper.canvas.height = Canvas.height;
+        //  load wave scene frames
+        for (var i = 0; i <= 89; i++) {
+            var img = new Image();
+            img.src = imgPath + 'wave-000' + fixZero(i) + '.png';
+
+            img.index = i;
+
+            img.onload = function () {
+                that.sprites.wave[this.index] = this;
+                loadedAmounts++;
+
+                /* check img load progress */
+                if (checkIsAllLoaded() && isLoaded == false) {
+                    isLoaded = true;
+
+                    console.log('images loader end..');
+                    setTimeout(function () {
+                        app.start();
+                    }, 300);
+                }
+            };
+
+            img.onerror = function (error) {
+                imgAmounts -= 1;
+
+                /* check img load progress */
+                if (checkIsAllLoaded() && isLoaded == false) {
+                    var runningTimerEnd = new Date();
+                    isLoaded = true;
+
+                    console.log('images loader end..');
+                    app.start();
+                }
+            };
+        }
 
         function checkIsAllLoaded () {
             var loadedRate = 1;
@@ -115,59 +138,130 @@ var app = {
         };
         document.addEventListener('touchstart', initSound, false);
 
-        var frameIndexes = [1, 24];
-        var keyframeIndexes = [1, 9, 16, 24];
+        /**
+         * Animation parts
+         * */
+        var stoneCanvas = document.getElementById('stone-body');
+        var waveCanvas = document.getElementById('stone-wave');
+
+        var stoneCtx = stoneCanvas.getContext('2d');
+        var waveCtx = waveCanvas.getContext('2d');
+
+        var stoneCanvasWidth = stoneCanvas.width;
+        var stoneCanvasHeight = stoneCanvas.height;
+
+        var waveCanvasWidth = waveCanvas.width;
+        var waveCanvasHeight = waveCanvas.height;
+
+        var stoneFrameIndexes = [1, 24];
+        var stoneKeyframeIndexes = [1, 9, 16, 24];
+
+        var waveFrameIndexes = [0, 89];
 
         //  play stone animation
         that.curFrameIndex = 1;
-        drawSprite(that.curFrameIndex, frameIndexes[1]);
+        drawStoneSprite(that.curFrameIndex, stoneFrameIndexes[1]);
 
-        //  recursive to draw sprites
-        function drawSprite(curFrameIndex, endFrameIndex) {
+        //  play wave animation
+        drawWaveSprite(waveFrameIndexes[0], waveFrameIndexes[1]);
+
+        //  recursive to drawStone sprites
+        function drawStoneSprite(curFrameIndex, endFrameIndex) {
             that.curFrameIndex = curFrameIndex;
             that.playing = true;
 
             //  check whether current frame is keyframe
-            for (var i = 0; i < keyframeIndexes.length; i++) {
-                if (that.curFrameIndex == keyframeIndexes[i]) {
+            for (var i = 0; i < stoneKeyframeIndexes.length; i++) {
+                if (that.curFrameIndex == stoneKeyframeIndexes[i]) {
 
                 }
             }
 
             //  check whether currentFrame is the last frame of the current scene.
             if (curFrameIndex == endFrameIndex) {
-                draw(curFrameIndex);
+                drawStone(curFrameIndex);
 
-                // draw next frame
+                // drawStone next frame
                 that.playTimer = setTimeout(function () {
-                    //  draw direction
-                    that.direct == "forward" ? drawSprite(frameIndexes[0], frameIndexes[1]) : drawSprite(frameIndexes[1], frameIndexes[0]);
+                    //  drawStone direction
+                    that.direct == "forward" ? drawStoneSprite(stoneFrameIndexes[0], stoneFrameIndexes[1]) : drawStoneSprite(stoneFrameIndexes[1], stoneFrameIndexes[0]);
                 }, 1000/6);
             } else {
-                draw(curFrameIndex);
+                drawStone(curFrameIndex);
 
-                // draw next frame
+                // drawStone next frame
                 that.playTimer = setTimeout(function () {
-                    //  draw direction
-                    that.direct == "forward" ? drawSprite(parseInt(curFrameIndex)+1, endFrameIndex) : drawSprite(parseInt(curFrameIndex)-1, endFrameIndex);
+                    //  drawStone direction
+                    that.direct == "forward" ? drawStoneSprite(parseInt(curFrameIndex)+1, endFrameIndex) : drawStoneSprite(parseInt(curFrameIndex)-1, endFrameIndex);
                 }, 1000/6);
             }
         }
 
-        function draw(frameIndex) {
+        //  recursive to drawStone sprites
+        function drawWaveSprite(curFrameIndex, endFrameIndex) {
+            that.curFrameIndex = curFrameIndex;
+            that.playing = true;
+
+            //  check whether current frame is keyframe
+            for (var i = 0; i < stoneKeyframeIndexes.length; i++) {
+                if (that.curFrameIndex == stoneKeyframeIndexes[i]) {
+
+                }
+            }
+
+            //  check whether currentFrame is the last frame of the current scene.
+            if (curFrameIndex == endFrameIndex) {
+                drawWave(curFrameIndex);
+
+                // drawStone next frame
+                that.playTimer = setTimeout(function () {
+                    drawWaveSprite(stoneFrameIndexes[0], stoneFrameIndexes[1]);
+                }, 1000/6);
+            } else {
+                drawWave(curFrameIndex);
+
+                // drawStone next frame
+                that.playTimer = setTimeout(function () {
+                    //  drawStone direction
+                    drawWaveSprite(parseInt(curFrameIndex)+1, endFrameIndex);
+                }, 1000/25);
+            }
+        }
+
+        function drawStone(frameIndex) {
             /**
              * Draw frame into canvas
-             * @param {Number} frameIndex  the index of frame you want to draw into canvas
+             * @param {Number} frameIndex  the index of frame you want to drawStone into canvas
              * */
-            var img = that.sprites[frameIndex];
-            var ctx = that.paper.ctx;
+            var img = that.sprites.stone[frameIndex];
 
             if (img) {
                 //  clear paper
-                ctx.clearRect(0, 0, that.paper.canvas.width, that.paper.canvas.height);
+                stoneCtx.clearRect(0, 0, stoneCanvasWidth, stoneCanvasHeight);
 
-                //  draw image
-                ctx.drawImage(img, 0, 0, that.paper.canvas.width, that.paper.canvas.height);
+                //  drawStone image
+                stoneCtx.drawImage(img, 0, 0, stoneCanvasWidth, stoneCanvasHeight);
+            } else {
+
+            }
+        }
+
+        function drawWave(frameIndex) {
+            /**
+             * Draw frame into canvas
+             * @param {Number} frameIndex  the index of frame you want to drawStone into canvas
+             * */
+            var img = that.sprites.wave[frameIndex];
+
+            if (img) {
+                //  clear paper
+                waveCtx.clearRect(0, 0, waveCanvasWidth, waveCanvasHeight);
+
+                waveCtx.save();
+                waveCtx.globalAlpha = 0.6;
+                //  drawStone image
+                waveCtx.drawImage(img, waveCanvasWidth*0.05, 0, waveCanvasWidth*0.9, waveCanvasHeight);
+                waveCtx.restore();
             } else {
 
             }
