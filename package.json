@@ -19,6 +19,7 @@
     "grunt-contrib-htmlmin": "*",
     "grunt-asset-injector": "*",
     "grunt-contrib-watch": "*",
+    "grunt-autoprefixer": "*",
     "grunt-pagespeed": "*",
     "load-grunt-tasks": "*"
   },

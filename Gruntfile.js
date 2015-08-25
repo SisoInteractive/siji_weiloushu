@@ -26,7 +26,7 @@ module.exports = function (grunt){
             build: {
                 files: [
                     {
-                        src: [ 'assets/scripts/*', 'assets/images/*', 'assets/stylesheets/*.css', '*.html'],
+                        src: [ 'assets/scripts/*', 'assets/images/*', 'assets/stylesheets/*', '*.html'],
                         dest: 'dist/',
                         expand: true
                     }
@@ -42,6 +42,19 @@ module.exports = function (grunt){
                 src: ['*.less'],
                 dest: 'dist/assets/stylesheets',
                 ext: '.css'
+            }
+        },
+
+        autoprefixer: {
+            options: {
+                // Task-specific options go here.
+            },
+            build: {
+                // Target-specific file lists and/or options go here.
+                expand: true,
+                flatten: true,
+                src: 'dist/assets/stylesheets/*.css',
+                dest: 'dist/assets/stylesheets/'
             }
         },
 
