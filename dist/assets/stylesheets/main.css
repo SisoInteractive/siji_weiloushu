@@ -250,6 +250,7 @@ input {
   -webkit-animation: fadeIn .7s ease .4s 1 forwards;
 }
 .scene01.swiper-slide-active .bird {
+  opacity: 1 ;
   -webkit-animation: fly 2s ease .2s infinite forwards;
 }
 .scene01 .item01.active .title,
