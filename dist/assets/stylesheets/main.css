@@ -79,9 +79,8 @@ input {
   left: 0;
 }
 .scene01 .cursor {
-  top: 344px;
-  left: 0;
-  right: 0;
+  top: 345px;
+  left: 196px;
   opacity: 0;
 }
 .scene01 .cursor.active {
@@ -90,6 +89,22 @@ input {
           transition: all .8s;
   -webkit-transition-delay: .4s;
           transition-delay: .4s;
+}
+.scene01 .cursor01 {
+  top: 345px;
+  left: 196px;
+}
+.scene01 .cursor02 {
+  top: 365px;
+  left: 210px;
+}
+.scene01 .cursor03 {
+  top: 335px;
+  left: 150px;
+}
+.scene01 .cursor04 {
+  top: 395px;
+  left: 190px;
 }
 .scene01 .item01 .title {
   left: 51px;

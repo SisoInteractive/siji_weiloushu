@@ -171,9 +171,6 @@ var app = {
         that.curFrameIndex = 1;
         var curStoneParaIndex = 0;
 
-        //  show cursor
-        $('.scene01 .cursor').addClass('active');
-
         //  play stone animation
         /**  play the first time animation */
         (function (curFrameIndex, endFrameIndex) {
@@ -188,6 +185,8 @@ var app = {
                     //  show para
                     $('.scene01 .item').removeClass('active');
                     $('.scene01 .item').eq(curStoneParaIndex).addClass('active');
+                    $('.cursor').removeClass('cursor01 cursor02 cursor03 cursor04')
+                        .addClass('active cursor0' + (curStoneParaIndex+1));
 
                     /** play the second time animation */
                     that.playTimer = setTimeout(function () {
@@ -199,6 +198,7 @@ var app = {
                     }, 3000);
                 } else {
                     drawStone(curFrameIndex);
+                    $('.cursor').removeClass('active');
 
                     // drawStone next frame
                     that.playTimer = setTimeout(function () {
@@ -224,7 +224,8 @@ var app = {
                     //  show para
                     $('.scene01 .item').removeClass('active');
                     $('.scene01 .item').eq(curStoneParaIndex).addClass('active');
-                    console.log();
+                    $('.cursor').removeClass('cursor01 cursor02 cursor03 cursor04')
+                        .addClass('active cursor0' + (curStoneParaIndex+1));
 
                     //  play next frames
                     setTimeout(function () {
@@ -236,6 +237,7 @@ var app = {
             }
 
             // if current frame is not keyframe, play the current frame
+            $('.cursor').removeClass('active');
             play();
 
             function play () {
