@@ -92,6 +92,8 @@ input {
   .title {
     left: 102px/2;
     top: 684px/2;
+    transform: translate3d(30%, 0, 0);
+    transition: all .7s ease-out;
   }
 
   .stone01 {
@@ -140,10 +142,13 @@ input {
   .brand{ -webkit-animation: fadeIn .7s ease .4s 1 forwards; }
 
   .bird { -webkit-animation: fly 2s ease .2s infinite forwards; }
-  .title { -webkit-animation: fadeInLeft .7s ease .4s 1 forwards; }
 
-  .stone-txt { -webkit-animation: bounceIn .7s ease .4s 1 forwards; }
-  .stone-block { -webkit-animation: bounceIn .7s ease .6s 1 forwards; }
+  .stone01 { opacity: 1; }
+  .title { opacity: 1; transform: translate3d(0, 0,0); transition-delay: 1.5s;
+  }
+//  .title { -webkit-animation: fadeInLeft .7s ease .4s 1 forwards; }
+  .stone-txt { -webkit-animation: bounceIn .7s ease 1.8s 1 forwards; }
+  .stone-block { -webkit-animation: bounceIn .7s ease 1.8s 1 forwards; }
 }
 
 

@@ -18,7 +18,7 @@ var app = {
         //  set images generator
         var imgPath = "assets/images/";
         //  img amounts, use the amounts order to general image objects
-        var imgAmounts = 24+90;
+        var imgAmounts = 24+169;
         var loadedAmounts = 0;
         var isLoaded = false;
 
@@ -59,9 +59,9 @@ var app = {
         }
 
         //  load wave scene frames
-        for (var i = 0; i <= 89; i++) {
+        for (var i = 1; i <= 169; i++) {
             var img = new Image();
-            img.src = imgPath + 'wave-000' + fixZero(i) + '.png';
+            img.src = imgPath + 'wave_00' + fixZeroForWave(i) + '.png';
 
             img.index = i;
 
@@ -102,6 +102,16 @@ var app = {
         function fixZero (num) {
             return num < 10 ? '0' + num : num;
         }
+
+        function fixZeroForWave (num) {
+            if (num < 10) {
+                return '00' + num;
+            } else if (num <100) {
+                return '0' + num;
+            } else {
+                return num;
+            }
+        }
     },
 
     create: function (){
@@ -118,7 +128,6 @@ var app = {
             // init
             onInit: function () {
                 $('.swiper-container').show();
-                console.log(123);
             },
 
             onTransitionStart: function (swiper) {
@@ -156,7 +165,7 @@ var app = {
         var stoneFrameIndexes = [1, 24];
         var stoneKeyframeIndexes = [1, 9, 16, 24];
 
-        var waveFrameIndexes = [0, 89];
+        var waveFrameIndexes = [1, 169];
 
         //  play stone animation
         that.curFrameIndex = 1;
@@ -202,21 +211,14 @@ var app = {
             that.curFrameIndex = curFrameIndex;
             that.playing = true;
 
-            //  check whether current frame is keyframe
-            for (var i = 0; i < stoneKeyframeIndexes.length; i++) {
-                if (that.curFrameIndex == stoneKeyframeIndexes[i]) {
-
-                }
-            }
-
             //  check whether currentFrame is the last frame of the current scene.
             if (curFrameIndex == endFrameIndex) {
                 drawWave(curFrameIndex);
 
                 // drawStone next frame
                 that.playTimer = setTimeout(function () {
-                    drawWaveSprite(stoneFrameIndexes[0], stoneFrameIndexes[1]);
-                }, 1000/6);
+                    drawWaveSprite(waveFrameIndexes[0], waveFrameIndexes[1]);
+                }, 1000/25);
             } else {
                 drawWave(curFrameIndex);
 
@@ -254,14 +256,12 @@ var app = {
             var img = that.sprites.wave[frameIndex];
 
             if (img) {
+                console.log(frameIndex);
                 //  clear paper
                 waveCtx.clearRect(0, 0, waveCanvasWidth, waveCanvasHeight);
 
-                waveCtx.save();
-                waveCtx.globalAlpha = 0.6;
                 //  drawStone image
-                waveCtx.drawImage(img, waveCanvasWidth*0.05, 0, waveCanvasWidth*0.9, waveCanvasHeight);
-                waveCtx.restore();
+                waveCtx.drawImage(img, 0, 0, waveCanvasWidth, waveCanvasHeight);
             } else {
 
             }
@@ -270,12 +270,12 @@ var app = {
 
     start: function (){
         //  init page response plugin
-        //var page = new pageResponse({
-        //    class : 'swiper-container',     //模块的类名，使用class来控制页面上的模块(1个或多个)
-        //    mode : 'cover',     // auto || contain || cover ，默认模式为auto
-        //    width : '375',      //输入页面的宽度，只支持输入数值，默认宽度为320px
-        //    height : '625'      //输入页面的高度，只支持输入数值，默认高度为504px
-        //});
+        var page = new pageResponse({
+            class : 'swiper-container',     //模块的类名，使用class来控制页面上的模块(1个或多个)
+            mode : 'cover',     // auto || contain || cover ，默认模式为auto
+            width : '375',      //输入页面的宽度，只支持输入数值，默认宽度为320px
+            height : '625'      //输入页面的高度，只支持输入数值，默认高度为504px
+        });
 
         this.create();
     }

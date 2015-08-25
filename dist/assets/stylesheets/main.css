@@ -76,6 +76,8 @@ input {
 .scene01 .title {
   left: 51px;
   top: 342px;
+  transform: translate3d(30%, 0, 0);
+  transition: all 0.7s ease-out;
 }
 .scene01 .stone01 {
   width: 31px;
@@ -109,7 +111,7 @@ input {
 }
 /* scene01 active */
 .scene01.swiper-slide-active .logo {
-  -webkit-animation: fadeIn 1.7s ease .2s 1 forwards;
+  -webkit-animation: fadeIn .7s ease .2s 1 forwards;
 }
 .scene01.swiper-slide-active .tips,
 .scene01.swiper-slide-active .brand {
@@ -118,14 +120,19 @@ input {
 .scene01.swiper-slide-active .bird {
   -webkit-animation: fly 2s ease .2s infinite forwards;
 }
+.scene01.swiper-slide-active .stone01 {
+  opacity: 1;
+}
 .scene01.swiper-slide-active .title {
-  -webkit-animation: fadeInLeft .7s ease .4s 1 forwards;
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  transition-delay: 1.5s;
 }
 .scene01.swiper-slide-active .stone-txt {
-  -webkit-animation: bounceIn .7s ease .4s 1 forwards;
+  -webkit-animation: bounceIn .7s ease 1.8s 1 forwards;
 }
 .scene01.swiper-slide-active .stone-block {
-  -webkit-animation: bounceIn .7s ease .6s 1 forwards;
+  -webkit-animation: bounceIn .7s ease 1.8s 1 forwards;
 }
 /* animation */
 @keyframes fly {
