@@ -29,10 +29,10 @@ var app = {
 
             img.index = i;
 
+            loadedAmounts++;
+
             img.onload = function () {
                 that.sprites.stone[this.index] = this;
-                loadedAmounts++;
-
                 /* check img load progress */
                 if (checkIsAllLoaded() && isLoaded == false) {
                     isLoaded = true;
@@ -164,7 +164,7 @@ var app = {
 
         /* indexes setting */
         var stoneFrameIndexes = [1, 24];
-        var stoneKeyframeIndexes = [1, 9, 16, 24];
+        var stoneKeyframeIndexes = [1, 9, 16, 22];
 
         var waveFrameIndexes = [1, 169];
 
@@ -183,7 +183,7 @@ var app = {
                 //  check whether currentFrame is the last frame of the current scene.
                 if (curFrameIndex == endFrameIndex+1) {
                     //  draw first frame
-                    drawStone(0);
+                    drawStone(stoneFrameIndexes[0]);
 
                     //  show para
                     $('.scene01 .item').removeClass('active');
@@ -191,8 +191,12 @@ var app = {
 
                     /** play the second time animation */
                     that.playTimer = setTimeout(function () {
-                        drawStoneSprite(that.curFrameIndex, stoneFrameIndexes[1]);
-                    });
+                        //  hide para
+                        $('.scene01 .item').removeClass('active');
+
+                        //  start from second frame
+                        drawStoneSprite(that.curFrameIndex+1, stoneFrameIndexes[1]);
+                    }, 3000);
                 } else {
                     drawStone(curFrameIndex);
 
@@ -200,64 +204,79 @@ var app = {
                     that.playTimer = setTimeout(function () {
                         //  drawStone direction
                         that.direct == "forward" ? drawFirstTime(parseInt(curFrameIndex)+1, endFrameIndex) : drawFirstTime(parseInt(curFrameIndex)-1, endFrameIndex);
-                    }, 1000/6);
+                    }, 1000/8);
                 }
             }
         })(stoneFrameIndexes[0], stoneFrameIndexes[1]);
 
-        //  play wave animation
+        /**  play wave animation */
         drawWaveSprite(waveFrameIndexes[0], waveFrameIndexes[1]);
 
         //  recursive to drawStone sprites
         function drawStoneSprite(curFrameIndex, endFrameIndex) {
             that.curFrameIndex = curFrameIndex;
-            that.playing = true;
 
             //  check whether current frame is keyframe
             for (var i = 0; i < stoneKeyframeIndexes.length; i++) {
                 if (that.curFrameIndex == stoneKeyframeIndexes[i]) {
+                    curStoneParaIndex = i;
 
+                    //  show para
+                    $('.scene01 .item').removeClass('active');
+                    $('.scene01 .item').eq(curStoneParaIndex).addClass('active');
+                    console.log();
+
+                    //  play next frames
+                    setTimeout(function () {
+                        $('.scene01 .item').removeClass('active');
+                        play();
+                    }, 3000);
+                    return;
                 }
             }
 
+            // if current frame is not keyframe, play the current frame
+            play();
+
+            function play () {
             //  check whether currentFrame is the last frame of the current scene.
-            if (curFrameIndex == endFrameIndex) {
-                drawStone(curFrameIndex);
+                if (curFrameIndex == endFrameIndex) {
+                    drawStone(curFrameIndex);
+                    // drawStone next frame
+                    that.playTimer = setTimeout(function () {
+                        //  drawStone direction
+                        that.direct == "forward" ? drawStoneSprite(stoneFrameIndexes[0], stoneFrameIndexes[1]) : drawStoneSprite(stoneFrameIndexes[1], stoneFrameIndexes[0]);
+                    }, 1000/8);
+                } else {
+                    drawStone(curFrameIndex);
 
-                // drawStone next frame
-                that.playTimer = setTimeout(function () {
-                    //  drawStone direction
-                    that.direct == "forward" ? drawStoneSprite(stoneFrameIndexes[0], stoneFrameIndexes[1]) : drawStoneSprite(stoneFrameIndexes[1], stoneFrameIndexes[0]);
-                }, 1000/6);
-            } else {
-                drawStone(curFrameIndex);
-
-                // drawStone next frame
-                that.playTimer = setTimeout(function () {
-                    //  drawStone direction
-                    that.direct == "forward" ? drawStoneSprite(parseInt(curFrameIndex)+1, endFrameIndex) : drawStoneSprite(parseInt(curFrameIndex)-1, endFrameIndex);
-                }, 1000/6);
+                    // drawStone next frame
+                    that.playTimer = setTimeout(function () {
+                        //  drawStone direction
+                        that.direct == "forward" ? drawStoneSprite(parseInt(curFrameIndex)+1, endFrameIndex) : drawStoneSprite(parseInt(curFrameIndex)-1, endFrameIndex);
+                    }, 1000/8);
+                }
             }
         }
 
         //  recursive to drawStone sprites
         function drawWaveSprite(curFrameIndex, endFrameIndex) {
-            that.curFrameIndex = curFrameIndex;
-            that.playing = true;
+            //  clear timer
+            clearTimeout(that.waveTimer);
 
             //  check whether currentFrame is the last frame of the current scene.
             if (curFrameIndex == endFrameIndex) {
                 drawWave(curFrameIndex);
 
                 // drawStone next frame
-                that.playTimer = setTimeout(function () {
+                that.waveTimer = setTimeout(function () {
                     drawWaveSprite(waveFrameIndexes[0], waveFrameIndexes[1]);
                 }, 1000/25);
             } else {
                 drawWave(curFrameIndex);
 
                 // drawStone next frame
-                that.playTimer = setTimeout(function () {
+                that.waveTimer = setTimeout(function () {
                     //  drawStone direction
                     drawWaveSprite(parseInt(curFrameIndex)+1, endFrameIndex);
                 }, 1000/25);
@@ -295,6 +314,11 @@ var app = {
 
                 //  drawStone image
                 waveCtx.drawImage(img, 0, 0, waveCanvasWidth, waveCanvasHeight);
+
+                waveCtx.save();
+                waveCtx.globalAlpha = 0.2;
+                waveCtx.drawImage(img, 0, 0, waveCanvasWidth, waveCanvasHeight);
+                waveCtx.restore();
             } else {
 
             }
