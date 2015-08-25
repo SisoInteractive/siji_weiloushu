@@ -162,27 +162,32 @@ var app = {
         var waveCanvasWidth = waveCanvas.width;
         var waveCanvasHeight = waveCanvas.height;
 
+        /* indexes setting */
         var stoneFrameIndexes = [1, 24];
         var stoneKeyframeIndexes = [1, 9, 16, 24];
 
         var waveFrameIndexes = [1, 169];
-        var curStoneIndex = 0;
+
+        that.curFrameIndex = 1;
+        var curStoneParaIndex = 0;
+
+        //  show cursor
+        $('.scene01 .cursor').addClass('active');
 
         //  play stone animation
-        that.curFrameIndex = 1;
-
         /**  play the first time animation */
         (function (curFrameIndex, endFrameIndex) {
             drawFirstTime(curFrameIndex, endFrameIndex);
 
             function drawFirstTime (curFrameIndex, endFrameIndex) {
                 //  check whether currentFrame is the last frame of the current scene.
-                if (curFrameIndex == endFrameIndex) {
-                    drawStone(curFrameIndex);
+                if (curFrameIndex == endFrameIndex+1) {
+                    //  draw first frame
+                    drawStone(0);
 
                     //  show para
                     $('.scene01 .item').removeClass('active');
-                    $('.scene01 .item').eq(curStoneIndex).addClass('active');
+                    $('.scene01 .item').eq(curStoneParaIndex).addClass('active');
 
                     /** play the second time animation */
                     that.playTimer = setTimeout(function () {
@@ -285,7 +290,6 @@ var app = {
             var img = that.sprites.wave[frameIndex];
 
             if (img) {
-                console.log(frameIndex);
                 //  clear paper
                 waveCtx.clearRect(0, 0, waveCanvasWidth, waveCanvasHeight);
 

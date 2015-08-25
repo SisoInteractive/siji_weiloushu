@@ -64,6 +64,9 @@ input {
   opacity: 0;
 }
 /* scene01 */
+.scene01 {
+  /* para */
+}
 .scene01 #stone-body {
   position: absolute;
   top: 171px;
@@ -73,6 +76,17 @@ input {
   position: absolute;
   top: 435px;
   left: 0;
+}
+.scene01 .cursor {
+  top: 344px;
+  left: 0;
+  right: 0;
+  opacity: 0;
+}
+.scene01 .cursor.active {
+  opacity: 1;
+  transition: all .8s;
+  transition-delay: .4s;
 }
 .scene01 .item01 .title {
   left: 51px;
@@ -112,6 +126,120 @@ input {
   top: 93px;
   left: 12.5px;
 }
+.scene01 .item02 .title {
+  left: 44px;
+  top: 272.5px;
+  transform: translate3d(30%, 0, 0);
+  transition: all 0.6s ease-out;
+}
+.scene01 .item02 .stone {
+  width: 31px;
+  height: 28px;
+  top: 375px;
+  left: 264px;
+  transform: translate3d(-130%, 0, 0);
+  transition: all 0.6s ease-out;
+}
+.scene01 .item02 .stone .stone-block01 {
+  top: -35.5px;
+  left: -54.5px;
+}
+.scene01 .item02 .stone .stone-block02 {
+  top: -33px;
+  left: -4.5px;
+}
+.scene01 .item02 .stone .stone-block03 {
+  top: 63.5px;
+  left: 44px;
+}
+.scene01 .item02 .stone .stone-block04 {
+  top: -8.5px;
+  left: 44px;
+}
+.scene01 .item02 .stone .stone-block05 {
+  top: 40px;
+  left: 0;
+}
+.scene01 .item02 .stone .stone-block06 {
+  top: 44.5px;
+  left: 20px;
+}
+.scene01 .item03 .title {
+  left: 188.5px;
+  top: 356px;
+  transform: translate3d(-30%, 0, 0);
+  transition: all 0.6s ease-out;
+}
+.scene01 .item03 .stone {
+  width: 31px;
+  height: 28px;
+  top: 236px;
+  left: 73.5px;
+  transform: translate3d(150%, 0, 0);
+  transition: all 0.6s ease-out;
+}
+.scene01 .item03 .stone .stone-block01 {
+  top: 71px;
+  left: 13px;
+}
+.scene01 .item03 .stone .stone-block02 {
+  top: 15.5px;
+  left: -29px;
+}
+.scene01 .item03 .stone .stone-block03 {
+  top: 30.5px;
+  left: 38px;
+}
+.scene01 .item03 .stone .stone-block04 {
+  top: -7.5px;
+  left: 45.5px;
+}
+.scene01 .item03 .stone .stone-block05 {
+  top: 57.5px;
+  left: -15px;
+}
+.scene01 .item03 .stone .stone-block06 {
+  top: 25px;
+  left: 60px;
+}
+.scene01 .item04 .title {
+  left: 37px;
+  top: 299px;
+  transform: translate3d(30%, 0, 0);
+  transition: all 0.6s ease-out;
+}
+.scene01 .item04 .stone {
+  width: 31px;
+  height: 28px;
+  top: 283.5px;
+  left: 274.5px;
+  transform: translate3d(-150%, 0, 0);
+  transition: all 0.6s ease-out;
+}
+.scene01 .item04 .stone .stone-block01 {
+  top: 0;
+  left: -108px;
+}
+.scene01 .item04 .stone .stone-block02 {
+  top: -11px;
+  left: -20px;
+}
+.scene01 .item04 .stone .stone-block03 {
+  top: 25.5px;
+  left: 53.5px;
+}
+.scene01 .item04 .stone .stone-block04 {
+  top: 45px;
+  left: 30px;
+}
+.scene01 .item04 .stone .stone-block05 {
+  top: 50px;
+  left: 0;
+}
+.scene01 .item04 .stone .stone-block06 {
+  top: 93px;
+  left: 12.5px;
+}
 /* scene01 active */
 .scene01.swiper-slide-active .logo {
   -webkit-animation: fadeIn .7s ease .2s 1 forwards;
@@ -123,19 +251,34 @@ input {
 .scene01.swiper-slide-active .bird {
   -webkit-animation: fly 2s ease .2s infinite forwards;
 }
-.scene01 .item01.active .title {
+.scene01 .item01.active .title,
+.scene01 .item02.active .title,
+.scene01 .item03.active .title,
+.scene01 .item04.active .title {
   opacity: 1;
   transform: translate3d(0, 0, 0);
   transition-delay: .8s;
 }
-.scene01 .item01.active .stone {
+.scene01 .item01.active .stone,
+.scene01 .item02.active .stone,
+.scene01 .item03.active .stone,
+.scene01 .item04.active .stone {
   opacity: 1;
   transform: translate3d(0, 0, 0);
   transition-delay: .4s;
 }
 .scene01 .item01.active .stone-block01,
+.scene01 .item02.active .stone-block01,
+.scene01 .item03.active .stone-block01,
+.scene01 .item04.active .stone-block01,
 .scene01 .item01.active .stone-block03,
-.scene01 .item01.active .stone-block05 {
+.scene01 .item02.active .stone-block03,
+.scene01 .item03.active .stone-block03,
+.scene01 .item04.active .stone-block03,
+.scene01 .item01.active .stone-block05,
+.scene01 .item02.active .stone-block05,
+.scene01 .item03.active .stone-block05,
+.scene01 .item04.active .stone-block05 {
   -webkit-animation: fadeIn 1.2s ease 1.5s 1 forwards;
 }
 /* animation */
