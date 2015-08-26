@@ -52,9 +52,11 @@ var app = {
         };
 
         //  load stone scene frames
-        for (var i = 1; i <= 24; i++) {
+        //for (var i = 1; i <= 24; i++) {
+        for (var i = 0; i <= 23; i++) {
             var img = new Image();
-            img.src = imgPath + 's01-stone-body' + fixZero(i) + '.png';
+            //img.src = imgPath + 's01-stone-body' + fixZero(i) + '.png';
+            img.src = 'assets/img/' + 's01-stone-body' + fixZero(i) + '.png';
 
             img.index = i;
 
@@ -538,6 +540,7 @@ var app = {
             //  catch picture
             if (!this.picture) {
                 this.picture = this.getElementsByTagName('img')[0];
+                this.picture.style.webkitTransform = 'translate3d(0px, 0px, 0px)';
                 this.picture.style.transform = 'translate3d(0px, 0px, 0px)';
             }
         }
@@ -594,12 +597,17 @@ var app = {
 
 
                 //  set image new position
-                picture.style.transform = 'translate3d(' + newX  +', ' + newY +  ', 0)';
+                picture.style.webkitTransform = 'translate3d(' + newX  +', ' + newY +  ', 0)';
+                picture.style.Transform = 'translate3d(' + newX  +', ' + newY +  ', 0)';
 
                 //  update touchStart point
                 this.touchStartPointX = curPointX;
                 this.touchStartPointY = curPointY;
             }
+        }
+
+        function pictureTouchEndHandler () {
+            // ...
         }
 
         function matrixToArray(matrix) {
