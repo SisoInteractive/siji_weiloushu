@@ -10,6 +10,8 @@ var app = {
 
     direct: 'forward',
 
+    canPlay: true,
+
     preload: function () {
         var that = this;
         var Canvas = document.getElementById('stone-body');
@@ -170,6 +172,7 @@ var app = {
 
         that.curFrameIndex = 1;
         var curStoneParaIndex = 0;
+        that.canPlay = true;
 
         //  play stone animation
         /**  play the first time animation */
@@ -212,36 +215,23 @@ var app = {
         /**  play wave animation */
         drawWaveSprite(waveFrameIndexes[0], waveFrameIndexes[1]);
 
+        //  bind touch event
+        var toucharea = document.getElementById('stone-touch-area');
+        var touchStartPoint = 0;
+        var minMove = 3;
+
+        toucharea.addEventListener('touchstart', setTouchStartPoint);
+
+        toucharea.addEventListener('touchmove', setCurrentFrame);
+
+        toucharea.addEventListener('touchend', touchEndHandler);
+
         //  recursive to drawStone sprites
         function drawStoneSprite(curFrameIndex, endFrameIndex) {
-            that.curFrameIndex = curFrameIndex;
-
-            //  check whether current frame is keyframe
-            for (var i = 0; i < stoneKeyframeIndexes.length; i++) {
-                if (that.curFrameIndex == stoneKeyframeIndexes[i]) {
-                    curStoneParaIndex = i;
-
-                    //  show para
-                    $('.scene01 .item').removeClass('active');
-                    $('.scene01 .item').eq(curStoneParaIndex).addClass('active');
-                    $('.cursor').removeClass('cursor01 cursor02 cursor03 cursor04')
-                        .addClass('active cursor0' + (curStoneParaIndex+1));
-
-                    //  play next frames
-                    setTimeout(function () {
-                        $('.scene01 .item').removeClass('active');
-                        play();
-                    }, 3000);
-                    return;
-                }
-            }
-
-            // if current frame is not keyframe, play the current frame
-            $('.cursor').removeClass('active');
-            play();
+            clearTimeout(that.playTimer);
 
             function play () {
-            //  check whether currentFrame is the last frame of the current scene.
+                //  check whether currentFrame is the last frame of the current scene.
                 if (curFrameIndex == endFrameIndex) {
                     drawStone(curFrameIndex);
                     // drawStone next frame
@@ -258,6 +248,34 @@ var app = {
                         that.direct == "forward" ? drawStoneSprite(parseInt(curFrameIndex)+1, endFrameIndex) : drawStoneSprite(parseInt(curFrameIndex)-1, endFrameIndex);
                     }, 1000/8);
                 }
+            }
+
+            if (that.canPlay == true) {
+                that.curFrameIndex = curFrameIndex;
+
+                //  check whether current frame is keyframe
+                for (var i = 0; i < stoneKeyframeIndexes.length; i++) {
+                    if (that.curFrameIndex == stoneKeyframeIndexes[i]) {
+                        curStoneParaIndex = i;
+
+                        //  show para
+                        $('.scene01 .item').removeClass('active');
+                        $('.scene01 .item').eq(curStoneParaIndex).addClass('active');
+                        $('.cursor').removeClass('cursor01 cursor02 cursor03 cursor04')
+                            .addClass('active cursor0' + (curStoneParaIndex+1));
+
+                        //  play next frames
+                        that.playTimer = setTimeout(function () {
+                            $('.scene01 .item').removeClass('active');
+                            play();
+                        }, 3200);
+                        return;
+                    }
+                }
+
+                // if current frame is not keyframe, play the current frame
+                $('.cursor').removeClass('active');
+                play();
             }
         }
 
@@ -324,6 +342,74 @@ var app = {
             } else {
 
             }
+        }
+
+        //  touch handler
+        function setTouchStartPoint(e) {
+            touchStartPoint = e.touches[0].pageX;
+            clearTimeout(that.playTimer);
+
+            //  hide para
+            $('.scene01 .item').removeClass('active');
+            $('.cursor').removeClass('active cursor01 cursor02 cursor03 cursor04');
+        }
+
+        function setCurrentFrame (e) {
+            that.canPlay = false;
+
+            //  get current touch position
+            var curPoint = e.touches[0].pageX;
+            var distance = Math.abs(curPoint - touchStartPoint);
+
+            var startFrame = stoneFrameIndexes[0];
+            var endFrame = stoneFrameIndexes[1];
+
+            //  calculate the next frame's index to draw
+            //  if the drag direction is "forward"
+            if (distance > minMove && curPoint > touchStartPoint) {
+                that.curFrameIndex += 1;
+
+                that.curFrameIndex > endFrame ? that.curFrameIndex = stoneFrameIndexes[0] : null;
+            } else if (distance > minMove && curPoint < touchStartPoint) {
+                that.curFrameIndex -= 1;
+
+                that.curFrameIndex < startFrame ? that.curFrameIndex = stoneFrameIndexes[1] : null;
+            } else {
+
+            }
+
+            //  draw next frame
+            touchStartPoint = curPoint;
+            drawStone(that.curFrameIndex);
+        }
+
+        function touchEndHandler() {
+            that.canPlay = true;
+
+            //  get current frame closer which keyframe
+            var min = 10000;
+            var minIndex = 0;
+
+            for (var i = 0; i < stoneKeyframeIndexes.length; i++) {
+                var distance = Math.abs(that.curFrameIndex - stoneKeyframeIndexes[i]);
+                if (distance < min) {
+                    min = distance;
+                    minIndex = i;
+                }
+            }
+
+            //  show para
+            $('.scene01 .item').removeClass('active');
+            $('.scene01 .item').eq(minIndex).addClass('active');
+            $('.cursor').removeClass('cursor01 cursor02 cursor03 cursor04')
+                .addClass('active cursor0' + (minIndex+1));
+
+
+            that.playTimer = setTimeout(function () {
+                //  start from second frame
+                that.curFrameIndex +1 == stoneFrameIndexes[1] ? that.curFrameIndex = 0 : that.curFrameIndex++;
+                drawStoneSprite(that.curFrameIndex, stoneFrameIndexes[1]);
+            }, 4000);
         }
     },
 

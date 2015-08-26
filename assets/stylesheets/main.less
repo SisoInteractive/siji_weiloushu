@@ -85,6 +85,17 @@ input {
     left: 194px/2;
   }
 
+  #stone-touch-area {
+    position: absolute;
+    top: 342px/2;
+    left: 194px/2;
+    width: 187px*1.5;
+    height: 282px*1.5;
+    margin: -50px 0 0 -50px;
+    z-index: 110;
+//    background: rgba(255, 0, 0, .3);
+  }
+
   #stone-wave {
     position: absolute;
     top: 870px/2;
@@ -124,12 +135,21 @@ input {
   }
 
   /* para */
+  .item {
+    .title {
+      transition: all 1.2s ease-out;
+    }
+
+    .stone {
+      transition: all 1.2s ease-out;
+    }
+  }
+
   .item01 {
     .title {
       left: 102px/2;
       top: 684px/2;
       transform: translate3d(30%, 0, 0);
-      transition: all .6s ease-out;
     }
 
     .stone {
@@ -138,7 +158,6 @@ input {
       top: 567px/2;
       left: 549px/2;
       transform: translate3d(-150%, 0, 0);
-      transition: all .6s ease-out;
 
       .stone-block01 {
         top: 0;
@@ -177,7 +196,6 @@ input {
       left: 88px/2;
       top: 545px/2;
       transform: translate3d(30%, 0, 0);
-      transition: all .6s ease-out;
     }
 
     .stone {
@@ -186,7 +204,6 @@ input {
       top: 750px/2;
       left: 528px/2;
       transform: translate3d(-130%, 0, 0);
-      transition: all .6s ease-out;
 
       .stone-block01 {
         top: -71px/2;
@@ -225,7 +242,6 @@ input {
       left: 377px/2;
       top: 712px/2;
       transform: translate3d(-30%, 0, 0);
-      transition: all .6s ease-out;
     }
 
     .stone {
@@ -234,7 +250,6 @@ input {
       top: 472px/2;
       left: 147px/2;
       transform: translate3d(150%, 0, 0);
-      transition: all .6s ease-out;
 
       .stone-block01 {
         top: 71px;
@@ -274,7 +289,6 @@ input {
       left: 74px/2;
       top: 598px/2;
       transform: translate3d(30%, 0, 0);
-      transition: all .6s ease-out;
     }
 
     .stone {
@@ -283,7 +297,6 @@ input {
       top: 567px/2;
       left: 549px/2;
       transform: translate3d(-150%, 0, 0);
-      transition: all .6s ease-out;
 
       .stone-block01 {
         top: 0;
