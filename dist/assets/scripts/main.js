@@ -19,12 +19,28 @@ var app = {
         var Canvas = document.getElementById('stone-body');
         var ctx = Canvas.getContext('2d');
 
+        //  init page response plugin
+        var page = new pageResponse({
+            class : 'wrap',     //模块的类名，使用class来控制页面上的模块(1个或多个)
+            mode : 'cover',     // auto || contain || cover ，默认模式为auto
+            width : '375',      //输入页面的宽度，只支持输入数值，默认宽度为320px
+            height : '625'      //输入页面的高度，只支持输入数值，默认高度为504px
+        });
+
         //  set images generator
         var imgPath = "assets/images/";
         //  img amounts, use the amounts order to general image objects
         var imgAmounts = 24+169;
         var loadedAmounts = 0;
         var isLoaded = false;
+
+        //  load loading image
+        var birdImg = new Image();
+        birdImg.src = 'assets/images/bird-sprite.png';
+        birdImg.onload = function () {
+            //  show bird
+            $('.loading .bird').addClass('transform');
+        };
 
         //  load stone scene frames
         for (var i = 1; i <= 24; i++) {
@@ -100,6 +116,8 @@ var app = {
 
         function checkIsAllLoaded () {
             var loadedRate = 1;
+            $('.counter').text(parseInt(loadedAmounts / imgAmounts*100) + '%');
+            $('.line-wrap').css({'background-position' : (parseInt(loadedAmounts / imgAmounts*100)+'%')});
             return loadedAmounts / imgAmounts >= loadedRate;
         }
 
@@ -121,9 +139,6 @@ var app = {
     create: function (){
         var that = this;
 
-        //  let main scene active
-        $('.main-scene').addClass('active');
-
         //  init swiper
         var swiperItemsLength = $('.scene').length;
 
@@ -137,6 +152,8 @@ var app = {
             // init
             onInit: function (swiper) {
                 $('.swiper-container').show();
+                $('.main-scene').addClass('active');
+
                 $('.scene').eq(swiper.activeIndex).addClass('active');
 
                 //  bound menu button
@@ -157,17 +174,17 @@ var app = {
 
                 $('.item02 .stone-txt, .menu-scene .item02').click(function(e){
                     e.stopPropagation();
-                    slideTo(3);
+                    slideTo(4);
                 });
 
                 $('.item03 .stone-txt, .menu-scene .item03').click(function(e){
                     e.stopPropagation();
-                    slideTo(4);
+                    slideTo(5);
                 });
 
                 $('.item04 .stone-txt, .menu-scene .item04').click(function(e){
                     e.stopPropagation();
-                    slideTo(5);
+                    slideTo(6);
                 });
 
                 function slideTo(index) {
@@ -237,13 +254,13 @@ var app = {
         that.canPlay = true;
 
         //  show bird
-        $('.bird').addClass('transform');
+        $('.scene .bird').addClass('transform');
         setTimeout(function () {
-            $('.bird').removeClass('transform')
+            $('.scene .bird').removeClass('transform')
                 .addClass('transformed');
 
             setTimeout(function () {
-                $('.bird').removeClass('transformed')
+                $('.scene .bird').removeClass('transformed')
                     .addClass('fly');
             }, 600);
         }, 500);
@@ -490,15 +507,14 @@ var app = {
     },
 
     start: function (){
-        //  init page response plugin
-        var page = new pageResponse({
-            class : 'wrap',     //模块的类名，使用class来控制页面上的模块(1个或多个)
-            mode : 'cover',     // auto || contain || cover ，默认模式为auto
-            width : '375',      //输入页面的宽度，只支持输入数值，默认宽度为320px
-            height : '625'      //输入页面的高度，只支持输入数值，默认高度为504px
-        });
-        
-        this.create();
+        var that = this;
+
+        //  let main scene active
+        $('.loading').addClass('leave');
+
+        setTimeout(function () {
+            that.create()
+        }, 1000);
     }
 };
 
