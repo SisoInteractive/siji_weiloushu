@@ -119,7 +119,38 @@ var app = {
     create: function (){
         var that = this;
 
+        //  let main scene active
+        $('.main-scene').addClass('active');
+
+        //  bound menu button
+        $('.btn-menu').click(function () {
+            $('.menu-scene').addClass('active');
+
+            //  if in main scene
+            if (!$('.wrap').hasClass('toContent')) {
+                $('.wrap').addClass('mainSceneToMenu');
+            }
+
+            //  if in detail page
+            if ($('.wrap').hasClass('toContent')) {
+                $('.wrap').addClass('contentToMenu');
+            }
+        });
+
+        $('.btn-main').click(function () {
+            $('.menu-scene').removeClass('active');
+
+            $('.wrap').removeClass('mainSceneToMenu');
+
+            //  if in detail page
+            if ($('.wrap').hasClass('toContent')) {
+                $('.wrap').removeClass('toContent');
+            }
+        });
+
         //  init swiper
+        var swiperItemsLength = $('.scene').length;
+
         app.mySwiper = new Swiper ('.swiper-container', {
             direction: 'vertical',
 
@@ -128,15 +159,50 @@ var app = {
             noSwiping: false,
 
             // init
-            onInit: function () {
+            onInit: function (swiper) {
                 $('.swiper-container').show();
+                $('.scene').eq(swiper.activeIndex).addClass('active');
+
+                $('.item01 .stone-txt, .menu-scene .item01').click(function(e){
+                    e.stopPropagation();
+                    slideTo(0);
+                });
+
+                $('.item02 .stone-txt, .menu-scene .item02').click(function(e){
+                    e.stopPropagation();
+                    slideTo(1);
+                });
+
+                $('.item03 .stone-txt, .menu-scene .item03').click(function(e){
+                    e.stopPropagation();
+                    slideTo(2);
+                });
+
+                $('.item04 .stone-txt, .menu-scene .item04').click(function(e){
+                    e.stopPropagation();
+                    slideTo(3);
+                });
+
+                function slideTo(index) {
+                    $('.wrap').addClass('toContent').removeClass('mainSceneToMenu contentToMenu');
+                    swiper.slideTo(index, 0);//切换到第一个slide，速度为1秒
+                }
             },
 
             onTransitionStart: function (swiper) {
+                $('.btn-menu, .btn-main').addClass('active');
+
+                if (swiper.activeIndex == swiperItemsLength) {
+                    $('.slider-arrow').hide();
+                } else {
+                    $('.slider-arrow').hide();
+                }
             },
 
             onTransitionEnd: function (swiper) {
-
+                $('.btn-menu, .btn-main').removeClass('active');
+                $('.scene').removeClass('active');
+                $('.scene').eq(swiper.activeIndex).addClass('active');
             }
         });
 
@@ -179,7 +245,7 @@ var app = {
         setTimeout(function () {
             $('.bird').removeClass('transform')
                 .addClass('transformed');
-        }, 3000);
+        }, 400);
 
         //  play stone animation
         /**  play the first time animation */
@@ -193,15 +259,15 @@ var app = {
                     drawStone(stoneFrameIndexes[0]);
 
                     //  show para
-                    $('.scene01 .item').removeClass('active');
-                    $('.scene01 .item').eq(curStoneParaIndex).addClass('active');
+                    $('.main-scene .item').removeClass('active');
+                    $('.main-scene .item').eq(curStoneParaIndex).addClass('active');
                     $('.cursor').removeClass('cursor01 cursor02 cursor03 cursor04')
                         .addClass('active cursor0' + (curStoneParaIndex+1));
 
                     /** play the second time animation */
                     that.playTimer = setTimeout(function () {
                         //  hide para
-                        $('.scene01 .item').removeClass('active');
+                        $('.main-scene .item').removeClass('active');
 
                         //  start from second frame
                         drawStoneSprite(that.curFrameIndex+1, stoneFrameIndexes[1]);
@@ -214,7 +280,7 @@ var app = {
                     that.playTimer = setTimeout(function () {
                         //  drawStone direction
                         that.direct == "forward" ? drawFirstTime(parseInt(curFrameIndex)+1, endFrameIndex) : drawFirstTime(parseInt(curFrameIndex)-1, endFrameIndex);
-                    }, 1000/8);
+                    }, 1000/12);
                 }
             }
         })(stoneFrameIndexes[0], stoneFrameIndexes[1]);
@@ -223,7 +289,7 @@ var app = {
         drawWaveSprite(waveFrameIndexes[0], waveFrameIndexes[1]);
 
         //  bind touch event
-        var toucharea = document.getElementById('stone-touch-area');
+        var toucharea = document.getElementsByClassName('wrap')[0];
         var touchStartPoint = 0;
         var minMove = 2;
 
@@ -266,14 +332,14 @@ var app = {
                         curStoneParaIndex = i;
 
                         //  show para
-                        $('.scene01 .item').removeClass('active');
-                        $('.scene01 .item').eq(curStoneParaIndex).addClass('active');
+                        $('.main-scene .item').removeClass('active');
+                        $('.main-scene .item').eq(curStoneParaIndex).addClass('active');
                         $('.cursor').removeClass('cursor01 cursor02 cursor03 cursor04')
                             .addClass('active cursor0' + (curStoneParaIndex+1));
 
                         //  play next frames
                         that.playTimer = setTimeout(function () {
-                            $('.scene01 .item').removeClass('active');
+                            $('.main-scene .item').removeClass('active');
                             play();
                         }, 3200);
                         return;
@@ -357,7 +423,7 @@ var app = {
             clearTimeout(that.playTimer);
 
             //  hide para
-            $('.scene01 .item').removeClass('active');
+            $('.main-scene .item').removeClass('active');
             $('.cursor').removeClass('active cursor01 cursor02 cursor03 cursor04');
         }
 
@@ -406,8 +472,8 @@ var app = {
             }
 
             //  show para
-            $('.scene01 .item').removeClass('active');
-            $('.scene01 .item').eq(minIndex).addClass('active');
+            $('.main-scene .item').removeClass('active');
+            $('.main-scene .item').eq(minIndex).addClass('active');
             $('.cursor').removeClass('cursor01 cursor02 cursor03 cursor04')
                 .addClass('active cursor0' + (minIndex+1));
 
@@ -424,12 +490,12 @@ var app = {
     start: function (){
         //  init page response plugin
         var page = new pageResponse({
-            class : 'swiper-container',     //模块的类名，使用class来控制页面上的模块(1个或多个)
+            class : 'wrap',     //模块的类名，使用class来控制页面上的模块(1个或多个)
             mode : 'cover',     // auto || contain || cover ，默认模式为auto
             width : '375',      //输入页面的宽度，只支持输入数值，默认宽度为320px
             height : '625'      //输入页面的高度，只支持输入数值，默认高度为504px
         });
-
+        
         this.create();
     }
 };
