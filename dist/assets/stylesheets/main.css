@@ -68,6 +68,15 @@ input {
 .scene01 {
   /* para */
 }
+.scene01 .bird {
+  width: 106px;
+  height: 106px;
+  opacity: 0;
+  background: url("../images/bird-sprite.png") no-repeat;
+  background-size: 954px 212px;
+  -webkit-transform: translate3d(0, 20px, 0);
+          transform: translate3d(0, 20px, 0);
+}
 .scene01 #stone-body {
   position: absolute;
   top: 171px;
@@ -283,9 +292,21 @@ input {
 .scene01.swiper-slide-active .brand {
   -webkit-animation: fadeIn .7s ease .4s 1 forwards;
 }
-.scene01.swiper-slide-active .bird {
+.scene01.swiper-slide-active .bird.transform {
+  opacity: 1;
+  -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
+  -webkit-transition: opacity 1.5s, -webkit-transform 2.4s ease-out 1.4s;
+          transition: opacity 1.5s, transform 2.4s ease-out 1.4s;
+  -webkit-animation: transform 0.8s ease-in 0.8s 1 forwards;
+}
+.scene01.swiper-slide-active .bird.transformed {
   opacity: 1 ;
-  -webkit-animation: fly 2s ease .2s infinite forwards;
+  -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
+  -webkit-transition: opacity 1.5s, -webkit-transform 2.4s ease-out 1.4s;
+          transition: opacity 1.5s, transform 2.4s ease-out 1.4s;
+  -webkit-animation: transformed 2s ease-in infinite;
 }
 .scene01 .item01.active .title,
 .scene01 .item02.active .title,
@@ -322,30 +343,116 @@ input {
   -webkit-animation: fadeIn 1.2s ease 1.5s 1 forwards;
 }
 /* animation */
-@-webkit-keyframes fly {
-  0% {
-    opacity: 1;
+@-webkit-keyframes transform {
+  0%,
+  19.99999% {
+    background-position: 0 0;
   }
-  50% {
-    opacity: 1;
-    -webkit-transform: translate3d(0, -10px, 0);
-            transform: translate3d(0, -10px, 0);
+  20%,
+  29.999999% {
+    background-position: -106px 0;
   }
+  30%,
+  39.999999% {
+    background-position: -212px 0;
+  }
+  40%,
+  49.999999% {
+    background-position: -318px 0;
+  }
+  50%,
+  59.999999% {
+    background-position: -424px 0;
+  }
+  60%,
+  69.999999% {
+    background-position: -530px 0;
+  }
+  70%,
+  79.999999% {
+    background-position: -636px 0;
+  }
+  80%,
+  89.999999% {
+    background-position: -742px 0;
+  }
+  90%,
   100% {
-    opacity: 1;
+    background-position: -848px 0;
   }
 }
-@keyframes fly {
-  0% {
-    opacity: 1;
+@keyframes transform {
+  0%,
+  19.99999% {
+    background-position: 0 0;
   }
-  50% {
-    opacity: 1;
-    -webkit-transform: translate3d(0, -10px, 0);
-            transform: translate3d(0, -10px, 0);
+  20%,
+  29.999999% {
+    background-position: -106px 0;
   }
+  30%,
+  39.999999% {
+    background-position: -212px 0;
+  }
+  40%,
+  49.999999% {
+    background-position: -318px 0;
+  }
+  50%,
+  59.999999% {
+    background-position: -424px 0;
+  }
+  60%,
+  69.999999% {
+    background-position: -530px 0;
+  }
+  70%,
+  79.999999% {
+    background-position: -636px 0;
+  }
+  80%,
+  89.999999% {
+    background-position: -742px 0;
+  }
+  90%,
   100% {
-    opacity: 1;
+    background-position: -848px 0;
+  }
+}
+@-webkit-keyframes transformed {
+  0%,
+  24.999999% {
+    background-position: 0 -106px;
+  }
+  25%,
+  49.999999% {
+    background-position: -106px -106px;
+  }
+  50%,
+  74.999999% {
+    background-position: -212px -106px;
+  }
+  75%,
+  100% {
+    background-position: -318px -106px;
+  }
+}
+@keyframes transformed {
+  0%,
+  24.999999% {
+    background-position: 0 -106px;
+  }
+  25%,
+  49.999999% {
+    background-position: -106px -106px;
+  }
+  50%,
+  74.999999% {
+    background-position: -212px -106px;
+  }
+  75%,
+  100% {
+    background-position: -318px -106px;
   }
 }
 /*======================================================================

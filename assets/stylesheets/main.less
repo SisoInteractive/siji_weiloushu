@@ -79,6 +79,15 @@ input {
 
 /* scene01 */
 .scene01 {
+  .bird {
+    width: 212px/2;
+    height: 212px/2;
+    opacity: 0;
+    background: url("../images/bird-sprite.png") no-repeat;
+    background-size: 212px*9/2 424px/2;
+    transform: translate3d(0, 20px, 0);
+  }
+
   #stone-body {
     position: absolute;
     top: 342px/2;
@@ -338,7 +347,21 @@ input {
   .tips,
   .brand{ -webkit-animation: fadeIn .7s ease .4s 1 forwards; }
 
-  .bird { opacity:1 ;-webkit-animation: fly 2s ease .2s infinite forwards; }
+  .bird.transform {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+    transition: opacity 1.5s, transform 2.4s ease-out 1.4s;
+
+    -webkit-animation: transform .8s ease-in .8s 1 forwards;
+  }
+
+  .bird.transformed {
+    opacity:1 ;
+    transform: translate3d(0, 0, 0);
+    transition: opacity 1.5s, transform 2.4s ease-out 1.4s;
+
+    -webkit-animation: transformed 2s ease-in infinite;
+  }
 }
 
 .scene01 .item01.active,
@@ -361,18 +384,73 @@ input {
 }
 
 /* animation */
-@keyframes fly {
-  0% {
-    opacity: 1;
+@keyframes transform {
+  0%,
+  19.99999% {
+    background-position: 0 0;
   }
 
-  50% {
-    opacity: 1;
-    transform: translate3d(0, -10px, 0);
+  20%,
+  29.999999%{
+    background-position: -212px/2 0;
   }
 
+  30%,
+  39.999999% {
+    background-position: -212px/2*2 0;
+  }
+
+  40%,
+  49.999999% {
+    background-position: -212px/2*3 0;
+  }
+
+  50%,
+  59.999999%{
+    background-position: -212px/2*4 0;
+  }
+
+  60%,
+  69.999999% {
+    background-position: -212px/2*5 0;
+  }
+
+  70%,
+  79.999999%  {
+    background-position: -212px/2*6 0;
+  }
+
+  80%,
+  89.999999%  {
+    background-position: -212px/2*7 0;
+  }
+
+  90%,
   100% {
-    opacity: 1;
+    background-position: -212px/2*8 0;
+  }
+}
+
+
+@keyframes transformed{
+  0%,
+  24.999999%{
+    background-position: 0 -212px/2;
+  }
+
+  25%,
+  49.999999%{
+    background-position: -212px/2*1 -212px/2;
+  }
+
+  50%,
+  74.999999%{
+    background-position: -212px/2*2 -212px/2;
+  }
+
+  75%,
+  100% {
+    background-position: -212px/2*3 -212px/2;
   }
 }
 /*======================================================================

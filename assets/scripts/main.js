@@ -174,6 +174,13 @@ var app = {
         var curStoneParaIndex = 0;
         that.canPlay = true;
 
+        //  show bird
+        $('.bird').addClass('transform');
+        setTimeout(function () {
+            $('.bird').removeClass('transform')
+                .addClass('transformed');
+        }, 3000);
+
         //  play stone animation
         /**  play the first time animation */
         (function (curFrameIndex, endFrameIndex) {
@@ -218,7 +225,7 @@ var app = {
         //  bind touch event
         var toucharea = document.getElementById('stone-touch-area');
         var touchStartPoint = 0;
-        var minMove = 3;
+        var minMove = 2;
 
         toucharea.addEventListener('touchstart', setTouchStartPoint);
 
@@ -367,11 +374,11 @@ var app = {
             //  calculate the next frame's index to draw
             //  if the drag direction is "forward"
             if (distance > minMove && curPoint > touchStartPoint) {
-                that.curFrameIndex += 1;
+                that.curFrameIndex += 2;
 
                 that.curFrameIndex > endFrame ? that.curFrameIndex = stoneFrameIndexes[0] : null;
             } else if (distance > minMove && curPoint < touchStartPoint) {
-                that.curFrameIndex -= 1;
+                that.curFrameIndex -= 2;
 
                 that.curFrameIndex < startFrame ? that.curFrameIndex = stoneFrameIndexes[1] : null;
             } else {
@@ -407,9 +414,10 @@ var app = {
 
             that.playTimer = setTimeout(function () {
                 //  start from second frame
+
                 that.curFrameIndex +1 == stoneFrameIndexes[1] ? that.curFrameIndex = 0 : that.curFrameIndex++;
                 drawStoneSprite(that.curFrameIndex, stoneFrameIndexes[1]);
-            }, 4000);
+            }, 3200);
         }
     },
 
