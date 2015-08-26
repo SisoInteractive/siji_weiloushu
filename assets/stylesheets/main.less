@@ -353,15 +353,16 @@ input {
     transform: translate3d(0, 0, 0);
     transition: opacity 1s, transform 1s ease;
 
-    -webkit-animation: transform .4s ease-in 0s 1 forwards;
+    -webkit-animation: transform .5s steps(9);
   }
 
   .bird.transformed {
     opacity:1 ;
+    background-position-y: -212px/2;
     transform: translate3d(0, 0, 0);
     transition: opacity 1.5s, transform 2.4s ease-out 1.4s;
 
-    -webkit-animation: transformed .8s ease-in 0s 3 forwards;
+    -webkit-animation: transformed .5s steps(4) 3;
   }
 }
 
@@ -696,73 +697,15 @@ input {
 
 
 @keyframes transform {
-  0%,
-  9.99999% {
-    background-position: 0 0;
-  }
-
-  10%,
-  29.999999%{
-    background-position: -212px/2 0;
-  }
-
-  30%,
-  39.999999% {
-    background-position: -212px/2*2 0;
-  }
-
-  40%,
-  49.999999% {
-    background-position: -212px/2*3 0;
-  }
-
-  50%,
-  59.999999%{
-    background-position: -212px/2*4 0;
-  }
-
-  60%,
-  69.999999% {
-    background-position: -212px/2*5 0;
-  }
-
-  70%,
-  79.999999%  {
-    background-position: -212px/2*6 0;
-  }
-
-  80%,
-  89.999999%  {
-    background-position: -212px/2*7 0;
-  }
-
-  90%,
   100% {
-    background-position: -212px/2*8 0;
+    background-position: -212px/2*9 0;
   }
 }
 
 
 @keyframes transformed{
-  0%,
-  24.999999%,
   100% {
-    background-position: 0 -212px/2;
-  }
-
-  25%,
-  49.999999%{
-    background-position: -212px/2*1 -212px/2;
-  }
-
-  50%,
-  74.999999%{
-    background-position: -212px/2*2 -212px/2;
-  }
-
-  75%,
-  99.999% {
-    background-position: -212px/2*3 -212px/2;
+    background-position-x: -212px/2*4;
   }
 }
 /*======================================================================

@@ -146,6 +146,8 @@ var app = {
             if ($('.wrap').hasClass('toContent')) {
                 $('.wrap').removeClass('toContent');
             }
+
+            $('.btn-menu, .btn-main').addClass('active');
         });
 
         //  init swiper
@@ -185,6 +187,7 @@ var app = {
 
                 function slideTo(index) {
                     $('.wrap').addClass('toContent').removeClass('mainSceneToMenu contentToMenu');
+                    $('.btn-menu, .btn-main').removeClass('active');
                     swiper.slideTo(index, 0);//切换到第一个slide，速度为1秒
                 }
             },
@@ -245,7 +248,7 @@ var app = {
         setTimeout(function () {
             $('.bird').removeClass('transform')
                 .addClass('transformed');
-        }, 400);
+        }, 500);
 
         //  play stone animation
         /**  play the first time animation */
