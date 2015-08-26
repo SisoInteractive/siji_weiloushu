@@ -140,6 +140,8 @@ var app = {
         var that = this;
 
         //  init swiper
+        $('.swiper-container').show();
+
         var swiperItemsLength = $('.scene').length;
 
         app.mySwiper = new Swiper ('.swiper-container', {
@@ -151,7 +153,6 @@ var app = {
 
             // init
             onInit: function (swiper) {
-                $('.swiper-container').show();
                 $('.main-scene').addClass('active');
 
                 $('.scene').eq(swiper.activeIndex).addClass('active');
