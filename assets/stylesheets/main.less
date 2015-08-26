@@ -562,6 +562,13 @@ input {
   opacity: 0;
 }
 
+.title-b-01 {
+  top: 690px/2;
+  left: 0;
+  right: 0;
+  opacity: 0;
+}
+
 .txt-block-a-01 {
   opacity: 0;
   top: 348px/2;
@@ -569,6 +576,7 @@ input {
   right: 0;
 }
 
+/* subtitle a */
 .subtitle-a {
   left: 0;
   right: 0;
@@ -581,12 +589,92 @@ input {
 
 .subtitle-a-03 { top: 884px/2; }
 
+/* subtitle b */
+.subtitle-b {
+  left: 0;
+  right: 0;
+  opacity: 0;
+}
+
+.subtitle-b-01 { top: 851px/2; }
+
+.subtitle-b-02 { top: 899px/2; }
+
+.subtitle-b-03 { top: 947px/2; }
+
 .line02 {
   top: 293px/2;
   left: 14.5%;
   width: 0;
   height: 1px;
   background: rgba(97, 76, 63, .5);
+}
+
+.line03 {
+  top: 795px/2;
+  left: 6.8%;
+  width: 0;
+  height: 1px;
+  background: rgba(97, 76, 63, .5);
+}
+
+/* mountain */
+.mountain {
+  opacity: 0;
+}
+
+.mountain01 {
+  top: 446px/2;
+  left: 168px/2;
+}
+
+.mountain02 {
+  top: 322px/2;
+  left: 244px/2;
+  z-index: 10;
+}
+
+.mountain03 {
+  top: 393px/2;
+  left: 410px/2;
+}
+
+.mountain04 {
+  top: 434px/2;
+  left: 560px/2;
+}
+
+.circle {
+  top: 452px/2;
+  left: 428px/2;
+  opacity: 0;
+  z-index: 200;
+}
+
+/* big picture */
+.big-picture {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0, 0, 0, .2);
+  z-index: 300;
+
+  .title {
+    bottom: 90px/2;
+    left: 0;
+    right: 0;
+  }
+}
+
+.picture-wrap {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
 }
 
 /** all scene active statues */
@@ -618,6 +706,11 @@ input {
     transition: all 1.2s ease .6s;
   }
 
+  .line03 {
+    width: 100%-6.8*2;
+    transition: all 1.2s ease .6s;
+  }
+
   .title-a-01 { -webkit-animation: fadeIn 1.2s ease 0.8s 1 forwards; }
   .txt-block-a-01 { -webkit-animation: fadeIn 1.5s ease 1.2s 1 forwards; }
 
@@ -638,6 +731,41 @@ input {
     -webkit-animation-delay: 2.2s;
     -webkit-animation-fill-mode: forwards;
   }
+
+
+  .title-b-01 { -webkit-animation: fadeIn 1.2s ease 0.8s 1 forwards; }
+
+  .subtitle-b-01 {
+    -webkit-animation: bounceInTop1 2s 1;
+    -webkit-animation-delay: 1.6s;
+    -webkit-animation-fill-mode: forwards;
+  }
+
+  .subtitle-b-02 {
+    -webkit-animation: bounceInTop1 2s 1;
+    -webkit-animation-delay: 1.9s;
+    -webkit-animation-fill-mode: forwards;
+  }
+
+  .subtitle-b-03 {
+    -webkit-animation: bounceInTop1 2s 1;
+    -webkit-animation-delay: 2.2s;
+    -webkit-animation-fill-mode: forwards;
+  }
+
+  /* cloud */
+  .cloud01 { -webkit-animation: fadeInRight 1s .3s 1 forwards; }
+  .cloud02 { -webkit-animation: fadeInRight 1s .5s 1 forwards; }
+  .cloud03 { -webkit-animation: fadeInRight 1s .6s 1 forwards; }
+
+  /* mountain */
+  .mountain01 { -webkit-animation: bounceIn 1s .6s 1 forwards; }
+  .mountain02 { -webkit-animation: bounceIn 1s 1 forwards; }
+  .mountain03 { -webkit-animation: bounceIn 1s .3s 1 forwards; }
+  .mountain04 { -webkit-animation: bounceIn 1s .8s 1 forwards; }
+
+  .circle { -webkit-animation: breath 2s infinite forwards; }
+
 }
 
 .scene02.active {
@@ -673,6 +801,27 @@ input {
 .scene03 {
   background: url("../images/bg03.jpg");
   background-size: cover;
+}
+
+.scene03-01 {
+  .cloud {
+    opacity: 0;
+  }
+
+  .cloud01 {
+    top: 92px/2;
+    left: 106px/2;
+  }
+
+  .cloud02 {
+    top: 162px/2;
+    left: 317px/2;
+  }
+
+  .cloud03 {
+    top: 145px/2;
+    left: 550px/2;
+  }
 }
 
 .scene04 {
@@ -733,6 +882,17 @@ input {
 
   100% {
     opacity: 1;
+  }
+}
+
+@keyframes breath {
+  0% {
+    opacity: .5;
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
   }
 }
 /*======================================================================

@@ -8,6 +8,11 @@ var app = {
         wave: []
     },
 
+    scene: {
+        availWidth: 0,
+        availHeight: 0
+    },
+
     direct: 'forward',
 
     canPlay: true,
@@ -18,6 +23,10 @@ var app = {
         var that = this;
         var Canvas = document.getElementById('stone-body');
         var ctx = Canvas.getContext('2d');
+
+        //  set scene infor
+        that.scene.availWidth = screen.availWidth;
+        that.scene.availHeight = screen.availHeight;
 
         //  init page response plugin
         var page = new pageResponse({
@@ -505,6 +514,98 @@ var app = {
                 drawStoneSprite(that.curFrameIndex, stoneFrameIndexes[1]);
             }, 3200);
         }
+
+        /** picture touch */
+        var pictureWraps = document.getElementsByClassName('picture-wrap');
+        var minPictureMove = 3;
+
+        //  bind touch handler for each picture wrap
+        for (var i = 0; i < pictureWraps.length; i++) {
+            var pictureWrap = pictureWraps[i];
+
+            pictureWrap.addEventListener('touchstart', pictureTouchStartHandler);
+            pictureWrap.addEventListener('touchmove', pictureTouchMoveHandler);
+            pictureWrap.addEventListener('touchend', pictureTouchEndHandler);
+
+            //  set default picture as undefined
+            pictureWrap.picture = undefined;
+        }
+
+        function pictureTouchStartHandler (e) {
+            this.touchStartPointX = e.touches[0].pageX;
+            this.touchStartPointY = e.touches[0].pageY;
+
+            //  catch picture
+            if (!this.picture) {
+                this.picture = this.getElementsByTagName('img')[0];
+                this.picture.style.transform = 'translate3d(0px, 0px, 0px)';
+            }
+        }
+
+        var index = 0;
+
+        function pictureTouchMoveHandler (e) {
+            var canSetNewPosition = true;
+            var picture = this.picture;
+            var oldPosition = matrixToArray(this.picture.style.transform);
+            var oldPositionX = oldPosition[0];
+            var oldPositionY = oldPosition[1];
+
+            var isTheMaxLeftTop = oldPositionX > 0 || oldPositionY > 0;
+            var isTheMaxLeftBottom = oldPositionX > 0 || oldPositionY < -(picture.height - that.scene.availHeight);
+            var isTheMaxRightTop = oldPositionX < -(picture.width - that.scene.availWidth) || oldPositionY > 0;
+            var isTheMaxRightBottom = oldPositionX < -(picture.width - that.scene.availWidth) || oldPositionY < -(picture.height - that.scene.availHeight);
+
+
+            /**  if drag out of boundary */
+            if ( isTheMaxLeftTop || isTheMaxLeftBottom || isTheMaxRightTop || isTheMaxRightBottom ) {
+                canSetNewPosition = false;
+
+                //  debug
+                //console.log('\n', index++ , ' isTheMaxLeftTop', isTheMaxLeftTop);
+                //console.log('isTheMaxLeftBottom', isTheMaxLeftBottom);
+                //console.log('isTheMaxRightTop', isTheMaxRightTop);
+                //console.log('isTheMaxRightBottom', isTheMaxRightBottom);
+            }
+
+
+            if (canSetNewPosition) {
+                //  get current touch position
+                var curPointX = e.touches[0].pageX;
+                var curPointY = e.touches[0].pageY;
+                var oldPointX = this.touchStartPointX;
+                var oldPointY = this.touchStartPointY;
+
+                var distanceX = Math.abs(curPointX - oldPointX);
+                var distanceY = Math.abs(curPointY - oldPointY);
+
+                var newX = 0;
+                var newY = 0;
+
+                //  set new position changed value
+                curPointX < oldPointX ? newX = -distanceX : newX = distanceX;
+                curPointY < oldPointY ? newY = -distanceY : newY = distanceY;
+
+                //  calculate final position
+                newX = (newX + parseInt(oldPositionX)) + 'px';
+                newY = (newY + parseInt(oldPositionY)) + 'px';
+
+                console.log(newX, newY);
+
+
+                //  set image new position
+                picture.style.transform = 'translate3d(' + newX  +', ' + newY +  ', 0)';
+
+                //  update touchStart point
+                this.touchStartPointX = curPointX;
+                this.touchStartPointY = curPointY;
+            }
+        }
+
+        function matrixToArray(matrix) {
+            return matrix.split(')')[0].split('(')[1].replace(/ /g, '').replace(/px/g, '').split(',');
+        }
+
     },
 
     start: function (){

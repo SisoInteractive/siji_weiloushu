@@ -505,12 +505,19 @@ input {
   right: 0;
   opacity: 0;
 }
+.title-b-01 {
+  top: 345px;
+  left: 0;
+  right: 0;
+  opacity: 0;
+}
 .txt-block-a-01 {
   opacity: 0;
   top: 174px;
   left: 0;
   right: 0;
 }
+/* subtitle a */
 .subtitle-a {
   left: 0;
   right: 0;
@@ -525,6 +532,21 @@ input {
 .subtitle-a-03 {
   top: 442px;
 }
+/* subtitle b */
+.subtitle-b {
+  left: 0;
+  right: 0;
+  opacity: 0;
+}
+.subtitle-b-01 {
+  top: 425.5px;
+}
+.subtitle-b-02 {
+  top: 449.5px;
+}
+.subtitle-b-03 {
+  top: 473.5px;
+}
 .line02 {
   top: 146.5px;
   left: 14.5%;
@@ -532,7 +554,68 @@ input {
   height: 1px;
   background: rgba(97, 76, 63, 0.5);
 }
+.line03 {
+  top: 397.5px;
+  left: 6.8%;
+  width: 0;
+  height: 1px;
+  background: rgba(97, 76, 63, 0.5);
+}
+/* mountain */
+.mountain {
+  opacity: 0;
+}
+.mountain01 {
+  top: 223px;
+  left: 84px;
+}
+.mountain02 {
+  top: 161px;
+  left: 122px;
+  z-index: 10;
+}
+.mountain03 {
+  top: 196.5px;
+  left: 205px;
+}
+.mountain04 {
+  top: 217px;
+  left: 280px;
+}
+.circle {
+  top: 226px;
+  left: 214px;
+  opacity: 0;
+  z-index: 200;
+}
+/* big picture */
+.big-picture {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.2);
+  z-index: 300;
+}
+.big-picture .title {
+  bottom: 45px;
+  left: 0;
+  right: 0;
+}
+.picture-wrap {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+}
 /** all scene active statues */
+.scene.active {
+  /* cloud */
+  /* mountain */
+}
 .scene.active .t-a-01 {
   -webkit-animation: bounceInTop1 2s 1;
   -webkit-animation-fill-mode: forwards;
@@ -559,6 +642,11 @@ input {
   -webkit-transition: all 1.2s ease .6s;
           transition: all 1.2s ease .6s;
 }
+.scene.active .line03 {
+  width: 86.4%;
+  -webkit-transition: all 1.2s ease .6s;
+          transition: all 1.2s ease .6s;
+}
 .scene.active .title-a-01 {
   -webkit-animation: fadeIn 1.2s ease 0.8s 1 forwards;
 }
@@ -579,6 +667,48 @@ input {
   -webkit-animation: bounceInTop1 2s 1;
   -webkit-animation-delay: 2.2s;
   -webkit-animation-fill-mode: forwards;
+}
+.scene.active .title-b-01 {
+  -webkit-animation: fadeIn 1.2s ease 0.8s 1 forwards;
+}
+.scene.active .subtitle-b-01 {
+  -webkit-animation: bounceInTop1 2s 1;
+  -webkit-animation-delay: 1.6s;
+  -webkit-animation-fill-mode: forwards;
+}
+.scene.active .subtitle-b-02 {
+  -webkit-animation: bounceInTop1 2s 1;
+  -webkit-animation-delay: 1.9s;
+  -webkit-animation-fill-mode: forwards;
+}
+.scene.active .subtitle-b-03 {
+  -webkit-animation: bounceInTop1 2s 1;
+  -webkit-animation-delay: 2.2s;
+  -webkit-animation-fill-mode: forwards;
+}
+.scene.active .cloud01 {
+  -webkit-animation: fadeInRight 1s .3s 1 forwards;
+}
+.scene.active .cloud02 {
+  -webkit-animation: fadeInRight 1s .5s 1 forwards;
+}
+.scene.active .cloud03 {
+  -webkit-animation: fadeInRight 1s .6s 1 forwards;
+}
+.scene.active .mountain01 {
+  -webkit-animation: bounceIn 1s .6s 1 forwards;
+}
+.scene.active .mountain02 {
+  -webkit-animation: bounceIn 1s 1 forwards;
+}
+.scene.active .mountain03 {
+  -webkit-animation: bounceIn 1s .3s 1 forwards;
+}
+.scene.active .mountain04 {
+  -webkit-animation: bounceIn 1s .8s 1 forwards;
+}
+.scene.active .circle {
+  -webkit-animation: breath 2s infinite forwards;
 }
 .scene02.active .bg {
   opacity: .1;
@@ -606,6 +736,21 @@ input {
 .scene03 {
   background: url("../images/bg03.jpg");
   background-size: cover;
+}
+.scene03-01 .cloud {
+  opacity: 0;
+}
+.scene03-01 .cloud01 {
+  top: 46px;
+  left: 53px;
+}
+.scene03-01 .cloud02 {
+  top: 81px;
+  left: 158.5px;
+}
+.scene03-01 .cloud03 {
+  top: 72.5px;
+  left: 275px;
 }
 .scene04 {
   background: url("../images/bg04.jpg");
@@ -680,6 +825,26 @@ input {
   }
   100% {
     opacity: 1;
+  }
+}
+@-webkit-keyframes breath {
+  0% {
+    opacity: .5;
+  }
+  50% {
+    opacity: 1;
+    -webkit-transform: scale(1.2);
+            transform: scale(1.2);
+  }
+}
+@keyframes breath {
+  0% {
+    opacity: .5;
+  }
+  50% {
+    opacity: 1;
+    -webkit-transform: scale(1.2);
+            transform: scale(1.2);
   }
 }
 /*======================================================================
