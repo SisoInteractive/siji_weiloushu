@@ -45,10 +45,6 @@ input {
   position: relative;
   width: 100%;
   height: 100%;
-  -webkit-transform: translate3d(0, 100%, 0);
-          transform: translate3d(0, 100%, 0);
-  -webkit-transition: all 0.5s ease-out;
-          transition: all 0.5s ease-out;
 }
 .swiper-wrapper {
   position: relative;
@@ -56,17 +52,6 @@ input {
   height: 100%;
 }
 /** hide animated element as default */
-.main-scene {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 130;
-  background: #90d2df;
-  -webkit-transition: -webkit-transform 0.5s ease-out;
-          transition: transform 0.5s ease-out;
-}
 .main-scene .logo,
 .main-scene .bird,
 .main-scene .tips,
@@ -89,8 +74,6 @@ input {
   opacity: 0;
   background: url("../images/bird-sprite.png") no-repeat;
   background-size: 954px 212px;
-  -webkit-transform: translate3d(0, 20px, 0);
-          transform: translate3d(0, 20px, 0);
 }
 .main-scene #stone-body {
   position: absolute;
@@ -106,6 +89,7 @@ input {
   top: 345px;
   left: 196px;
   opacity: 0;
+  z-index: 300;
 }
 .main-scene .cursor.active {
   opacity: 1;
@@ -312,9 +296,13 @@ input {
   background-position-y: -106px;
   -webkit-transform: translate3d(0, 0, 0);
           transform: translate3d(0, 0, 0);
-  -webkit-transition: opacity 1.5s, -webkit-transform 2.4s ease-out 1.4s;
-          transition: opacity 1.5s, transform 2.4s ease-out 1.4s;
-  -webkit-animation: transformed 0.5s steps(4) 3;
+  -webkit-transition: opacity 1.5s, -webkit-transform 1.5s ease-out;
+          transition: opacity 1.5s, transform 1.5s ease-out;
+  -webkit-animation: transformed 0.5s steps(4) 1;
+}
+.main-scene.active .bird.fly {
+  -webkit-animation: fly 5s ease infinite;
+  background-position: 0 -106px;
 }
 .main-scene .item01.active .title,
 .main-scene .item02.active .title,
@@ -352,14 +340,6 @@ input {
 }
 /* main scene */
 .menu-scene {
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 120;
-  -webkit-transform: translate3d(100%, 0, 0);
-          transform: translate3d(100%, 0, 0);
   -webkit-transition: all 0.5s ease-out;
           transition: all 0.5s ease-out;
   background: url("../images/bg-menu.jpg");
@@ -382,21 +362,21 @@ input {
 .menu-scene .item04 {
   top: 381.5px;
 }
-.menu-scene.active .item01 {
+.scene-menu.active .item01 {
   -webkit-animation: fadeInLeft 1.2s ease 0.3s 1 forwards;
 }
-.menu-scene.active .item02 {
+.scene-menu.active .item02 {
   -webkit-animation: fadeInLeft 1.2s ease 0.36s 1 forwards;
 }
-.menu-scene.active .item03 {
+.scene-menu.active .item03 {
   -webkit-animation: fadeInLeft 1.2s ease 0.42s 1 forwards;
 }
-.menu-scene.active .item04 {
+.scene-menu.active .item04 {
   -webkit-animation: fadeInLeft 1.2s ease 0.48s 1 forwards;
 }
 /* menu btn */
 .btn-menu {
-  left: 11px;
+  right: 11px;
   bottom: 11px;
   position: fixed;
   z-index: 330;
@@ -404,7 +384,7 @@ input {
           transition: all 0.6s ease-out;
 }
 .btn-main {
-  right: 11px;
+  left: 11px;
   bottom: 11px;
   position: fixed;
   z-index: 330;
@@ -441,31 +421,6 @@ input {
 .slider-arrow02 {
   bottom: 10%;
   -webkit-animation: nextPage 1.2s linear infinite;
-}
-/* page state */
-.wrap.mainSceneToMenu .main-scene {
-  -webkit-transform: translate3d(-100%, 0, 0);
-          transform: translate3d(-100%, 0, 0);
-}
-.wrap.mainSceneToMenu .menu-scene {
-  -webkit-transform: translate3d(0%, 0, 0);
-          transform: translate3d(0%, 0, 0);
-}
-.wrap.contentToMenu .swiper-container {
-  -webkit-transform: translate3d(-100%, 0, 0);
-          transform: translate3d(-100%, 0, 0);
-}
-.wrap.contentToMenu .menu-scene {
-  -webkit-transform: translate3d(0%, 0, 0);
-          transform: translate3d(0%, 0, 0);
-}
-.wrap.toContent .swiper-container {
-  -webkit-transform: translate3d(0%, 0, 0);
-          transform: translate3d(0%, 0, 0);
-}
-.wrap.toContent .main-scene {
-  -webkit-transform: translate3d(0, -100%, 0);
-          transform: translate3d(0, -100%, 0);
 }
 /* public effect */
 /* 主题页 */
@@ -646,6 +601,32 @@ input {
 @keyframes transformed {
   100% {
     background-position-x: -424px;
+  }
+}
+@-webkit-keyframes fly {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 1;
+    -webkit-transform: translate3d(0, -10px, 0);
+            transform: translate3d(0, -10px, 0);
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes fly {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 1;
+    -webkit-transform: translate3d(0, -10px, 0);
+            transform: translate3d(0, -10px, 0);
+  }
+  100% {
+    opacity: 1;
   }
 }
 /*======================================================================

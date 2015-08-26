@@ -12,6 +12,8 @@ var app = {
 
     canPlay: true,
 
+    curStoneParaIndex: 0,
+
     preload: function () {
         var that = this;
         var Canvas = document.getElementById('stone-body');
@@ -122,34 +124,6 @@ var app = {
         //  let main scene active
         $('.main-scene').addClass('active');
 
-        //  bound menu button
-        $('.btn-menu').click(function () {
-            $('.menu-scene').addClass('active');
-
-            //  if in main scene
-            if (!$('.wrap').hasClass('toContent')) {
-                $('.wrap').addClass('mainSceneToMenu');
-            }
-
-            //  if in detail page
-            if ($('.wrap').hasClass('toContent')) {
-                $('.wrap').addClass('contentToMenu');
-            }
-        });
-
-        $('.btn-main').click(function () {
-            $('.menu-scene').removeClass('active');
-
-            $('.wrap').removeClass('mainSceneToMenu');
-
-            //  if in detail page
-            if ($('.wrap').hasClass('toContent')) {
-                $('.wrap').removeClass('toContent');
-            }
-
-            $('.btn-menu, .btn-main').addClass('active');
-        });
-
         //  init swiper
         var swiperItemsLength = $('.scene').length;
 
@@ -165,24 +139,35 @@ var app = {
                 $('.swiper-container').show();
                 $('.scene').eq(swiper.activeIndex).addClass('active');
 
-                $('.item01 .stone-txt, .menu-scene .item01').click(function(e){
+                //  bound menu button
+                $('.btn-menu').click(function (e) {
                     e.stopPropagation();
                     slideTo(0);
                 });
 
-                $('.item02 .stone-txt, .menu-scene .item02').click(function(e){
+                $('.btn-main').click(function (e) {
                     e.stopPropagation();
                     slideTo(1);
                 });
 
-                $('.item03 .stone-txt, .menu-scene .item03').click(function(e){
+                $('.item01 .stone-txt, .menu-scene .item01').click(function(e){
                     e.stopPropagation();
                     slideTo(2);
                 });
 
-                $('.item04 .stone-txt, .menu-scene .item04').click(function(e){
+                $('.item02 .stone-txt, .menu-scene .item02').click(function(e){
                     e.stopPropagation();
                     slideTo(3);
+                });
+
+                $('.item03 .stone-txt, .menu-scene .item03').click(function(e){
+                    e.stopPropagation();
+                    slideTo(4);
+                });
+
+                $('.item04 .stone-txt, .menu-scene .item04').click(function(e){
+                    e.stopPropagation();
+                    slideTo(5);
                 });
 
                 function slideTo(index) {
@@ -193,6 +178,7 @@ var app = {
             },
 
             onTransitionStart: function (swiper) {
+                //  hide menu button when transition start
                 $('.btn-menu, .btn-main').addClass('active');
 
                 if (swiper.activeIndex == swiperItemsLength) {
@@ -206,6 +192,13 @@ var app = {
                 $('.btn-menu, .btn-main').removeClass('active');
                 $('.scene').removeClass('active');
                 $('.scene').eq(swiper.activeIndex).addClass('active');
+
+                //  show menu button if current page is not the first page
+                if (swiper.activeIndex == 0) {
+                    $('.btn-menu, .btn-main').addClass('active');
+                } else {
+                    $('.btn-menu, .btn-main').removeClass('active');
+                }
             }
         });
 
@@ -248,6 +241,11 @@ var app = {
         setTimeout(function () {
             $('.bird').removeClass('transform')
                 .addClass('transformed');
+
+            setTimeout(function () {
+                $('.bird').removeClass('transformed')
+                    .addClass('fly');
+            }, 600);
         }, 500);
 
         //  play stone animation
@@ -333,6 +331,7 @@ var app = {
                 for (var i = 0; i < stoneKeyframeIndexes.length; i++) {
                     if (that.curFrameIndex == stoneKeyframeIndexes[i]) {
                         curStoneParaIndex = i;
+                        that.curStoneParaIndex = i;
 
                         //  show para
                         $('.main-scene .item').removeClass('active');

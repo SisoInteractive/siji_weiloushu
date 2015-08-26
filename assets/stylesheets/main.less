@@ -53,8 +53,6 @@ input {
   position: relative;
   width: 100%;
   height: 100%;
-  transform: translate3d(0, 100%, 0);
-  transition: all .5s ease-out;
 }
 
 .swiper-wrapper{
@@ -65,15 +63,6 @@ input {
 
 /** hide animated element as default */
 .main-scene {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 130;
-  background: #90d2df;
-  transition: transform .5s ease-out;
-
   .logo,
   .bird,
   .tips,
@@ -96,7 +85,6 @@ input {
     opacity: 0;
     background: url("../images/bird-sprite.png") no-repeat;
     background-size: 212px*9/2 424px/2;
-    transform: translate3d(0, 20px, 0);
   }
 
   #stone-body {
@@ -115,6 +103,7 @@ input {
     top: 690px/2;
     left: 392px/2;
     opacity: 0;
+    z-index: 300;
   }
 
   .cursor.active {
@@ -360,9 +349,14 @@ input {
     opacity:1 ;
     background-position-y: -212px/2;
     transform: translate3d(0, 0, 0);
-    transition: opacity 1.5s, transform 2.4s ease-out 1.4s;
+    transition: opacity 1.5s, transform 1.5s ease-out;
 
-    -webkit-animation: transformed .5s steps(4) 3;
+    -webkit-animation: transformed .5s steps(4) 1;
+  }
+
+  .bird.fly {
+    -webkit-animation: fly 5s ease infinite;
+    background-position: 0 -212px/2;
   }
 }
 
@@ -387,13 +381,6 @@ input {
 
 /* main scene */
 .menu-scene {
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 120;
-  transform: translate3d(100%, 0, 0);
   transition: all .5s ease-out;
   background: url("../images/bg-menu.jpg");
   background-size: cover;
@@ -417,7 +404,7 @@ input {
   }
 }
 
-.menu-scene.active {
+.scene-menu.active {
   @delay-basic: .3s;
 
 
@@ -437,7 +424,7 @@ input {
 
 /* menu btn */
 .btn-menu {
-  left: 22px/2;
+  right: 22px/2;
   bottom: 22px/2;
   position: fixed;
   z-index: 330;
@@ -445,7 +432,7 @@ input {
 }
 
 .btn-main {
-  right: 22px/2;
+  left: 22px/2;
   bottom: 22px/2;
   position: fixed;
   z-index: 330;
@@ -483,38 +470,6 @@ input {
   bottom: 10%;
   -webkit-animation: nextPage 1.2s linear infinite;
 }
-
-/* page state */
-.wrap.mainSceneToMenu {
-  .main-scene {
-    transform: translate3d(-100%, 0, 0);
-  }
-
-  .menu-scene {
-    transform: translate3d(0%, 0, 0);
-  }
-}
-
-.wrap.contentToMenu {
-  .swiper-container {
-    transform: translate3d(-100%, 0, 0);
-  }
-
-  .menu-scene {
-    transform: translate3d(0%, 0, 0);
-  }
-}
-
-.wrap.toContent {
-  .swiper-container {
-    transform: translate3d(0%, 0, 0);
-  }
-
-  .main-scene {
-    transform: translate3d(0, -100%, 0);
-  }
-}
-
 
 /* public effect */
 /* 主题页 */
@@ -706,6 +661,21 @@ input {
 @keyframes transformed{
   100% {
     background-position-x: -212px/2*4;
+  }
+}
+
+@keyframes fly {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 1;
+    transform: translate3d(0, -10px, 0);
+  }
+
+  100% {
+    opacity: 1;
   }
 }
 /*======================================================================
