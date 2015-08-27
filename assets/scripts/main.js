@@ -635,7 +635,8 @@ var app = {
             newX = (newX + parseInt(oldPositionX));
             newY = (newY + parseInt(oldPositionY));
 
-            console.log(newX, newY);
+            //console.log(newX, newY);
+            document.getElementsByClassName('debug')[0].innerText = newX + ' ' + newY;
 
             var isTheMaxLeftTop = newX > 0 || newY > 0;
             var isTheMaxLeftBottom = newX > 0 || newY < -(picture.height - that.scene.availHeight);
@@ -657,7 +658,7 @@ var app = {
             //  if can set new position
             if (canSetNewPosition) {
                 //  set image new position
-                picture.setAttribute('style', '-webkit-transform: translate3d(' + newX  +'px, ' + newY +  'px, 0);' + 'transform: translate3d(' + newX  +'px, ' + newY +  'px, 0)');
+                picture.setAttribute('style', 'transform: translate3d(' + newX  +'px, ' + newY +  'px, 0);' + '-webkit-transform: translate3d(' + newX  +'px, ' + newY +  'px, 0);');
 
                 //  update touchStart point
                 this.touchStartPointX = curPointX;
