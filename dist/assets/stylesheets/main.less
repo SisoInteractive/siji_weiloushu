@@ -156,8 +156,9 @@ input {
   }
 
   .cursor {
-    top: 690px/2;
-    left: 392px/2;
+    top: 690px/2-40px;
+    left: 392px/2-40px;
+    padding: 40px;
     opacity: 0;
     z-index: 300;
   }
@@ -169,23 +170,19 @@ input {
   }
 
   .cursor01 {
-    top: 690px/2;
-    left: 392px/2;
+    transform: translate3d(0, 0, 0);
   }
 
   .cursor02 {
-    top: 730px/2;
-    left: 420px/2;
+    transform: translate3d((420px-392)/2, (730px-690)/2, 0);
   }
 
   .cursor03 {
-    top: 670px/2;
-    left: 300px/2;
+    transform: translate3d((300px-392)/2, (670px-690)/2, 0);
   }
 
   .cursor04 {
-    top: 790px/2;
-    left: 380px/2;
+    transform: translate3d((380px-392)/2, (790px-690)/2, 0);
   }
 
   /* para */
@@ -718,6 +715,15 @@ input {
     bottom: 90px/2;
     left: 0;
     right: 0;
+    opacity: 0;
+  }
+
+  .btn-back {
+    opacity: 0;
+    left: 22px/2;
+    top: 80px/2;
+    position: fixed;
+    z-index: 500;
   }
 }
 
@@ -732,6 +738,16 @@ input {
 
 .big-picture.inBigPicture {
   opacity: 1;
+
+  .title {
+    -webkit-animation: bounceInTop1 2s 1;
+    -webkit-animation-fill-mode: forwards;
+    animation-delay: .3s;
+  }
+
+  .btn-back {
+    opacity: 1;
+  }
 }
 
 .big-picture.inFrontLayer {

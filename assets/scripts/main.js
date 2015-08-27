@@ -42,6 +42,8 @@ var app = {
         var imgAmounts = 24+169;
         var loadedAmounts = 0;
         var isLoaded = false;
+        var startLoadTime = new Date().getTime();
+        var endLoadTime = null;
 
         //  load loading image
         var birdImg = new Image();
@@ -66,12 +68,7 @@ var app = {
                 that.sprites.stone[this.index] = this;
                 /* check img load progress */
                 if (checkIsAllLoaded() && isLoaded == false) {
-                    isLoaded = true;
-
-                    console.log('images loader end..');
-                    setTimeout(function () {
-                        app.start();
-                    }, 300);
+                    startCreatingProcess();
                 }
             };
 
@@ -80,11 +77,7 @@ var app = {
 
                 /* check img load progress */
                 if (checkIsAllLoaded() && isLoaded == false) {
-                    var runningTimerEnd = new Date();
-                    isLoaded = true;
-
-                    console.log('images loader end..');
-                    app.start();
+                    startCreatingProcess();
                 }
             };
         }
@@ -102,12 +95,7 @@ var app = {
 
                 /* check img load progress */
                 if (checkIsAllLoaded() && isLoaded == false) {
-                    isLoaded = true;
-
-                    console.log('images loader end..');
-                    setTimeout(function () {
-                        app.start();
-                    }, 300);
+                    startCreatingProcess();
                 }
             };
 
@@ -116,20 +104,46 @@ var app = {
 
                 /* check img load progress */
                 if (checkIsAllLoaded() && isLoaded == false) {
-                    var runningTimerEnd = new Date();
-                    isLoaded = true;
-
-                    console.log('images loader end..');
-                    app.start();
+                    startCreatingProcess();
                 }
             };
         }
 
+        function startCreatingProcess () {
+            isLoaded = true;
+            endLoadTime = new Date().getTime();
+            var timeDifference = (endLoadTime - startLoadTime)/1000;
+
+            //  if loaded time less than 3.5 seconds,
+            //  delay then start app
+            if (timeDifference < 3) {
+                console.log('images loader end..');
+                var delay = 3500 - timeDifference*1000;
+
+                setTimeout(function () {
+                    //  update loading bar
+                    $('.counter').text('100%');
+                    $('.line-wrap').css({'background-position' : '100%'});
+
+                    setTimeout(function () {
+                        app.start();
+                    }, parseInt(delay/3*1));
+                }, parseInt(delay/3*2));
+            } else {
+                console.log('images loader end..');
+                setTimeout(function () {
+                    app.start();
+                }, 300);
+            }
+        }
+
         function checkIsAllLoaded () {
-            var loadedRate = 1;
-            $('.counter').text(parseInt(loadedAmounts / imgAmounts*100) + '%');
-            $('.line-wrap').css({'background-position' : (parseInt(loadedAmounts / imgAmounts*100)+'%')});
-            return loadedAmounts / imgAmounts >= loadedRate;
+            if (isLoaded == false) {
+                var loadedRate = 0.96;
+                $('.counter').text(parseInt(loadedAmounts / imgAmounts*100) + '%');
+                $('.line-wrap').css({'background-position' : (parseInt(loadedAmounts / imgAmounts*100)+'%')});
+                return loadedAmounts / imgAmounts >= loadedRate;
+            }
         }
 
         function fixZero (num) {
@@ -223,6 +237,20 @@ var app = {
                     slideTo(1);
                 });
 
+                $('.btn-back').click(function (e) {
+                    e.stopPropagation();
+
+                    //  enable slider
+                    app.mySwiper.unlockSwipes();
+
+                    //  remove in big picture statue for scene big picture
+                    $('.scene-big-picture').removeClass('inBigPicture');
+
+                    //  remove big picture show, and remove big picture layout to the front
+                    $('.big-picture').removeClass('inBigPicture inFrontLayer');
+                });
+
+                //  bound main scene content router
                 $('.item01 .stone-txt, .menu-scene .item01').click(function(e){
                     e.stopPropagation();
                     slideTo(2);
@@ -235,12 +263,36 @@ var app = {
 
                 $('.item03 .stone-txt, .menu-scene .item03').click(function(e){
                     e.stopPropagation();
-                    slideTo(6);
+                    slideTo(7);
                 });
 
                 $('.item04 .stone-txt, .menu-scene .item04').click(function(e){
                     e.stopPropagation();
-                    slideTo(7);
+                    slideTo(8);
+                });
+
+                //  cursor for content entry
+                $('.cursor').click(function (e) {
+                    e.stopPropagation();
+
+                    var index = $(this).attr('class');
+                    index = index[index.length-1];
+                    console.log(index);
+
+                    switch (parseInt(index)) {
+                        case 1:
+                            slideTo(2);
+                            break;
+                        case 2:
+                            slideTo(4);
+                            break;
+                        case 3:
+                            slideTo(7);
+                            break;
+                        case 4:
+                            slideTo(8);
+                            break;
+                    }
                 });
 
                 function slideTo(index) {
@@ -300,8 +352,8 @@ var app = {
         var waveCanvasHeight = waveCanvas.height;
 
         /* indexes setting */
-        var stoneFrameIndexes = [1, 24];
-        var stoneKeyframeIndexes = [1, 9, 16, 22];
+        var stoneFrameIndexes = [0, 23];
+        var stoneKeyframeIndexes = [0, 8, 15, 21];
 
         var waveFrameIndexes = [1, 169];
 

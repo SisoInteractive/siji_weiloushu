@@ -138,8 +138,9 @@ input {
   left: 0;
 }
 .main-scene .cursor {
-  top: 345px;
-  left: 196px;
+  top: 305px;
+  left: 156px;
+  padding: 40px;
   opacity: 0;
   z-index: 300;
 }
@@ -151,20 +152,20 @@ input {
           transition-delay: .4s;
 }
 .main-scene .cursor01 {
-  top: 345px;
-  left: 196px;
+  -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
 }
 .main-scene .cursor02 {
-  top: 365px;
-  left: 210px;
+  -webkit-transform: translate3d(14px, 20px, 0);
+          transform: translate3d(14px, 20px, 0);
 }
 .main-scene .cursor03 {
-  top: 335px;
-  left: 150px;
+  -webkit-transform: translate3d(-46px, -10px, 0);
+          transform: translate3d(-46px, -10px, 0);
 }
 .main-scene .cursor04 {
-  top: 395px;
-  left: 190px;
+  -webkit-transform: translate3d(-6px, 50px, 0);
+          transform: translate3d(-6px, 50px, 0);
 }
 .main-scene .item .title {
   -webkit-transition: all 1.2s ease-out;
@@ -649,6 +650,14 @@ input {
   bottom: 45px;
   left: 0;
   right: 0;
+  opacity: 0;
+}
+.big-picture .btn-back {
+  opacity: 0;
+  left: 11px;
+  top: 40px;
+  position: fixed;
+  z-index: 500;
 }
 .picture-wrap {
   position: absolute;
@@ -659,6 +668,15 @@ input {
   overflow: hidden;
 }
 .big-picture.inBigPicture {
+  opacity: 1;
+}
+.big-picture.inBigPicture .title {
+  -webkit-animation: bounceInTop1 2s 1;
+  -webkit-animation-fill-mode: forwards;
+  -webkit-animation-delay: .3s;
+          animation-delay: .3s;
+}
+.big-picture.inBigPicture .btn-back {
   opacity: 1;
 }
 .big-picture.inFrontLayer {
