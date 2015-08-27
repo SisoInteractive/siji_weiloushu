@@ -567,12 +567,37 @@ var app = {
 
         /** picture touch */
         var pictureWraps = document.getElementsByClassName('picture-wrap');
+        var pictureImgDom = document.getElementsByClassName('big-picture')[0].getElementsByTagName('img')[0];
         var minPictureMove = 3;
+        var bigPictureArr = [];
+
+        //  request big picture
+        var img = new Image();
+        var imgPath = 'assets/images/';
+        img.src = imgPath + 'big-picture01.jpg';
+        bigPictureArr.push(img);
+
+        img = new Image();
+        img.src = imgPath + 'big-picture02.jpg';
+        bigPictureArr.push(img);
 
         //  bind entry button
         $('.circle').click(function () {
             //  add "in big picture" statue for "scene big picture"
             $(this).parents('.scene-big-picture').addClass('inBigPicture');
+
+            var bigPictureIndex = parseInt(this.getAttribute('data-pic-index'));
+            switch ( bigPictureIndex ) {
+                case 1:
+                    pictureImgDom.src = bigPictureArr[0].src;
+                    break;
+                case 2:
+                    pictureImgDom.src = bigPictureArr[1].src;
+                    break;
+                case 3:
+                    pictureImgDom.src = bigPictureArr[2].src;
+                    break;
+            }
 
             //  set big picture show, and set big picture layout to the front
             $('.big-picture').addClass('inBigPicture');

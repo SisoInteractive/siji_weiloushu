@@ -585,6 +585,23 @@ input {
   top: 217px;
   left: 280px;
 }
+/* board */
+.board {
+  opacity: 0;
+}
+.board01 {
+  top: 109.5px;
+  left: 147.5px;
+}
+.board02 {
+  top: 133px;
+  left: 267px;
+  z-index: 10;
+}
+.board03 {
+  top: 129px;
+  left: 112.5px;
+}
 .circle {
   top: 166px;
   left: 154px;
@@ -651,6 +668,7 @@ input {
 .scene.active {
   /* cloud */
   /* mountain */
+  /* board */
 }
 .scene.active .t-a-01 {
   -webkit-animation: bounceInTop1 2s 1;
@@ -743,8 +761,17 @@ input {
 .scene.active .mountain04 {
   -webkit-animation: bounceIn 1s .8s 1 forwards;
 }
+.scene.active .board01 {
+  -webkit-animation: fadeIn 2s .3s 1 forwards;
+}
+.scene.active .board02 {
+  -webkit-animation: fadeIn 2s .6s 1 forwards;
+}
+.scene.active .board03 {
+  -webkit-animation: fadeIn 2s .9s 1 forwards;
+}
 .scene.active .circle {
-  -webkit-animation: breath 2s infinite forwards;
+  -webkit-animation: breath 2s infinite forwards 3s;
 }
 .scene02.active .bg {
   opacity: .1;
@@ -787,6 +814,10 @@ input {
 .scene03-01 .cloud03 {
   top: 72.5px;
   left: 275px;
+}
+.scene03-02 .circle {
+  top: 147px;
+  left: 132px;
 }
 .scene04 {
   background: url("../images/bg04.jpg");

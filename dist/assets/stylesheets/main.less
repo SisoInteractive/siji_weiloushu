@@ -650,6 +650,27 @@ input {
   left: 560px/2;
 }
 
+/* board */
+.board {
+  opacity: 0;
+}
+
+.board01 {
+  top: 219px/2;
+  left: 295px/2;
+}
+
+.board02 {
+  top: 266px/2;
+  left: 534px/2;
+  z-index: 10;
+}
+
+.board03 {
+  top: 258px/2;
+  left: 225px/2;
+}
+
 .circle {
   top: 452px/2-60;
   left: 428px/2-60;
@@ -805,8 +826,12 @@ input {
   .mountain03 { -webkit-animation: bounceIn 1s .3s 1 forwards; }
   .mountain04 { -webkit-animation: bounceIn 1s .8s 1 forwards; }
 
-  .circle { -webkit-animation: breath 2s infinite forwards; }
+  /* board */
+  .board01 { -webkit-animation: fadeIn 2s .3s 1 forwards; }
+  .board02 { -webkit-animation: fadeIn 2s .6s 1 forwards; }
+  .board03 { -webkit-animation: fadeIn 2s .9s 1 forwards; }
 
+  .circle { -webkit-animation: breath 2s infinite forwards 3s; }
 }
 
 .scene02.active {
@@ -862,6 +887,13 @@ input {
   .cloud03 {
     top: 145px/2;
     left: 550px/2;
+  }
+}
+
+.scene03-02 {
+  .circle {
+    top: 414px/2-60;
+    left: 384px/2-60;
   }
 }
 
