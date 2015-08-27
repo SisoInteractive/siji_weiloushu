@@ -620,7 +620,7 @@ var app = {
         /** picture touch */
         var pictureWraps = document.getElementsByClassName('picture-wrap');
         var pictureImgDom = document.getElementsByClassName('big-picture')[0].getElementsByTagName('img')[0];
-        var minPictureMove = 3;
+        var pictureTitleDom = document.getElementsByClassName('title-img')[0].getElementsByTagName('img')[0];
         var bigPictureArr = [];
 
         //  request big picture
@@ -642,12 +642,15 @@ var app = {
             switch ( bigPictureIndex ) {
                 case 1:
                     pictureImgDom.src = bigPictureArr[0].src;
+                    //pictureTitleDom.src = imgPath + 'big-picture-title01.png';
                     break;
                 case 2:
                     pictureImgDom.src = bigPictureArr[1].src;
+                    //pictureTitleDom.src = imgPath + 'big-picture-title02.png';
                     break;
                 case 3:
                     pictureImgDom.src = bigPictureArr[2].src;
+                    //pictureTitleDom.src = imgPath + 'big-picture-title03.png';
                     break;
             }
 
