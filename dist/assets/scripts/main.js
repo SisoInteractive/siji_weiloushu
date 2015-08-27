@@ -51,6 +51,7 @@ var app = {
         birdImg.onload = function () {
             //  show bird
             $('.loading .bird').addClass('transform');
+            $('.loading').addClass('play');
         };
 
         //  load stone scene frames
@@ -116,31 +117,31 @@ var app = {
 
             //  if loaded time less than 3.5 seconds,
             //  delay then start app
-            //if (timeDifference < 3) {
-            //    console.log('images loader end..');
-            //    var delay = 3500 - timeDifference*1000;
-            //
-            //    setTimeout(function () {
-            //        //  update loading bar
-            //        $('.counter').text('100%');
-            //        $('.line-wrap').css({'background-position' : '100%'});
-            //
-            //        setTimeout(function () {
-            //            app.start();
-            //        }, parseInt(delay/3*1));
-            //    }, parseInt(delay/3*2));
-            //} else {
-            //    console.log('images loader end..');
-            //    setTimeout(function () {
-            //        app.start();
-            //    }, 300);
-            //}
+            if (timeDifference < 3) {
+                console.log('images loader end..');
+                var delay = 3500 - timeDifference*1000;
 
-            //  TODO Developing
-            console.log('images loader end..');
+                setTimeout(function () {
+                    //  update loading bar
+                    $('.counter').text('100%');
+                    $('.line-wrap').css({'background-position' : '100%'});
+
+                    setTimeout(function () {
+                        app.start();
+                    }, parseInt(delay/3*1));
+                }, parseInt(delay/3*2));
+            } else {
+                console.log('images loader end..');
                 setTimeout(function () {
                     app.start();
                 }, 300);
+            }
+
+            ////  TODO Developing
+            //console.log('images loader end..');
+            //setTimeout(function () {
+            //    app.start();
+            //}, 300);
         }
 
         function checkIsAllLoaded () {
