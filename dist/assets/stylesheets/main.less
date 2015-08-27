@@ -605,6 +605,8 @@ input {
 
 .subtitle-b-03 { top: 947px/2; }
 
+.subtitle-b-04 { top: 1000px/2; }
+
 .line02 {
   top: 293px/2;
   left: 14.5%;
@@ -666,6 +668,32 @@ input {
 .board03 {
   top: 258px/2;
   left: 225px/2;
+}
+
+/* tree */
+.tree {
+  opacity: 0;
+}
+
+.tree01 {
+  top: 488px/2;
+  left: 171px/2;
+}
+
+.tree02 {
+  top: 390px/2;
+  left: 560px/2;
+}
+
+.tree03 {
+  top: 282px/2;
+  left: 451px/2;
+}
+
+.big-bird {
+  top: 340px/2;
+  left: 198px/2;
+  opacity: 0;
 }
 
 .circle {
@@ -810,6 +838,12 @@ input {
     -webkit-animation-fill-mode: forwards;
   }
 
+  .subtitle-a-04 {
+    -webkit-animation: bounceInTop1 2s 1;
+    -webkit-animation-delay: 2.5s;
+    -webkit-animation-fill-mode: forwards;
+  }
+
 
   .title-b-01 { -webkit-animation: fadeIn 1.2s ease 0.8s 1 forwards; }
 
@@ -846,6 +880,13 @@ input {
   .board01 { -webkit-animation: fadeIn 2s .3s 1 forwards; }
   .board02 { -webkit-animation: fadeIn 2s .6s 1 forwards; }
   .board03 { -webkit-animation: fadeIn 2s .9s 1 forwards; }
+
+  /* tree */
+  .tree01 { opacity: 1; }
+  .tree02 { opacity: 1; }
+  .tree03 { opacity: 1; }
+
+  .big-bird { -webkit-animation: bounceInTop1 1.8s 1 forwards; }
 
   .circle { -webkit-animation: breath 2s infinite forwards 3s; }
 }
@@ -913,9 +954,74 @@ input {
   }
 }
 
+.scene03-03 {
+  .circle {
+    top: 418px/2-60;
+    left: 452px/2-60;
+  }
+}
+
 .scene04 {
   background: url("../images/bg04.jpg");
   background-size: cover;
+}
+
+.scene-final {
+  background: url("../images/bg05.jpg");
+  background-size: cover;
+
+  .final01 {
+    opacity: 0;
+    top: 148px/2;
+    left: 0;
+    right: 0;
+    transform: translate3d(0, -200px/2, 0);
+    transition: all 1.4s;
+    transition-delay: .2s;
+  }
+
+  .final02 {
+    opacity: 0;
+    top: 764px/2;
+    left: 0;
+    right: 0;
+    transform: translate3d(0, 440px/2, 0);
+    transition: all 1.4s;
+    transition-delay: .6s;
+  }
+
+  .book {
+    top: (436px-80)/2;
+    left: 0;
+    right: 0;
+    padding: 40px;
+  }
+
+  .brand {
+    opacity: 0;
+    transform: translate3d(0, 440px/2, 0);
+    transition: all 1.4s;
+    transition-delay: .8s;
+  }
+}
+
+.scene-final.active {
+  .final01 {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+
+  .final02 {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+
+  .book { -webkit-animation: flash 1.8s 2s infinite; }
+
+  .brand {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
 }
 
 /* animation */

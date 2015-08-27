@@ -116,25 +116,31 @@ var app = {
 
             //  if loaded time less than 3.5 seconds,
             //  delay then start app
-            if (timeDifference < 3) {
-                console.log('images loader end..');
-                var delay = 3500 - timeDifference*1000;
+            //if (timeDifference < 3) {
+            //    console.log('images loader end..');
+            //    var delay = 3500 - timeDifference*1000;
+            //
+            //    setTimeout(function () {
+            //        //  update loading bar
+            //        $('.counter').text('100%');
+            //        $('.line-wrap').css({'background-position' : '100%'});
+            //
+            //        setTimeout(function () {
+            //            app.start();
+            //        }, parseInt(delay/3*1));
+            //    }, parseInt(delay/3*2));
+            //} else {
+            //    console.log('images loader end..');
+            //    setTimeout(function () {
+            //        app.start();
+            //    }, 300);
+            //}
 
-                setTimeout(function () {
-                    //  update loading bar
-                    $('.counter').text('100%');
-                    $('.line-wrap').css({'background-position' : '100%'});
-
-                    setTimeout(function () {
-                        app.start();
-                    }, parseInt(delay/3*1));
-                }, parseInt(delay/3*2));
-            } else {
-                console.log('images loader end..');
+            //  TODO Developing
+            console.log('images loader end..');
                 setTimeout(function () {
                     app.start();
                 }, 300);
-            }
         }
 
         function checkIsAllLoaded () {
@@ -263,12 +269,12 @@ var app = {
 
                 $('.item03 .stone-txt, .menu-scene .item03').on('touchend', function(e){
                     e.stopPropagation();
-                    slideTo(7);
+                    slideTo(8);
                 });
 
                 $('.item04 .stone-txt, .menu-scene .item04').on('touchend', function(e){
                     e.stopPropagation();
-                    slideTo(8);
+                    slideTo(9);
                 });
 
                 //  cursor for content entry
@@ -287,10 +293,10 @@ var app = {
                             slideTo(4);
                             break;
                         case 3:
-                            slideTo(7);
+                            slideTo(8);
                             break;
                         case 4:
-                            slideTo(8);
+                            slideTo(9);
                             break;
                     }
                 });
@@ -633,8 +639,12 @@ var app = {
         img.src = imgPath + 'big-picture02.jpg';
         bigPictureArr.push(img);
 
+        img = new Image();
+        img.src = imgPath + 'big-picture03.jpg';
+        bigPictureArr.push(img);
+
         //  bind entry button
-        $('.circle').on('touchend', function () {
+        $('.circle').click(function () {
             //  add "in big picture" statue for "scene big picture"
             $(this).parents('.scene-big-picture').addClass('inBigPicture');
 
