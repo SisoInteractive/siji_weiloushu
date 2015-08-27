@@ -603,12 +603,6 @@ var app = {
             //  catch picture
             if (!this.picture) {
                 this.picture = this.getElementsByTagName('img')[0];
-
-                var webkit = this.picture.style.webkitTransform;
-                var normal = this.picture.style.transform;
-
-                webkit ? this.picture.style.webkitTransform = webkit: null;
-                normal ? this.picture.style.transform = normal : null;
             }
         }
 
@@ -663,8 +657,7 @@ var app = {
             //  if can set new position
             if (canSetNewPosition) {
                 //  set image new position
-                picture.style.webkitTransform = 'translate3d(' + newX  +'px, ' + newY +  'px, 0)';
-                picture.style.Transform = 'translate3d(' + newX  +'px, ' + newY +  'px, 0)';
+                picture.setAttribute('style', '-webkit-transform: translate3d(' + newX  +'px, ' + newY +  'px, 0);' + 'transform: translate3d(' + newX  +'px, ' + newY +  'px, 0)');
 
                 //  update touchStart point
                 this.touchStartPointX = curPointX;
