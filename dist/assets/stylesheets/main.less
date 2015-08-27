@@ -114,6 +114,10 @@ input {
 
 
 /** hide animated elements as default */
+.scene {
+  background: #90d2df;
+}
+
 .main-scene {
   .logo,
   .bird,
@@ -457,18 +461,20 @@ input {
 }
 
 .scene-menu.active {
-  @delay-basic: .3s;
-
+  @delay-basic: .2s;
 
   .item01 {
     -webkit-animation: fadeInLeft 1.2s ease @delay-basic 1 forwards;
   }
+
   .item02 {
     -webkit-animation: fadeInLeft 1.2s ease @delay-basic*1.2 1 forwards;
   }
+
   .item03 {
     -webkit-animation: fadeInLeft 1.2s ease @delay-basic*1.4 1 forwards;
   }
+
   .item04 {
     -webkit-animation: fadeInLeft 1.2s ease @delay-basic*1.6 1 forwards;
   }
@@ -479,7 +485,7 @@ input {
   right: 22px/2;
   bottom: 22px/2;
   position: fixed;
-  z-index: 330;
+  z-index: 500;
   transition: all .6s ease-out;
 }
 
@@ -487,7 +493,7 @@ input {
   left: 22px/2;
   bottom: 22px/2;
   position: fixed;
-  z-index: 330;
+  z-index: 500;
   transition: all .6s ease-out;
 }
 
@@ -645,21 +651,47 @@ input {
 }
 
 .circle {
-  top: 452px/2;
-  left: 428px/2;
+  top: 452px/2-60;
+  left: 428px/2-60;
+  padding: 60px;
   opacity: 0;
   z-index: 200;
 }
 
 /* big picture */
+.scene.scene-big-picture {
+  .content {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background: #90d2df;
+    transition: all .7s ease-out;
+    transition-delay: .3s;
+    opacity: 1;
+    z-index: 300;
+  }
+}
+
+/* in big picture statues */
+.scene.scene-big-picture.inBigPicture {
+  .content {
+    opacity: 0;
+    transform: scale(10);
+    transform-origin: 50% 50%;
+  }
+}
+
 .big-picture {
+  opacity: 0;
   position: fixed;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
   background: rgba(0, 0, 0, .2);
-  z-index: 300;
+  transition: all .8s;
 
   .title {
     bottom: 90px/2;
@@ -676,6 +708,15 @@ input {
   left: 0;
   overflow: hidden;
 }
+
+.big-picture.inBigPicture {
+  opacity: 1;
+}
+
+.big-picture.inFrontLayer {
+  z-index: 300;
+}
+
 
 /** all scene active statues */
 .scene.active {
@@ -830,6 +871,16 @@ input {
 }
 
 /* animation */
+.backRightNow {
+  transition: none 0s!important;
+  animation: none 0s!important;
+
+  * {
+    transition: none 0s!important;
+    animation: none 0s!important;
+  }
+}
+
 @-webkit-keyframes bounceInTop1 {
   0% {
     opacity: 0;

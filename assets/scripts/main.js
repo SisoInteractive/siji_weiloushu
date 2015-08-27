@@ -169,13 +169,57 @@ var app = {
                 $('.scene').eq(swiper.activeIndex).addClass('active');
 
                 //  bound menu button
-                $('.btn-menu').click(function (e) {
+                $('.btn-main').click(function (e) {
                     e.stopPropagation();
+
+                    //  enable slider
+                    app.mySwiper.unlockSwipes();
+
+                    //  remove in big picture statue for scene big picture
+                    $('.scene-big-picture').removeClass('inBigPicture');
+
+                    //  remove big picture show, and remove big picture layout to the front
+                    $('.big-picture').removeClass('inBigPicture inFrontLayer');
+
+                    //  hide para right now
+                    $('.main-scene .item').removeClass('active').addClass('backRightNow');
+                    setTimeout(function () {
+                        $('.main-scene .item').removeClass('backRightNow');
+                    }, 300);
+
+                    //  bird back to start stat
+                    $('.bird').removeClass('transform transformed fly');
+
+                    //  show bird
+                    $('.scene .bird').addClass('transform');
+                    setTimeout(function () {
+                        $('.scene .bird').removeClass('transform')
+                            .addClass('transformed');
+
+                        setTimeout(function () {
+                            $('.scene .bird').removeClass('transformed')
+                                .addClass('fly');
+                        }, 600);
+                    }, 500);
+
+                    //  play first time again
+                    playFirstTime(stoneFrameIndexes[0], stoneFrameIndexes[1]);
+
                     slideTo(0);
                 });
 
-                $('.btn-main').click(function (e) {
+                $('.btn-menu').click(function (e) {
                     e.stopPropagation();
+
+                    //  enable slider
+                    app.mySwiper.unlockSwipes();
+
+                    //  remove in big picture statue for scene big picture
+                    $('.scene-big-picture').removeClass('inBigPicture');
+
+                    //  remove big picture show, and remove big picture layout to the front
+                    $('.big-picture').removeClass('inBigPicture inFrontLayer');
+
                     slideTo(1);
                 });
 
@@ -191,12 +235,12 @@ var app = {
 
                 $('.item03 .stone-txt, .menu-scene .item03').click(function(e){
                     e.stopPropagation();
-                    slideTo(5);
+                    slideTo(6);
                 });
 
                 $('.item04 .stone-txt, .menu-scene .item04').click(function(e){
                     e.stopPropagation();
-                    slideTo(6);
+                    slideTo(7);
                 });
 
                 function slideTo(index) {
@@ -278,8 +322,26 @@ var app = {
         }, 500);
 
         //  play stone animation
-        /**  play the first time animation */
-        (function (curFrameIndex, endFrameIndex) {
+        playFirstTime(stoneFrameIndexes[0], stoneFrameIndexes[1]);
+
+        /**  play wave animation */
+        drawWaveSprite(waveFrameIndexes[0], waveFrameIndexes[1]);
+
+        //  bind touch event
+        var toucharea = document.getElementsByClassName('wrap')[0];
+        var touchStartPoint = 0;
+        var minMove = 2;
+
+        toucharea.addEventListener('touchstart', setTouchStartPoint);
+
+        toucharea.addEventListener('touchmove', setCurrentFrame);
+
+        toucharea.addEventListener('touchend', touchEndHandler);
+
+        //  play the first time animation
+        function playFirstTime (curFrameIndex, endFrameIndex) {
+            clearTimeout(that.playTimer);
+
             drawFirstTime(curFrameIndex, endFrameIndex);
 
             function drawFirstTime (curFrameIndex, endFrameIndex) {
@@ -313,21 +375,7 @@ var app = {
                     }, 1000/12);
                 }
             }
-        })(stoneFrameIndexes[0], stoneFrameIndexes[1]);
-
-        /**  play wave animation */
-        drawWaveSprite(waveFrameIndexes[0], waveFrameIndexes[1]);
-
-        //  bind touch event
-        var toucharea = document.getElementsByClassName('wrap')[0];
-        var touchStartPoint = 0;
-        var minMove = 2;
-
-        toucharea.addEventListener('touchstart', setTouchStartPoint);
-
-        toucharea.addEventListener('touchmove', setCurrentFrame);
-
-        toucharea.addEventListener('touchend', touchEndHandler);
+        }
 
         //  recursive to drawStone sprites
         function drawStoneSprite(curFrameIndex, endFrameIndex) {
@@ -521,13 +569,28 @@ var app = {
         var pictureWraps = document.getElementsByClassName('picture-wrap');
         var minPictureMove = 3;
 
+        //  bind entry button
+        $('.circle').click(function () {
+            //  add "in big picture" statue for "scene big picture"
+            $(this).parents('.scene-big-picture').addClass('inBigPicture');
+
+            //  set big picture show, and set big picture layout to the front
+            $('.big-picture').addClass('inBigPicture');
+            setTimeout(function () {
+                $('.big-picture').addClass('inFrontLayer');
+            }, 400);
+
+            //  disable slider when in big picture,
+            //  enable slider when click menu buttons
+            app.mySwiper.lockSwipes();
+        });
+
         //  bind touch handler for each picture wrap
         for (var i = 0; i < pictureWraps.length; i++) {
             var pictureWrap = pictureWraps[i];
 
             pictureWrap.addEventListener('touchstart', pictureTouchStartHandler);
             pictureWrap.addEventListener('touchmove', pictureTouchMoveHandler);
-            pictureWrap.addEventListener('touchend', pictureTouchEndHandler);
 
             //  set default picture as undefined
             pictureWrap.picture = undefined;
@@ -540,8 +603,12 @@ var app = {
             //  catch picture
             if (!this.picture) {
                 this.picture = this.getElementsByTagName('img')[0];
-                this.picture.style.webkitTransform = 'translate3d(0px, 0px, 0px)';
-                this.picture.style.transform = 'translate3d(0px, 0px, 0px)';
+
+                var webkit = this.picture.style.webkitTransform;
+                var normal = this.picture.style.transform;
+
+                webkit ? this.picture.style.webkitTransform = webkit: null;
+                normal ? this.picture.style.transform = normal : null;
             }
         }
 
@@ -554,10 +621,32 @@ var app = {
             var oldPositionX = oldPosition[0];
             var oldPositionY = oldPosition[1];
 
-            var isTheMaxLeftTop = oldPositionX > 0 || oldPositionY > 0;
-            var isTheMaxLeftBottom = oldPositionX > 0 || oldPositionY < -(picture.height - that.scene.availHeight);
-            var isTheMaxRightTop = oldPositionX < -(picture.width - that.scene.availWidth) || oldPositionY > 0;
-            var isTheMaxRightBottom = oldPositionX < -(picture.width - that.scene.availWidth) || oldPositionY < -(picture.height - that.scene.availHeight);
+            //  get current touch position
+            var curPointX = e.touches[0].pageX;
+            var curPointY = e.touches[0].pageY;
+            var oldPointX = this.touchStartPointX;
+            var oldPointY = this.touchStartPointY;
+
+            var distanceX = Math.abs(curPointX - oldPointX);
+            var distanceY = Math.abs(curPointY - oldPointY);
+
+            var newX = 0;
+            var newY = 0;
+
+            //  set new position changed value
+            curPointX < oldPointX ? newX = -distanceX : newX = distanceX;
+            curPointY < oldPointY ? newY = -distanceY : newY = distanceY;
+
+            //  calculate final position
+            newX = (newX + parseInt(oldPositionX));
+            newY = (newY + parseInt(oldPositionY));
+
+            console.log(newX, newY);
+
+            var isTheMaxLeftTop = newX > 0 || newY > 0;
+            var isTheMaxLeftBottom = newX > 0 || newY < -(picture.height - that.scene.availHeight);
+            var isTheMaxRightTop = newX < -(picture.width - that.scene.availWidth) || newY > 0;
+            var isTheMaxRightBottom = newX < -(picture.width - that.scene.availWidth) || newY < -(picture.height - that.scene.availHeight);
 
 
             /**  if drag out of boundary */
@@ -571,43 +660,16 @@ var app = {
                 //console.log('isTheMaxRightBottom', isTheMaxRightBottom);
             }
 
-
+            //  if can set new position
             if (canSetNewPosition) {
-                //  get current touch position
-                var curPointX = e.touches[0].pageX;
-                var curPointY = e.touches[0].pageY;
-                var oldPointX = this.touchStartPointX;
-                var oldPointY = this.touchStartPointY;
-
-                var distanceX = Math.abs(curPointX - oldPointX);
-                var distanceY = Math.abs(curPointY - oldPointY);
-
-                var newX = 0;
-                var newY = 0;
-
-                //  set new position changed value
-                curPointX < oldPointX ? newX = -distanceX : newX = distanceX;
-                curPointY < oldPointY ? newY = -distanceY : newY = distanceY;
-
-                //  calculate final position
-                newX = (newX + parseInt(oldPositionX)) + 'px';
-                newY = (newY + parseInt(oldPositionY)) + 'px';
-
-                console.log(newX, newY);
-
-
                 //  set image new position
-                picture.style.webkitTransform = 'translate3d(' + newX  +', ' + newY +  ', 0)';
-                picture.style.Transform = 'translate3d(' + newX  +', ' + newY +  ', 0)';
+                picture.style.webkitTransform = 'translate3d(' + newX  +'px, ' + newY +  'px, 0)';
+                picture.style.Transform = 'translate3d(' + newX  +'px, ' + newY +  'px, 0)';
 
                 //  update touchStart point
                 this.touchStartPointX = curPointX;
                 this.touchStartPointY = curPointY;
             }
-        }
-
-        function pictureTouchEndHandler () {
-            // ...
         }
 
         function matrixToArray(matrix) {
