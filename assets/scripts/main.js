@@ -183,7 +183,7 @@ var app = {
                 $('.scene').eq(swiper.activeIndex).addClass('active');
 
                 //  bound menu button
-                $('.btn-main').click(function (e) {
+                $('.btn-main').on('touchend', function (e) {
                     e.stopPropagation();
 
                     //  enable slider
@@ -222,7 +222,7 @@ var app = {
                     slideTo(0);
                 });
 
-                $('.btn-menu').click(function (e) {
+                $('.btn-menu').on('touchend', function (e) {
                     e.stopPropagation();
 
                     //  enable slider
@@ -237,7 +237,7 @@ var app = {
                     slideTo(1);
                 });
 
-                $('.btn-back').click(function (e) {
+                $('.btn-back').on('touchend', function (e) {
                     e.stopPropagation();
 
                     //  enable slider
@@ -251,28 +251,28 @@ var app = {
                 });
 
                 //  bound main scene content router
-                $('.item01 .stone-txt, .menu-scene .item01').click(function(e){
+                $('.item01 .stone-txt, .menu-scene .item01').on('touchend', function(e){
                     e.stopPropagation();
                     slideTo(2);
                 });
 
-                $('.item02 .stone-txt, .menu-scene .item02').click(function(e){
+                $('.item02 .stone-txt, .menu-scene .item02').on('touchend', function(e){
                     e.stopPropagation();
                     slideTo(4);
                 });
 
-                $('.item03 .stone-txt, .menu-scene .item03').click(function(e){
+                $('.item03 .stone-txt, .menu-scene .item03').on('touchend', function(e){
                     e.stopPropagation();
                     slideTo(7);
                 });
 
-                $('.item04 .stone-txt, .menu-scene .item04').click(function(e){
+                $('.item04 .stone-txt, .menu-scene .item04').on('touchend', function(e){
                     e.stopPropagation();
                     slideTo(8);
                 });
 
                 //  cursor for content entry
-                $('.cursor').click(function (e) {
+                $('.cursor').on('touchend', function (e) {
                     e.stopPropagation();
 
                     var index = $(this).attr('class');
@@ -619,8 +619,8 @@ var app = {
 
         /** picture touch */
         var pictureWraps = document.getElementsByClassName('picture-wrap');
-        var pictureImgDom = document.getElementsByClassName('big-picture')[0].getElementsByTagName('img')[0];
-        var pictureTitleDom = document.getElementsByClassName('title-img')[0].getElementsByTagName('img')[0];
+        var pictureImgDom = pictureWraps[0].getElementsByTagName('img')[0];
+        var pictureTitleDom = document.getElementsByClassName('big-picture')[0].getElementsByClassName('title')[0].getElementsByTagName('img')[0];
         var bigPictureArr = [];
 
         //  request big picture
@@ -634,7 +634,7 @@ var app = {
         bigPictureArr.push(img);
 
         //  bind entry button
-        $('.circle').click(function () {
+        $('.circle').on('touchend', function () {
             //  add "in big picture" statue for "scene big picture"
             $(this).parents('.scene-big-picture').addClass('inBigPicture');
 
@@ -642,15 +642,15 @@ var app = {
             switch ( bigPictureIndex ) {
                 case 1:
                     pictureImgDom.src = bigPictureArr[0].src;
-                    //pictureTitleDom.src = imgPath + 'big-picture-title01.png';
+                    pictureTitleDom.src = imgPath + 'big-picture-title01.png';
                     break;
                 case 2:
                     pictureImgDom.src = bigPictureArr[1].src;
-                    //pictureTitleDom.src = imgPath + 'big-picture-title02.png';
+                    pictureTitleDom.src = imgPath + 'big-picture-title02.png';
                     break;
                 case 3:
                     pictureImgDom.src = bigPictureArr[2].src;
-                    //pictureTitleDom.src = imgPath + 'big-picture-title03.png';
+                    pictureTitleDom.src = imgPath + 'big-picture-title03.png';
                     break;
             }
 
