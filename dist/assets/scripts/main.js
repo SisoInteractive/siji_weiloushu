@@ -189,7 +189,7 @@ var app = {
                 $('.scene').eq(swiper.activeIndex).addClass('active');
 
                 //  bound menu button
-                $('.btn-main').on('touchend', function (e) {
+                $('.btn-main').click(function (e) {
                     e.stopPropagation();
 
                     //  enable slider
@@ -228,7 +228,7 @@ var app = {
                     slideTo(0);
                 });
 
-                $('.btn-menu').on('touchend', function (e) {
+                $('.btn-menu').click(function (e) {
                     e.stopPropagation();
 
                     //  enable slider
@@ -243,7 +243,7 @@ var app = {
                     slideTo(1);
                 });
 
-                $('.btn-back').on('touchend', function (e) {
+                $('.btn-back').click(function (e) {
                     e.stopPropagation();
 
                     //  enable slider
@@ -257,28 +257,28 @@ var app = {
                 });
 
                 //  bound main scene content router
-                $('.item01 .stone-txt, .menu-scene .item01').on('touchend', function(e){
+                $('.item01 .stone-txt, .menu-scene .item01').click(function(e){
                     e.stopPropagation();
                     slideTo(2);
                 });
 
-                $('.item02 .stone-txt, .menu-scene .item02').on('touchend', function(e){
+                $('.item02 .stone-txt, .menu-scene .item02').click(function(e){
                     e.stopPropagation();
                     slideTo(4);
                 });
 
-                $('.item03 .stone-txt, .menu-scene .item03').on('touchend', function(e){
+                $('.item03 .stone-txt, .menu-scene .item03').click(function(e){
                     e.stopPropagation();
                     slideTo(8);
                 });
 
-                $('.item04 .stone-txt, .menu-scene .item04').on('touchend', function(e){
+                $('.item04 .stone-txt, .menu-scene .item04').click(function(e){
                     e.stopPropagation();
                     slideTo(9);
                 });
 
                 //  cursor for content entry
-                $('.cursor').on('touchend', function (e) {
+                $('.cursor').click(function (e) {
                     e.stopPropagation();
 
                     var index = $(this).attr('class');
@@ -776,5 +776,9 @@ var app = {
 $(function (){
     // init app
     app.preload();
+
+    //  init fast click
+    FastClick.attach(document.body);
+
     console.log('app started success...');
 });
