@@ -611,7 +611,7 @@ var app = {
         function pictureTouchMoveHandler (e) {
             var canSetNewPosition = true;
             var picture = this.picture;
-            var oldPosition = matrixToArray(this.picture.style.transform);
+            var oldPosition = matrixToArray(this.picture.getAttribute('style'));
             var oldPositionX = oldPosition[0];
             var oldPositionY = oldPosition[1];
 
@@ -636,7 +636,6 @@ var app = {
             newY = (newY + parseInt(oldPositionY));
 
             //console.log(newX, newY);
-            document.getElementsByClassName('debug')[0].innerText = newX + ' ' + newY;
 
             var isTheMaxLeftTop = newX > 0 || newY > 0;
             var isTheMaxLeftBottom = newX > 0 || newY < -(picture.height - that.scene.availHeight);
