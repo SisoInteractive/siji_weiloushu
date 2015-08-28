@@ -629,6 +629,7 @@ var app = {
         var pictureImgDom = pictureWraps[0].getElementsByTagName('img')[0];
         var pictureTitleDom = document.getElementsByClassName('big-picture')[0].getElementsByClassName('title')[0].getElementsByTagName('img')[0];
         var bigPictureArr = [];
+        var pictureZoom = matrixToArray(document.getElementsByClassName('wrap')[0].style.transform);
 
         //  request big picture
         var img = new Image();
@@ -650,23 +651,24 @@ var app = {
             $(this).parents('.scene-big-picture').addClass('inBigPicture');
 
             var bigPictureIndex = parseInt(this.getAttribute('data-pic-index'));
+
             switch ( bigPictureIndex ) {
                 case 1:
                     pictureImgDom.src = bigPictureArr[0].src;
-                    pictureImgDom.width = bigPictureArr[0].width;
-                    pictureImgDom.height = bigPictureArr[0].height;
+                    pictureImgDom.width = bigPictureArr[0].width*pictureZoom;
+                    pictureImgDom.height = bigPictureArr[0].height*pictureZoom;
                     pictureTitleDom.src = imgPath + 'big-picture-title01.png';
                     break;
                 case 2:
                     pictureImgDom.src = bigPictureArr[1].src;
-                    pictureImgDom.width = bigPictureArr[1].width;
-                    pictureImgDom.height = bigPictureArr[1].height;
+                    pictureImgDom.width = bigPictureArr[1].width*pictureZoom;
+                    pictureImgDom.height = bigPictureArr[1].height*pictureZoom;
                     pictureTitleDom.src = imgPath + 'big-picture-title02.png';
                     break;
                 case 3:
                     pictureImgDom.src = bigPictureArr[2].src;
-                    pictureImgDom.width = bigPictureArr[2].width;
-                    pictureImgDom.height = bigPictureArr[2].height;
+                    pictureImgDom.width = bigPictureArr[2].width*pictureZoom;
+                    pictureImgDom.height = bigPictureArr[2].height*pictureZoom;
                     pictureTitleDom.src = imgPath + 'big-picture-title03.png';
                     break;
             }
