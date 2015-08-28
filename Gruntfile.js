@@ -183,6 +183,4 @@ module.exports = function (grunt){
     // main task
     grunt.registerTask('deploy', ['cleanDir', 'copyFileToDist', 'compileLess', 'autoPrefixer', 'removeUnusedFile']);
     grunt.registerTask('live', ['watch']);
-
-
 };

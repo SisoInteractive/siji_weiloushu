@@ -653,14 +653,20 @@ var app = {
             switch ( bigPictureIndex ) {
                 case 1:
                     pictureImgDom.src = bigPictureArr[0].src;
+                    pictureImgDom.width = bigPictureArr[0].width;
+                    pictureImgDom.height = bigPictureArr[0].height;
                     pictureTitleDom.src = imgPath + 'big-picture-title01.png';
                     break;
                 case 2:
                     pictureImgDom.src = bigPictureArr[1].src;
+                    pictureImgDom.width = bigPictureArr[1].width;
+                    pictureImgDom.height = bigPictureArr[1].height;
                     pictureTitleDom.src = imgPath + 'big-picture-title02.png';
                     break;
                 case 3:
                     pictureImgDom.src = bigPictureArr[2].src;
+                    pictureImgDom.width = bigPictureArr[2].width;
+                    pictureImgDom.height = bigPictureArr[2].height;
                     pictureTitleDom.src = imgPath + 'big-picture-title03.png';
                     break;
             }
@@ -780,6 +786,12 @@ $(function (){
 
     //  init fast click
     FastClick.attach(document.body);
+
+    if ('addEventListener' in document) {
+        document.addEventListener('DOMContentLoaded', function() {
+            FastClick.attach(document.body);
+        }, false);
+    }
 
     console.log('app started success...');
 });
