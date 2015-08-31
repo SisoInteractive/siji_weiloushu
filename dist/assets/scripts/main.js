@@ -123,7 +123,8 @@ var app = {
 
                 /* check img load progress */
                 if (checkIsAllLoaded() && isLoaded == false) {
-                    startCreatingProcess();
+                    //startCreatingProcess();
+                    app.start();
                 }
             };
         }
@@ -223,6 +224,9 @@ var app = {
                     //  remove big picture show, and remove big picture layout to the front
                     $('.big-picture').removeClass('inBigPicture inFrontLayer');
 
+                    //  remove glasses
+                    $('.glasses').removeClass('active');
+
                     //  hide para right now
                     $('.main-scene .item').removeClass('active').addClass('backRightNow');
                     setTimeout(function () {
@@ -268,7 +272,7 @@ var app = {
                 $('.btn-back').click(function (e) {
                     e.stopPropagation();
 
-                    $(this).removeClass('active');
+                    $(this).removeClass('active inScratch');
 
                     //  enable slider
                     app.mySwiper.unlockSwipes();
@@ -278,6 +282,11 @@ var app = {
 
                     //  remove big picture show, and remove big picture layout to the front
                     $('.big-picture').removeClass('inBigPicture inFrontLayer');
+
+                    //  exist glasses active status
+                    $('.swiper-container, .glasses').removeClass('active');
+                    $('.glasses').removeClass('inFrontLayer');
+                    $('.wrap').removeClass('inToGlasses');
                 });
 
                 //  bound main scene content router
@@ -652,7 +661,8 @@ var app = {
         var pictureImgDom = pictureWraps[0].getElementsByTagName('img')[0];
         var pictureTitleDom = document.getElementsByClassName('big-picture')[0].getElementsByClassName('title')[0].getElementsByTagName('img')[0];
         var bigPictureArr = [];
-        var pictureZoom = matrixToArray(document.getElementsByClassName('wrap')[0].style.transform);
+        //var pictureZoom = $('.wrap').css('transform').split(')')[0].split('(')[1].replace(/ /g, '').split(',')[0];
+        var pictureZoom = 1;
 
         //  request big picture
         var img = new Image();
@@ -724,6 +734,63 @@ var app = {
             pictureWrap.picture = undefined;
         }
 
+        //  create scratch cards
+        $('.glasses').show();
+        var foregroundArr = [];
+        var backgroundArr = [];
+        var imgAmounts = 10;
+        var loadedAmounts = 0;
+
+        for (var i = 0; i < imgAmounts/2; i++) {
+            var foreground = new Image();
+            foreground.src = 'assets/images/bg06-0' + (i+1) + '-mask.jpg';
+
+            var background = new Image();
+            background.src = 'assets/images/bg06-0' + (i+1) + '.jpg';
+
+            foreground.index = i;
+            foreground.onload = function () {
+                foregroundArr[this.index] = this;
+                loadedAmounts++;
+
+                if (checkIsAllLoaded () == true) {
+                    createScratch(foregroundArr[0], backgroundArr[0]);
+                }
+            };
+
+            background.index = i;
+            background.onload = function () {
+                backgroundArr[this.index] = this;
+                loadedAmounts++;
+
+                if (checkIsAllLoaded () == true) {
+                    createScratch(foregroundArr[0], backgroundArr[0]);
+                }
+            };
+        }
+
+        //  bind entry for scratch card
+        $('.texture-title').each(function (index) {
+
+            $(this).click(function () {
+                $('.swiper-containerm, .glasses, .btn-back').addClass('active');
+                $('.wrap').addClass('inToGlasses');
+                $('.btn-back').addClass('inScratch');
+
+                //  init scratch
+                createScratch(foregroundArr[index], backgroundArr[index]);
+
+                //  bring it front
+                setTimeout(function () {
+                    $('.glasses').addClass('inFrontLayer');
+                }, 400);
+            });
+        });
+
+        function checkIsAllLoaded () {
+            return loadedAmounts / imgAmounts >= 1;
+        }
+
         function pictureTouchStartHandler (e) {
             this.touchStartPointX = e.touches[0].pageX;
             this.touchStartPointY = e.touches[0].pageY;
@@ -733,8 +800,6 @@ var app = {
                 this.picture = this.getElementsByTagName('img')[0];
             }
         }
-
-        var index = 0;
 
         function pictureTouchMoveHandler (e) {
             var canSetNewPosition = true;
@@ -776,7 +841,7 @@ var app = {
                 canSetNewPosition = false;
 
                 //  debug
-                //console.log('\n', index++ , ' isTheMaxLeftTop', isTheMaxLeftTop);
+                //console.log('\n', ' isTheMaxLeftTop', isTheMaxLeftTop);
                 //console.log('isTheMaxLeftBottom', isTheMaxLeftBottom);
                 //console.log('isTheMaxRightTop', isTheMaxRightTop);
                 //console.log('isTheMaxRightBottom', isTheMaxRightBottom);
@@ -791,6 +856,126 @@ var app = {
                 this.touchStartPointX = curPointX;
                 this.touchStartPointY = curPointY;
             }
+        }
+
+        function createScratch(foreground, background) {
+            $('.glasses-box').show();
+            var canvas = document.getElementsByClassName('glasses-box')[0];
+            var ctx = canvas.getContext('2d');
+            var cWidth = 375;
+            var cHeight = 628;
+            var erasierSize = 90;
+
+            var covered = 0; // Set the covered area
+            var update = 0; // Use to reduce the number of time covered area' size is checked
+            var transparentAtStart; // proportion of the transparent pixels in theforeground image
+
+            var limit = 10; // limit the number of time the percentage is calculated, reduce lag
+            var jump = 20; // number of pixel ignored for one pixel analyzed, reduce lag
+
+            ctx.globalCompositeOperation = 'source-over';
+
+            //  set real card
+            document.getElementsByClassName('glasses')[0].style.backgroundImage = 'url(' + background.src + ')';
+
+            //  create opacity mask
+            ctx.drawImage(foreground, 0, 0, cWidth, cHeight);
+
+            //  open global composition operation for wipe
+            ctx.globalCompositeOperation = 'destination-out';
+
+            //  watch mouse drop event
+            var wiping = false;
+
+            //  event listener
+            function addEventListener(obj, event, fn) {
+                if (document.addEventListener) {
+                    obj.addEventListener(event, function (e){
+                        fn(e);
+                    });
+                } else {
+                    obj.attachEvent('on' + event, function (e){
+                        fn(e);
+                    })
+                }
+            }
+
+            addEventListener(canvas, 'mousedown', wipeStart);
+            addEventListener(canvas, 'touchstart', wipeStart);
+            addEventListener(canvas, 'mouseup', wipeEnd);
+            addEventListener(canvas, 'touchend', wipeEnd);
+            addEventListener(canvas, 'mousemove', wipping);
+            addEventListener(canvas, 'touchmove', wipping);
+
+            function wipeStart (e) {
+                e.stopPropagation();
+                wiping = true;
+            }
+
+            function wipeEnd (e) {
+                e.stopPropagation();
+                wiping = false;
+            }
+
+            function wipping (e) {
+                e.stopPropagation();
+
+                if (wiping) {
+                    //console.log('start wiping..');
+                    var position = {};
+
+                    if (e.clientX) {
+                        position.x = e.clientX - canvas.offsetLeft;
+                        position.y = e.clientY - canvas.offsetTop;
+                    } else {
+                        position.x = e.touches[0].pageX - canvas.offsetLeft;
+                        position.y = e.touches[0].pageY - canvas.offsetTop;
+                    }
+
+                    // Fix for a bug on some android phone where globalCompositeOperation prevents canvas to update
+                    if(e.type == 'touchmove' || e.type == 'touchstart' || e.type == 'touchend') {
+                        canvas.style.marginRight = '1px';
+                        canvas.style.marginRight = '0px';
+                    }
+
+                    ctx.beginPath();
+                    ctx.fillStyle = "#f00";
+                    ctx.arc(position.x, position.y, erasierSize, 0, Math.PI*2);
+                    ctx.fill();
+                    ctx.closePath();
+
+                    //  check collision
+                    var covered = scratchPercent(wiping);
+
+                    if (covered >= 20) {
+                        $('.glasses-box').fadeOut('slow');
+                    }
+                }
+            }
+
+            function scratchPercent(click) {
+                // divise by 10 the number of time percent are calculated to avoid stressing the cpu on smartphones
+                if (update++%limit == 0 || click) {
+                    var ct = 0;
+                    var canvasData = ctx.getImageData(0,0, cWidth, cHeight).data;
+
+                    for (var i=0, l=(canvasData.length-jump); i<l; i+=(4*jump)) {
+                        if (canvasData[i] > 0) {
+                            ct++;
+                        }
+                    }
+
+                    if(typeof transparentAtStart === 'undefined') {
+                        transparentAtStart = ((cWidth*cHeight)/jump)-ct;
+                    }
+
+                    covered = (100-(((ct)/(((cWidth*cHeight)/jump)-transparentAtStart))*(100))).toFixed(2);
+                    //console.log(covered);
+                }
+
+                return (covered);
+            }
+
         }
 
         function matrixToArray(matrix) {
@@ -814,6 +999,9 @@ var app = {
 $(function (){
     // init app
     app.preload();
+
+    //  let main scene active
+    $('.loading').addClass('leave');
 
     console.log('app started success...');
 });

@@ -59,13 +59,15 @@ input {
 }
 
 .wrap.zoomInTablet {
-  transform: scale(1.4);
+//  transform: scale(1.25);
 }
 
 .swiper-container {
   position: relative;
   width: 100%;
   height: 100%;
+  transform: translate3d(0, 0, 0);
+  transition: transform 1.3s ease-in;
 }
 
 .swiper-wrapper{
@@ -479,26 +481,26 @@ input {
   @delay-basic: .2s;
 
   .item01 {
-    -webkit-animation: fadeInLeft 1.2s ease @delay-basic 1 forwards;
+    -webkit-animation: fadeInLeft 1.2s ease 0s 1 forwards;
   }
 
   .item02 {
-    -webkit-animation: fadeInLeft 1.2s ease @delay-basic*1.2 1 forwards;
+    -webkit-animation: fadeInLeft 1.2s ease @delay-basic*1 1 forwards;
   }
 
   .item03 {
-    -webkit-animation: fadeInLeft 1.2s ease @delay-basic*1.4 1 forwards;
+    -webkit-animation: fadeInLeft 1.2s ease @delay-basic*1.2 1 forwards;
   }
 
   .item04 {
-    -webkit-animation: fadeInLeft 1.2s ease @delay-basic*1.6 1 forwards;
+    -webkit-animation: fadeInLeft 1.2s ease @delay-basic*1.4 1 forwards;
   }
 }
 
 /* menu btn */
 .btn-menu {
-  right: 22px/2-20;
-  bottom: 22px/2-20;
+  right: 44px/2-20;
+  bottom: 44px/2-20;
   position: absolute;
   padding: 20px;
   z-index: 500;
@@ -506,8 +508,8 @@ input {
 }
 
 .btn-main {
-  left: 22px/2-20;
-  bottom: 22px/2-20;
+  left: 44px/2-20;
+  bottom: 44px/2-20;
   position: absolute;
   padding: 20px;
   z-index: 500;
@@ -531,12 +533,16 @@ input {
 
 .btn-back {
   opacity: 0;
-  left: 22px/2-20;
+  left: 44px/2-20;
   top: 80px/2-20;
   position: absolute;
   padding: 20px;
   z-index: 500;
   transition: all 1.2s;
+}
+
+.btn-back.inScratch {
+  z-index: 500;
 }
 
 /* arrow */
@@ -550,7 +556,7 @@ input {
   margin: 0 auto;
   border-top: 2px solid #ccc;
   border-right: 2px solid #ccc;
-  z-index: 10000;
+  z-index: 400;
   opacity: 1;
   -webkit-animation: nextPage 1.2s linear infinite .2s;
 }
@@ -606,10 +612,24 @@ input {
   opacity: 0;
 }
 
+.title-c-01 {
+  top: 622px/2;
+  left: 63px/2;
+  right: 0;
+  opacity: 0;
+}
+
 .txt-block-a-01 {
   opacity: 0;
   top: 348px/2;
   left: 0;
+  right: 0;
+}
+
+.txt-block-c-01 {
+  opacity: 0;
+  top: 781px/2;
+  left: 63px/2;
   right: 0;
 }
 
@@ -655,6 +675,14 @@ input {
   width: 0;
   height: 1px;
   background: rgba(97, 76, 63, .5);
+}
+
+.line04 {
+  top: 728px/2;
+  left: 7%;
+  width: 0;
+  height: 1px;
+  background: rgba(255, 255, 255, .5);
 }
 
 /* mountain */
@@ -722,6 +750,56 @@ input {
 .tree03 {
   top: 282px/2;
   left: 451px/2;
+}
+
+/* glasses */
+.glasses {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  transform: translate3d(100.5%, 0, 0);
+  transition: transform 1s ease-out;
+  overflow: hidden;
+
+  .glasses-box {
+    z-index: 300;
+  }
+
+  .text {
+    top: 0;
+    left: 0;
+  }
+}
+
+.swiper-container.active {
+  transform: translate3d(-100%, 0, 0);
+}
+
+.glasses.active {
+  transform: translate3d(0, 0, 0);
+  display: block;
+}
+
+.glasses01 {
+  background: url("../images/bg06-01.jpg");
+  background-size: cover;
+}
+
+.glasses02 {
+  background: url("../images/bg06-02.jpg");
+  background-size: cover;
+}
+
+.glasses03 {
+  background: url("../images/bg06-03.jpg");
+  background-size: cover;
+}
+
+.glasses04 {
+  background: url("../images/bg06-04.jpg");
+  background-size: cover;
 }
 
 .big-bird {
@@ -839,6 +917,11 @@ input {
     transition: all 1.2s ease .6s;
   }
 
+  .line04 {
+    width: 100%-7*2;
+    transition: all 1.2s ease .6s;
+  }
+
   .title-a-01 { -webkit-animation: fadeIn 1.2s ease 0.8s 1 forwards; }
   .txt-block-a-01 { -webkit-animation: fadeIn 1.5s ease 1.2s 1 forwards; }
 
@@ -867,7 +950,8 @@ input {
   }
 
 
-  .title-b-01 { -webkit-animation: fadeIn 1.2s ease 0.8s 1 forwards; }
+  .title-c-01 { -webkit-animation: fadeIn 1.2s ease 0.8s 1 forwards; }
+  .txt-block-c-01 { -webkit-animation: fadeIn 1.5s ease 1.2s 1 forwards; }
 
   .subtitle-b-01 {
     -webkit-animation: bounceInTop1 2s 1;
@@ -886,6 +970,17 @@ input {
     -webkit-animation-delay: 2.2s;
     -webkit-animation-fill-mode: forwards;
   }
+
+  @texture-base-delay : 1s;
+
+  .texture-title01 { -webkit-animation: fadeInLeft 1.2s ease @texture-base-delay*0.5 1 forwards; }
+  .texture-title02 { -webkit-animation: fadeInLeft 1.2s ease @texture-base-delay*1 1 forwards; }
+  .texture-title03 { -webkit-animation: fadeInRight 1.2s ease @texture-base-delay*1.5 1 forwards; }
+  .texture-title04 { -webkit-animation: fadeInRight 1.2s ease @texture-base-delay*2 1 forwards; }
+  .texture-title05 { -webkit-animation: fadeInLeft 1.2s ease @texture-base-delay*2.5 1 forwards; }
+
+  .title-c-01 { -webkit-animation: fadeIn 1.2s ease 0.8s 1 forwards; }
+  .title-c-01 { -webkit-animation: fadeIn 1.2s ease 0.8s 1 forwards; }
 
   /* cloud */
   .cloud01 { -webkit-animation: fadeInRight 1s .3s 1 forwards; }
@@ -991,12 +1086,50 @@ input {
 .scene05 {
   background: url("../images/bg05.jpg");
   background-size: cover;
+}
 
+.scene06 {
+  .content {
+    background: url("../images/bg06.jpg");
+    background-size: cover;
+  }
 
+  .texture-title {
+    opacity: 0;
+    left: 0;
+    right: 0;
+    height: 20%;
+    padding: 88px/2 0 0 116px/2;
+    box-sizing: border-box;
+
+    img {
+      width: 326px/2;
+    }
+  }
+
+  .texture-title01 {
+    top: 0;
+  }
+
+  .texture-title02 {
+    top: 20%;
+  }
+
+  .texture-title03 {
+    top: 40%;
+  }
+
+  .texture-title04 {
+    top: 60%;
+  }
+
+  .texture-title05 {
+    top: 80%;
+  }
 }
 
 .scene-final {
-  background: url("../images/bg05.jpg");
+  background: url("../images/bg-final.jpg");
   background-size: cover;
 
   .final01 {
@@ -1132,6 +1265,58 @@ input {
 /*======================================================================
       Responsive
   ======================================================================*/
-@media screen and (max-width: 1215px) {
+@media screen and (min-width: 620px) {
+  .btn-menu {
+    right: 22px/2-20;
+    bottom: 22px/2-20;
+  }
 
+  .btn-main {
+    left: 22px/2-20;
+    bottom: 22px/2-20;
+  }
+
+  .btn-back {
+    left: 22px/2-20;
+  }
+
+  .swiper-container {
+    z-index: 200;
+  }
+
+  .scene06 {
+    .content {
+      position: absolute;
+      top: 0;
+      right: 0;
+      left: 0;
+      bottom: 0;
+      transition: all .7s ease-out;
+      transition-delay: .3s;
+      opacity: 1;
+    }
+  }
+
+  .glasses {
+    z-index: 100;
+    transform: translate3d(0, 0, 0);
+  }
+
+  .wrap.inToGlasses {
+    /* in big picture statues */
+    .scene06 {
+      background: none;
+      transform: translate3d(0, 0, 0);
+
+      .content {
+        opacity: 0;
+        transform: scale(10);
+        transform-origin: 50% 50%;
+      }
+    }
+  }
+
+  .glasses.inFrontLayer {
+    z-index: 300;
+  }
 }
