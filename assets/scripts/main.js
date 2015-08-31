@@ -28,13 +28,31 @@ var app = {
         that.scene.availWidth = screen.availWidth;
         that.scene.availHeight = screen.availHeight;
 
-        //  init page response plugin
-        var page = new pageResponse({
-            class : 'wrap',     //模块的类名，使用class来控制页面上的模块(1个或多个)
-            mode : 'cover',     // auto || contain || cover ，默认模式为auto
-            width : '375',      //输入页面的宽度，只支持输入数值，默认宽度为320px
-            height : '625'      //输入页面的高度，只支持输入数值，默认高度为504px
-        });
+        //  init page response plugin, if device is mobile device
+        if (that.scene.availWidth <= 640) {
+            var page = new pageResponse({
+                class : 'wrap',     //模块的类名，使用class来控制页面上的模块(1个或多个)
+                mode : 'cover',     // auto || contain || cover ，默认模式为auto
+                width : '375',      //输入页面的宽度，只支持输入数值，默认宽度为320px
+                height : '625'      //输入页面的高度，只支持输入数值，默认高度为504px
+            });
+        } else {
+            $('.wrap').addClass('zoomInTablet');
+
+            //  set scene size to default size
+            that.scene.availWidth = 375;
+            that.scene.availHeight = 625;
+        }
+
+
+        //  init fast click
+        FastClick.attach(document.body);
+
+        if ('addEventListener' in document) {
+            document.addEventListener('DOMContentLoaded', function() {
+                FastClick.attach(document.body);
+            }, false);
+        }
 
         //  set images generator
         var imgPath = "assets/images/";
@@ -55,11 +73,11 @@ var app = {
         };
 
         //  load stone scene frames
-        //for (var i = 1; i <= 24; i++) {
-        for (var i = 0; i <= 23; i++) {
+        for (var i = 1; i <= 24; i++) {
+        //for (var i = 0; i <= 23; i++) {
             var img = new Image();
-            //img.src = imgPath + 's01-stone-body' + fixZero(i) + '.png';
-            img.src = 'assets/img/' + 's01-stone-body' + fixZero(i) + '.png';
+            img.src = imgPath + 's01-stone-body' + fixZero(i) + '.png';
+            //img.src = 'assets/img/' + 's01-stone-body' + fixZero(i) + '.png';
 
             img.index = i;
 
@@ -196,6 +214,9 @@ var app = {
                     //  enable slider
                     app.mySwiper.unlockSwipes();
 
+                    //  hide back button
+                    $('.btn-back').removeClass('active');
+
                     //  remove in big picture statue for scene big picture
                     $('.scene-big-picture').removeClass('inBigPicture');
 
@@ -246,6 +267,8 @@ var app = {
 
                 $('.btn-back').click(function (e) {
                     e.stopPropagation();
+
+                    $(this).removeClass('active');
 
                     //  enable slider
                     app.mySwiper.unlockSwipes();
@@ -650,6 +673,9 @@ var app = {
             //  add "in big picture" statue for "scene big picture"
             $(this).parents('.scene-big-picture').addClass('inBigPicture');
 
+            //  show back button
+            $('.btn-back').addClass('active');
+
             var bigPictureIndex = parseInt(this.getAttribute('data-pic-index'));
 
             switch ( bigPictureIndex ) {
@@ -657,18 +683,21 @@ var app = {
                     pictureImgDom.src = bigPictureArr[0].src;
                     pictureImgDom.width = bigPictureArr[0].width*pictureZoom;
                     pictureImgDom.height = bigPictureArr[0].height*pictureZoom;
+                    pictureImgDom.setAttribute('style', 'transform: translate3d(-300px, -300px, 0); -webkit-transform: translate3d(-300px, -300px, 0)');
                     pictureTitleDom.src = imgPath + 'big-picture-title01.png';
                     break;
                 case 2:
                     pictureImgDom.src = bigPictureArr[1].src;
                     pictureImgDom.width = bigPictureArr[1].width*pictureZoom;
                     pictureImgDom.height = bigPictureArr[1].height*pictureZoom;
+                    pictureImgDom.setAttribute('style', 'transform: translate3d(-1955px, -887px, 0); -webkit-transform: translate3d(-300px, -300px, 0)');
                     pictureTitleDom.src = imgPath + 'big-picture-title02.png';
                     break;
                 case 3:
                     pictureImgDom.src = bigPictureArr[2].src;
                     pictureImgDom.width = bigPictureArr[2].width*pictureZoom;
                     pictureImgDom.height = bigPictureArr[2].height*pictureZoom;
+                    pictureImgDom.setAttribute('style', 'transform: translate3d(-1117px, -292px, 0); -webkit-transform: translate3d(-300px, -300px, 0)');
                     pictureTitleDom.src = imgPath + 'big-picture-title03.png';
                     break;
             }
@@ -785,15 +814,6 @@ var app = {
 $(function (){
     // init app
     app.preload();
-
-    //  init fast click
-    FastClick.attach(document.body);
-
-    if ('addEventListener' in document) {
-        document.addEventListener('DOMContentLoaded', function() {
-            FastClick.attach(document.body);
-        }, false);
-    }
 
     console.log('app started success...');
 });

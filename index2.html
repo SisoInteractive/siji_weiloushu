@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta content="telephone=no" name="format-detection">
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+    <meta name="apple-touch-fullscreen" content="no"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+    <title></title>
+
+    <!-- injector:css -->
+    <!-- endinjector -->
+</head>
+<body>
+
+<!-- injector:js -->
+<!-- page -->
+<script src="assets/scripts/jquery-2.1.3.min.js"></script>
+<script src="assets/scripts/fastclick.js"></script>
+
+<style>
+    .wrap {
+        -webkit-transform: scale(1.3);
+        transform: scale(1.3);
+    }
+
+    .box {
+        width: 100px;
+        height: 100px;
+        background: pink;
+    }
+
+    .color {
+        background: darkseagreen;
+    }
+</style>
+
+<div class="wrap">
+    <div class="box box1"></div>
+    <hr/>
+    <div class="box box2 needsclick"></div>
+</div>
+
+<script>
+    $('.box').click(function () {
+        $(this).toggleClass('color');
+    });
+
+    $(function() {
+        FastClick.attach(document.body);
+    });
+</script>
+</body>
+</html>

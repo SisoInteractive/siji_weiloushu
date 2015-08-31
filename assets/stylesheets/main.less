@@ -20,7 +20,7 @@ body {
   height: 100%;
   overflow: hidden;
   margin: 0  auto;
-  background: #90d2df;
+  background: #c2beb8;
 }
 
 a {
@@ -49,6 +49,19 @@ input {
 
 
 /* swiper */
+.wrap {
+  width: 375px;
+  height: 625px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -625px/2 0 0 -375px/2;
+}
+
+.wrap.zoomInTablet {
+  transform: scale(1.4);
+}
+
 .swiper-container {
   position: relative;
   width: 100%;
@@ -63,7 +76,7 @@ input {
 
 /* loading */
 .loading {
-  position: fixed;
+  position: absolute;
   top: 0;
   right: 0;
   bottom: 0;
@@ -120,7 +133,7 @@ input {
 
 /** hide animated elements as default */
 .scene {
-  background: #90d2df;
+  background: url("../images/bg.jpg");   background-size: cover;
 }
 
 .main-scene {
@@ -484,30 +497,46 @@ input {
 
 /* menu btn */
 .btn-menu {
-  right: 22px/2;
-  bottom: 22px/2;
-  position: fixed;
+  right: 22px/2-20;
+  bottom: 22px/2-20;
+  position: absolute;
+  padding: 20px;
   z-index: 500;
   transition: all .6s ease-out;
 }
 
 .btn-main {
-  left: 22px/2;
-  bottom: 22px/2;
-  position: fixed;
+  left: 22px/2-20;
+  bottom: 22px/2-20;
+  position: absolute;
+  padding: 20px;
   z-index: 500;
   transition: all .6s ease-out;
 }
 
 .btn-menu.active {
   opacity: 0;
-  transform: translate3d(-200%, 0, 0);
+  transform: translate3d(200%, 0, 0);
   transition: all .6s;
 }
 
 .btn-main.active {
   opacity: 0;
-  transform: translate3d(200%, 0, 0);
+  transform: translate3d(-200%, 0, 0);
+}
+
+.btn-back.active {
+  opacity: 1;
+}
+
+.btn-back {
+  opacity: 0;
+  left: 22px/2-20;
+  top: 80px/2-20;
+  position: absolute;
+  padding: 20px;
+  z-index: 500;
+  transition: all 1.2s;
 }
 
 /* arrow */
@@ -717,7 +746,7 @@ input {
     right: 0;
     left: 0;
     bottom: 0;
-    background: #90d2df;
+    background: url("../images/bg.jpg");   background-size: cover;
     transition: all .7s ease-out;
     transition-delay: .3s;
     opacity: 1;
@@ -736,7 +765,7 @@ input {
 
 .big-picture {
   opacity: 0;
-  position: fixed;
+  position: absolute;
   top: 0;
   right: 0;
   bottom: 0;
@@ -749,14 +778,6 @@ input {
     left: 0;
     right: 0;
     opacity: 0;
-  }
-
-  .btn-back {
-    opacity: 0;
-    left: 22px/2;
-    top: 80px/2;
-    position: fixed;
-    z-index: 500;
   }
 }
 
@@ -776,10 +797,6 @@ input {
     -webkit-animation: bounceInTop1 2s 1;
     -webkit-animation-fill-mode: forwards;
     animation-delay: .3s;
-  }
-
-  .btn-back {
-    opacity: 1;
   }
 }
 
@@ -971,6 +988,13 @@ input {
   background-size: cover;
 }
 
+.scene05 {
+  background: url("../images/bg05.jpg");
+  background-size: cover;
+
+
+}
+
 .scene-final {
   background: url("../images/bg05.jpg");
   background-size: cover;
@@ -996,10 +1020,10 @@ input {
   }
 
   .book {
-    top: (436px-80)/2;
+    top: (436px-50)/2;
     left: 0;
     right: 0;
-    padding: 40px;
+    padding: 25px;
   }
 
   .brand {

@@ -318,6 +318,11 @@
                 <div class="line01 pa"></div>
             </div>
 
+            <div class="swiper-slide scene scene05">
+                <img class="title pa" src="assets/images/s05-title.png" alt="" width="280"/>
+                <img class="title pa" src="assets/images/s05-para.png" alt="" width="316"/>
+            </div>
+
             <div class="swiper-slide scene scene-final">
                 <div class="final01 pa tc">
                     <img src="assets/images/final01.png" alt="" width="290"/>
@@ -343,27 +348,36 @@
     <!-- big picture -->
     <div class="big-picture">
         <div class="picture-wrap">
-            <img src="assets/images/big-picture01.jpg" alt="" style="transform: translate3d(-300px, -300px, 0); -webkit-transform: translate3d(-300px, -300px, 0)"/>
+            <img src="assets/images/big-picture01.jpg" alt=""/>
         </div>
 
         <div class="title tc pa">
             <img src="assets/images/big-picture-title01.png" width="145" alt=""/>
         </div>
-
-        <img class="btn-back" src="assets/images/btn03.png" width="30" alt=""/>
     </div>
     <!-- end big picture -->
 
+    <!-- audio -->
     <audio id="audio" src=""></audio>
+
+    <!-- another -->
+    <div class="btn-back">
+        <img src="assets/images/btn03.png" width="30" alt=""/>
+    </div>
+
+    <div class="btn-main active">
+        <img src="assets/images/btn01.png" width="30" alt=""/>
+    </div>
+
+    <div class="btn-menu active">
+        <img src="assets/images/btn02.png" width="30" alt=""/>
+    </div>
+
+    <div class="slider-arrow"></div>
+    <div class="slider-arrow slider-arrow02"></div>
+    <!-- end another -->
 </div>
 <!-- end wrap -->
-
-<!-- another -->
-<img class="btn-main active" src="assets/images/btn01.png" width="30" alt=""/>
-<img class="btn-menu active" src="assets/images/btn02.png" width="30" alt=""/>
-<div class="slider-arrow"></div>
-<div class="slider-arrow slider-arrow02"></div>
-<!-- end another -->
 
 
 <!-- injector:js -->
@@ -374,6 +388,34 @@
 <script src="assets/scripts/swiper.js"></script>
 <script src="assets/scripts/pageResponse.min.js"></script>
 <script src="assets/scripts/main.js"></script>
+
+<!-- TODO: DEBUG CLICK DELAY-->
+<!--<style>-->
+    <!--.box {-->
+        <!--width: 100px;-->
+        <!--height: 100px;-->
+        <!--background: pink;-->
+        <!--position: fixed;-->
+        <!--z-index: 10000;-->
+    <!--}-->
+
+    <!--.box2 {-->
+        <!--top: 200px;-->
+    <!--}-->
+
+    <!--.color {-->
+        <!--background: darkseagreen;-->
+    <!--}-->
+<!--</style>-->
+<!--<div class="box box1"></div>-->
+<!--<hr/>-->
+<!--<div class="box box2 needsclick"></div>-->
+
+<!--<script>-->
+    <!--$('.box').click(function () {-->
+        <!--$(this).toggleClass('color');-->
+    <!--});-->
+<!--</script>-->
 
 <!-- less compiler -->
 <script src="assets/scripts/less.min.js"></script>
