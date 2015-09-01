@@ -44,6 +44,8 @@ input {
 .wrap {
   width: 375px;
   height: 100%;
+  max-width: 750px;
+  max-height: 1250px;
 }
 .swiper-container {
   position: relative;
@@ -1195,7 +1197,7 @@ input {
   font-weight: normal;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   position: absolute;
-  right: 133px;
+  right: 140px;
   top: 73.8%;
 }
 .room01 {

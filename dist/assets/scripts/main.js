@@ -165,7 +165,7 @@ var app = {
         function checkIsAllLoaded () {
             if (isLoaded == false) {
                 var loadedRate = 0.96;
-                $('.counter').text(parseInt(loadedAmounts / imgAmounts*100) + '%');
+                $('.loading .counter').text(parseInt(loadedAmounts / imgAmounts*100) + '%');
                 $('.line-wrap').css({'background-position' : (parseInt(loadedAmounts / imgAmounts*100)+'%')});
                 return loadedAmounts / imgAmounts >= loadedRate;
             }
@@ -1050,6 +1050,11 @@ var app = {
 };
 
 $(function (){
+    //  limit browser drag move
+    document.addEventListener('touchmove', function (e) {
+        e.preventDefault();
+    },true);
+
     // init app
     app.preload();
 
