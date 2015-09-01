@@ -885,6 +885,9 @@ var app = {
             }
         }
 
+        alert($('.wrap').width());
+        alert(screen.availWidth);
+
         function createScratch(foreground, background, text) {
             $('.glasses-box').show();
             var canvas = document.getElementsByClassName('glasses-box')[0];
