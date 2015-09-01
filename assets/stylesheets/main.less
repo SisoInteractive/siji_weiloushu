@@ -762,6 +762,7 @@ input {
   transform: translate3d(100.5%, 0, 0);
   transition: transform 1s ease-out;
   overflow: hidden;
+  z-index: 400;
 
   .glasses-box {
     z-index: 300;
@@ -771,10 +772,6 @@ input {
     top: 0;
     left: 0;
   }
-}
-
-.swiper-container.active {
-  transform: translate3d(-100%, 0, 0);
 }
 
 .glasses.active {
@@ -1090,6 +1087,11 @@ input {
 
 .scene06 {
   .content {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
     background: url("../images/bg06.jpg");
     background-size: cover;
   }
@@ -1286,11 +1288,6 @@ input {
 
   .scene06 {
     .content {
-      position: absolute;
-      top: 0;
-      right: 0;
-      left: 0;
-      bottom: 0;
       transition: all .7s ease-out;
       transition-delay: .3s;
       opacity: 1;

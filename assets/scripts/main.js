@@ -773,7 +773,7 @@ var app = {
         $('.texture-title').each(function (index) {
 
             $(this).click(function () {
-                $('.swiper-containerm, .glasses, .btn-back').addClass('active');
+                $('.swiper-container, .glasses, .btn-back').addClass('active');
                 $('.wrap').addClass('inToGlasses');
                 $('.btn-back').addClass('inScratch');
 

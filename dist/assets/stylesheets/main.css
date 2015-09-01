@@ -688,6 +688,7 @@ input {
   -webkit-transition: -webkit-transform 1s ease-out;
           transition: transform 1s ease-out;
   overflow: hidden;
+  z-index: 400;
 }
 .glasses .glasses-box {
   z-index: 300;
@@ -695,10 +696,6 @@ input {
 .glasses .text {
   top: 0;
   left: 0;
-}
-.swiper-container.active {
-  -webkit-transform: translate3d(-100%, 0, 0);
-          transform: translate3d(-100%, 0, 0);
 }
 .glasses.active {
   -webkit-transform: translate3d(0, 0, 0);
@@ -1011,6 +1008,11 @@ input {
   background-size: cover;
 }
 .scene06 .content {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
   background: url("../images/bg06.jpg");
   background-size: cover;
 }
@@ -1223,11 +1225,6 @@ input {
     z-index: 200;
   }
   .scene06 .content {
-    position: absolute;
-    top: 0;
-    right: 0;
-    left: 0;
-    bottom: 0;
     -webkit-transition: all 0.7s ease-out;
             transition: all 0.7s ease-out;
     -webkit-transition-delay: .3s;
