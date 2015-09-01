@@ -189,11 +189,6 @@ var app = {
     create: function (){
         var that = this;
 
-        //  init count up
-        //var room01 = new CountUp("counter01", 1, 115);
-        //var room02 = new CountUp("counter02", 1, 100);
-        //var room03 = new CountUp("counter03", 1, 85);
-
         //  init swiper
         $('.swiper-container').show();
 
@@ -368,30 +363,12 @@ var app = {
                 $('.scene').removeClass('active');
                 $('.scene').eq(swiper.activeIndex).addClass('active');
 
-                //  reset count up
-                //room01.reset();
-                //room02.reset();
-                //room03.reset();
-
                 //  show menu button if current page is not the first page
                 if (swiper.activeIndex == 0) {
                     $('.btn-menu, .btn-main').addClass('active');
                 } else {
                     $('.btn-menu, .btn-main').removeClass('active');
                 }
-
-                //  start room counter
-                //switch (swiper.activeIndex) {
-                //    case 17:
-                //        room01.start();
-                //        break;
-                //    case 18:
-                //        room02.start();
-                //        break;
-                //    case 19:
-                //        room03.start();
-                //        break;
-                //}
             }
         });
 
@@ -912,8 +889,8 @@ var app = {
             $('.glasses-box').show();
             var canvas = document.getElementsByClassName('glasses-box')[0];
             var ctx = canvas.getContext('2d');
-            var cWidth = 375;
-            var cHeight = 628;
+            var cWidth = $('.wrap').width();
+            var cHeight = $('.wrap').height();
             var erasierSize = 90;
 
             var covered = 0; // Set the covered area

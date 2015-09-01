@@ -42,10 +42,8 @@ input {
 }
 /* swiper */
 .wrap {
-  width: 375px;
   height: 100%;
-  max-width: 750px;
-  max-height: 1250px;
+  max-height: 640px;
 }
 .swiper-container {
   position: relative;
@@ -1084,12 +1082,12 @@ input {
   top: 80%;
 }
 .scene07 {
-  width: 375px;
+  width: 100%;
   overflow: hidden;
 }
 .scene07 .bxslider,
 .scene07 li {
-  width: 375px;
+  width: 100%;
   height: 100%;
   overflow: hidden;
 }
