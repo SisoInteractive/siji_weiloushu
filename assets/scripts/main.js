@@ -963,10 +963,10 @@ var app = {
                     }
 
                     // Fix for a bug on some android phone where globalCompositeOperation prevents canvas to update
-                    if(e.type == 'touchmove' || e.type == 'touchstart' || e.type == 'touchend') {
-                        canvas.style.marginRight = '1px';
-                        canvas.style.marginRight = '0px';
-                    }
+                    //if(e.type == 'touchmove' || e.type == 'touchstart' || e.type == 'touchend') {
+                    //    canvas.style.marginRight = '1px';
+                    //    canvas.style.marginRight = '0px';
+                    //}
 
                     ctx.beginPath();
                     ctx.fillStyle = "#f00";
