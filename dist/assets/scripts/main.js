@@ -30,12 +30,12 @@ var app = {
 
         //  init page response plugin, if device is mobile device
         if (that.scene.availWidth <= 640) {
-            var page = new pageResponse({
-                class : 'wrap',     //模块的类名，使用class来控制页面上的模块(1个或多个)
-                mode : 'cover',     // auto || contain || cover ，默认模式为auto
-                width : '375',      //输入页面的宽度，只支持输入数值，默认宽度为320px
-                height : '625'      //输入页面的高度，只支持输入数值，默认高度为504px
-            });
+            //var page = new pageResponse({
+            //    class : 'wrap',     //模块的类名，使用class来控制页面上的模块(1个或多个)
+            //    mode : 'cover',     // auto || contain || cover ，默认模式为auto
+            //    width : '375',      //输入页面的宽度，只支持输入数值，默认宽度为320px
+            //    height : '625'      //输入页面的高度，只支持输入数值，默认高度为504px
+            //});
         } else {
             $('.wrap').addClass('zoomInTablet');
 
@@ -123,8 +123,7 @@ var app = {
 
                 /* check img load progress */
                 if (checkIsAllLoaded() && isLoaded == false) {
-                    //startCreatingProcess();
-                    app.start();
+                    startCreatingProcess();
                 }
             };
         }
@@ -142,7 +141,7 @@ var app = {
 
                 setTimeout(function () {
                     //  update loading bar
-                    $('.counter').text('100%');
+                    $('.loading .counter').text('100%');
                     $('.line-wrap').css({'background-position' : '100%'});
 
                     setTimeout(function () {
@@ -190,6 +189,11 @@ var app = {
     create: function (){
         var that = this;
 
+        //  init count up
+        //var room01 = new CountUp("counter01", 1, 115);
+        //var room02 = new CountUp("counter02", 1, 100);
+        //var room03 = new CountUp("counter03", 1, 85);
+
         //  init swiper
         $('.swiper-container').show();
 
@@ -224,8 +228,10 @@ var app = {
                     //  remove big picture show, and remove big picture layout to the front
                     $('.big-picture').removeClass('inBigPicture inFrontLayer');
 
-                    //  remove glasses
-                    $('.glasses').removeClass('active');
+                    //  exist glasses active status
+                    $('.swiper-container, .glasses').removeClass('active');
+                    $('.glasses').removeClass('inFrontLayer');
+                    $('.wrap').removeClass('inToGlasses');
 
                     //  hide para right now
                     $('.main-scene .item').removeClass('active').addClass('backRightNow');
@@ -265,6 +271,11 @@ var app = {
 
                     //  remove big picture show, and remove big picture layout to the front
                     $('.big-picture').removeClass('inBigPicture inFrontLayer');
+
+                    //  exist glasses active status
+                    $('.swiper-container, .glasses').removeClass('active');
+                    $('.glasses').removeClass('inFrontLayer');
+                    $('.wrap').removeClass('inToGlasses');
 
                     slideTo(1);
                 });
@@ -307,7 +318,7 @@ var app = {
 
                 $('.item04 .stone-txt, .menu-scene .item04').click(function(e){
                     e.stopPropagation();
-                    slideTo(9);
+                    slideTo(15);
                 });
 
                 //  cursor for content entry
@@ -329,7 +340,7 @@ var app = {
                             slideTo(8);
                             break;
                         case 4:
-                            slideTo(9);
+                            slideTo(15);
                             break;
                     }
                 });
@@ -357,13 +368,38 @@ var app = {
                 $('.scene').removeClass('active');
                 $('.scene').eq(swiper.activeIndex).addClass('active');
 
+                //  reset count up
+                //room01.reset();
+                //room02.reset();
+                //room03.reset();
+
                 //  show menu button if current page is not the first page
                 if (swiper.activeIndex == 0) {
                     $('.btn-menu, .btn-main').addClass('active');
                 } else {
                     $('.btn-menu, .btn-main').removeClass('active');
                 }
+
+                //  start room counter
+                //switch (swiper.activeIndex) {
+                //    case 17:
+                //        room01.start();
+                //        break;
+                //    case 18:
+                //        room02.start();
+                //        break;
+                //    case 19:
+                //        room03.start();
+                //        break;
+                //}
             }
+        });
+
+        //  init sliders
+        $(function () {
+            $('.bxslider').bxSlider({
+                controls: false
+            });
         });
 
         //  first time play BGM
@@ -657,8 +693,8 @@ var app = {
         }
 
         /** picture touch */
-        var pictureWraps = document.getElementsByClassName('picture-wrap');
-        var pictureImgDom = pictureWraps[0].getElementsByTagName('img')[0];
+        var pictureWraps = document.getElementsByClassName('big-picture');
+        var pictureImgDom = pictureWraps[0].getElementsByClassName('picture-wrap')[0].getElementsByTagName('img')[0];
         var pictureTitleDom = document.getElementsByClassName('big-picture')[0].getElementsByClassName('title')[0].getElementsByTagName('img')[0];
         var bigPictureArr = [];
         //var pictureZoom = $('.wrap').css('transform').split(')')[0].split('(')[1].replace(/ /g, '').split(',')[0];
@@ -716,7 +752,7 @@ var app = {
             $('.big-picture').addClass('inBigPicture');
             setTimeout(function () {
                 $('.big-picture').addClass('inFrontLayer');
-            }, 400);
+            }, 300);
 
             //  disable slider when in big picture,
             //  enable slider when click menu buttons
@@ -738,15 +774,19 @@ var app = {
         $('.glasses').show();
         var foregroundArr = [];
         var backgroundArr = [];
-        var imgAmounts = 10;
+        var textArr = [];
+        var imgAmounts = 15;
         var loadedAmounts = 0;
 
-        for (var i = 0; i < imgAmounts/2; i++) {
+        for (var i = 0; i < imgAmounts/3; i++) {
             var foreground = new Image();
             foreground.src = 'assets/images/bg06-0' + (i+1) + '-mask.jpg';
 
             var background = new Image();
             background.src = 'assets/images/bg06-0' + (i+1) + '.jpg';
+
+            var text = new Image();
+            text.src = 'assets/images/texture-content0' + (i+1) + '.png';
 
             foreground.index = i;
             foreground.onload = function () {
@@ -754,7 +794,7 @@ var app = {
                 loadedAmounts++;
 
                 if (checkIsAllLoaded () == true) {
-                    createScratch(foregroundArr[0], backgroundArr[0]);
+                    createScratch(foregroundArr[0], backgroundArr[0], textArr[0]);
                 }
             };
 
@@ -764,7 +804,17 @@ var app = {
                 loadedAmounts++;
 
                 if (checkIsAllLoaded () == true) {
-                    createScratch(foregroundArr[0], backgroundArr[0]);
+                    createScratch(foregroundArr[0], backgroundArr[0], textArr[0]);
+                }
+            };
+
+            text.index = i;
+            text.onload = function () {
+                textArr[this.index] = this;
+                loadedAmounts++;
+
+                if (checkIsAllLoaded () == true) {
+                    createScratch(foregroundArr[0], backgroundArr[0], textArr[0]);
                 }
             };
         }
@@ -778,7 +828,7 @@ var app = {
                 $('.btn-back').addClass('inScratch');
 
                 //  init scratch
-                createScratch(foregroundArr[index], backgroundArr[index]);
+                createScratch(foregroundArr[index], backgroundArr[index], textArr[index]);
 
                 //  bring it front
                 setTimeout(function () {
@@ -858,7 +908,7 @@ var app = {
             }
         }
 
-        function createScratch(foreground, background) {
+        function createScratch(foreground, background, text) {
             $('.glasses-box').show();
             var canvas = document.getElementsByClassName('glasses-box')[0];
             var ctx = canvas.getContext('2d');
@@ -877,6 +927,9 @@ var app = {
 
             //  set real card
             document.getElementsByClassName('glasses')[0].style.backgroundImage = 'url(' + background.src + ')';
+
+            //  set text
+            document.getElementsByClassName('glasses')[0].getElementsByClassName('text')[0].src = text.src;
 
             //  create opacity mask
             ctx.drawImage(foreground, 0, 0, cWidth, cHeight);
@@ -1001,7 +1054,7 @@ $(function (){
     app.preload();
 
     //  let main scene active
-    $('.loading').addClass('leave');
+    //$('.loading').addClass('leave');
 
     console.log('app started success...');
 });

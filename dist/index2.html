@@ -10,6 +10,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
     <title></title>
 
+    <link rel="stylesheet" href="assets/stylesheets/jquery.bxslider.min.css"/>
     <!-- injector:css -->
     <!-- endinjector -->
 </head>
@@ -19,12 +20,42 @@
 <!-- page -->
 <script src="assets/scripts/jquery-2.1.3.min.js"></script>
 <script src="assets/scripts/fastclick.js"></script>
+<script src="assets/scripts/jquery.bxslider.min.js"></script>
 
-<canvas id="canvas"></canvas>
+<ul class="bxslider">
+    <li>
+        <img class="img" src="assets/images/bg07-01.jpg" width="375" />
+        <div class="content">
+            <img src="assets/images/title-c-02.png" />
+            <img src="assets/images/txt-block-c-01.png" />
+        </div>
 
+        <div class="line04"></div>
+    </li>
+    <li>
+        <img class="img" src="assets/images/bg07-02.jpg" width="375" />
+        <div class="content">
+            <img src="assets/images/title-c-03.png" />
+            <img src="assets/images/txt-block-c-02.png" />
+        </div>
+
+        <div class="line04"></div>
+    </li>
+    <li>
+        <img class="img" src="assets/images/bg07-03.jpg" width="375" />
+        <div class="content">
+            <img src="assets/images/title-c-04.png" />
+            <img src="assets/images/txt-block-c-03.png" />
+        </div>
+
+        <div class="line04"></div>
+    </li>
+</ul>
 
 <script>
-
+    $(document).ready(function () {
+        $('.bxslider').bxSlider();
+    });
 </script>
 </body>
 </html>

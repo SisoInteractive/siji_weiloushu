@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta content="telephone=no" name="format-detection">
-    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.3,user-scalable=no" name="viewport">
     <meta name="apple-touch-fullscreen" content="no"/>
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
     <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
@@ -13,6 +13,7 @@
     <!-- injector:css -->
     <link rel="stylesheet" href="assets/stylesheets/animation.css"/>
     <link rel="stylesheet" href="assets/stylesheets/swiper.min.css"/>
+    <link rel="stylesheet" href="assets/stylesheets/jquery.bxslider.css"/>
     <link rel="stylesheet/less" href="assets/stylesheets/main.less"/>
     <!-- endinjector -->
 </head>
@@ -38,7 +39,7 @@
                         <img src="assets/images/s01-logo.png" alt="" width="141"/>
                     </div>
                     <!--<img class="bird pa" src="assets/images/s01-bird.png" alt="" width="90" style="top: 142px; left: 51px;"/>-->
-                    <div class="bird pa" style="top: 142px; left: 51px;"></div>
+                    <div class="bird pa" style="top: 120px; left: 51px;"></div>
 
                     <!--<div class="tips pa tc" style="bottom: 12.7%; left: 0; right: 0;">-->
                     <!--<img src="assets/images/s01-tips.png" alt="" width="256"/>-->
@@ -269,7 +270,7 @@
 
             <div class="swiper-slide scene scene03-03 scene-big-picture">
                 <div class="content">
-                    <img class="lack pa" src="assets/images/bg-03-03.png" width="375" alt="" style="left: 0; right: 0; top: 46px;"/>
+                    <img class="lack pa" src="assets/images/bg-03-03.png" width="375" alt="" style="left: 0; right: 0; top: 126px;"/>
 
                     <div class="title-b-01 pa tc">
                         <img src="assets/images/title-b-03-03.png" alt="" width="252"/>
@@ -317,6 +318,19 @@
                 <div class="line01 pa"></div>
             </div>
 
+            <div class="swiper-slide scene master master01">
+                <div class="title pa tc">
+                    <img src="assets/images/master-title01.png" alt="" width="280"/>
+                </div>
+
+                <div class="desc pa">
+                    <img src="assets/images/master-desc01.png" alt="" width="280"/>
+                </div>
+                <div class="country pa">
+                    <img src="assets/images/master-country01.png" alt="" width="280"/>
+                </div>
+            </div>
+
             <div class="swiper-slide scene scene05">
                 <img class="title-c-01 pa" src="assets/images/s05-title.png" alt="" width="280"/>
                 <img class="txt-block-c-01 pa" src="assets/images/s05-para.png" alt="" width="316"/>
@@ -344,6 +358,111 @@
                 </div>
             </div>
 
+            <!-- slider -->
+            <div class="swiper-slide scene scene-slider scene07">
+                <ul class="bxslider">
+                    <li>
+                        <div class="bg">
+                            <img src="assets/images/bg07-01.jpg" width="375" />
+                        </div>
+                    </li>
+                    <li>
+                        <div class="bg">
+                            <img src="assets/images/bg07-02.jpg" width="375" />
+                        </div>
+                    </li>
+                    <li>
+                        <div class="bg">
+                            <img src="assets/images/bg07-03.jpg" width="375" />
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="swiper-slide scene scene-slider scene07">
+                <ul class="bxslider">
+                    <li>
+                        <div class="bg">
+                            <img src="assets/images/bg07-04.jpg" width="375" />
+                        </div>
+                    </li>
+                    <li>
+                        <div class="bg">
+                            <img src="assets/images/bg07-05.jpg" width="375" />
+                        </div>
+                    </li>
+                    <li>
+                        <div class="bg">
+                            <img src="assets/images/bg07-06.jpg" width="375" />
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <!-- end slider -->
+
+            <div class="swiper-slide scene scene07">
+                <div class="bg">
+                    <img src="assets/images/bg07-07.jpg" width="375" />
+                </div>
+            </div>
+
+            <div class="swiper-slide scene scene08">
+                <div class="t-a-01 pa tc">
+                    <img src="assets/images/scene08-01.png" alt="" width="75"/>
+                </div>
+                <div class="t-a-02 pa tc">
+                    <img src="assets/images/scene08-02.png" alt="" width="106"/>
+                </div>
+                <div class="t-a-03 pa tc">
+                    <img src="assets/images/scene08-03.png" alt="" width="75"/>
+                </div>
+                <div class="line01 pa"></div>
+            </div>
+
+            <div class="swiper-slide scene scene09-before">
+                <div class="img01 pa tc">
+                    <img src="assets/images/scene09-01.png" alt="" width="110"/>
+                </div>
+                <div class="img02 pa tc">
+                    <img src="assets/images/scene09-02.png" alt="" width="274"/>
+                </div>
+                <div class="line05 pa"></div>
+            </div>
+
+            <div class="swiper-slide scene scene-slider scene09">
+                <ul class="bxslider">
+                    <li>
+                        <img src="assets/images/room-1.jpg" alt="" width="375"/>
+                        <div class="counter" id="counter01">115</div>
+                    </li>
+
+                    <li>
+                        <img src="assets/images/room-2.jpg" alt="" width="375"/>
+                        <div class="counter" id="counter02">100</div>
+                    </li>
+
+                    <li>
+                        <img src="assets/images/room-3.jpg" alt="" width="375"/>
+                        <div class="counter" id="counter03">85</div>
+                    </li>
+                </ul>
+            </div>
+
+            <!--<div class="swiper-slide scene scene09 room01">-->
+                <!--<div class="counter" id="counter01"></div>-->
+                <!--<div class="bg"></div>-->
+            <!--</div>-->
+
+            <!--<div class="swiper-slide scene scene09 room02">-->
+                <!--<div class="counter" id="counter02"></div>-->
+                <!--<div class="bg"></div>-->
+            <!--</div>-->
+
+            <!--<div class="swiper-slide scene scene09 room03">-->
+                <!--<div class="counter" id="counter03"></div>-->
+                <!--<div class="bg"></div>-->
+            <!--</div>-->
+
             <div class="swiper-slide scene scene-final">
                 <div class="final01 pa tc">
                     <img src="assets/images/final01.png" alt="" width="290"/>
@@ -360,8 +479,6 @@
                     <img src="assets/images/brand.png" alt="" width="111"/>
                 </div>
             </div>
-
-            <div class="swiper-slide">Slide 3</div>
         </div>
     </div>
     <!-- content -->
@@ -373,14 +490,14 @@
         </div>
 
         <div class="title tc pa">
-            <img src="assets/images/big-picture-title01.png" width="145" alt=""/>
+            <img src="assets/images/big-picture-title01.png" width="290" alt=""/>
         </div>
     </div>
     <!-- end big picture -->
 
     <!--  glasses wipe -->
     <div class="glasses glasses01" style="display: none;">
-        <canvas class="glasses-box pa" width="375" height="628"></canvas>
+        <canvas class="glasses-box pa" width="375" height="625"></canvas>
         <img class="text pa" src="assets/images/texture-content01.png" alt="" width="375"/>
     </div>
 
@@ -415,35 +532,11 @@
 <script src="assets/scripts/swiper.js"></script>
 <script src="assets/scripts/pageResponse.min.js"></script>
 <script src="assets/scripts/scratch.min.js"></script>
+<script src="assets/scripts/countUp.min.js"></script>
+<script src="assets/scripts/jquery.bxslider.min.js"></script>
 <script src="assets/scripts/main.js"></script>
 
 <!-- TODO: DEBUG CLICK DELAY-->
-<!--<style>-->
-    <!--.box {-->
-        <!--width: 100px;-->
-        <!--height: 100px;-->
-        <!--background: pink;-->
-        <!--position: fixed;-->
-        <!--z-index: 10000;-->
-    <!--}-->
-
-    <!--.box2 {-->
-        <!--top: 200px;-->
-    <!--}-->
-
-    <!--.color {-->
-        <!--background: darkseagreen;-->
-    <!--}-->
-<!--</style>-->
-<!--<div class="box box1"></div>-->
-<!--<hr/>-->
-<!--<div class="box box2 needsclick"></div>-->
-
-<!--<script>-->
-    <!--$('.box').click(function () {-->
-        <!--$(this).toggleClass('color');-->
-    <!--});-->
-<!--</script>-->
 
 <!-- less compiler -->
 <script src="assets/scripts/less.min.js"></script>
