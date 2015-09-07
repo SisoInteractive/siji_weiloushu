@@ -415,6 +415,9 @@ input {
   left: 0;
   position: absolute;
 }
+.menu-scene .item img {
+  width: 100%;
+}
 .menu-scene .item01 {
   top: 102px;
 }
@@ -1003,6 +1006,9 @@ input {
   top: 149px;
   left: 166px;
 }
+.scene03-03 .lack {
+  width: 100%;
+}
 .scene04 {
   background: url("../images/bg04.jpg");
   background-size: cover;
@@ -1097,6 +1103,7 @@ input {
   bottom: 0;
 }
 .scene07 .bg img {
+  width: 100%;
   height: 100%;
 }
 .scene07 .bx-wrapper {
@@ -1186,6 +1193,7 @@ input {
   height: 100%;
 }
 .scene09 img {
+  width: 100%;
   height: 100%;
 }
 .scene09 .counter {
