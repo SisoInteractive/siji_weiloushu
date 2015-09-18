@@ -17,12 +17,12 @@
     <link rel="stylesheet/less" href="assets/stylesheets/main.less"/>
     <!-- endinjector -->
 </head>
-<body>
+<body style="background-color: #c2beb8;">
 
 <!-- wrap -->
 <div class="wrap">
     <!-- loading -->
-    <div class="loading">
+    <div class="loading loading-statue">
         <div class="bird pa"></div>
         <div class="line-wrap pa"></div>
         <div class="counter pa">1%</div>
@@ -132,6 +132,7 @@
                 <!-- end main scene -->
             </div>
 
+            <!-- menu scene -->
             <div class="swiper-slide scene scene-menu">
                 <!-- menu -->
                 <div class="menu-scene">
@@ -150,6 +151,7 @@
                 </div>
                 <!-- end menu -->
             </div>
+            <!-- end menu scene -->
 
             <div class="swiper-slide scene scene01">
                 <div class="t-a-01 pa tc">
@@ -198,6 +200,7 @@
                 <div class="line01 pa"></div>
             </div>
 
+            <!-- big pictures -->
             <div class="swiper-slide scene scene03-01 scene-big-picture">
                 <div class="content">
                     <img class="cloud cloud01 pa" src="assets/images/cloud01.png" alt="" width="70"/>
@@ -304,6 +307,7 @@
                     <div class="line03 pa"></div>
                 </div>
             </div>
+            <!-- end big pictures -->
 
             <div class="swiper-slide scene scene04">
                 <div class="t-a-01 pa tc">
@@ -469,7 +473,7 @@
     <!-- content -->
 
     <!-- big picture -->
-    <div class="big-picture">
+    <div class="big-picture" style="display: none;">
         <div class="picture-wrap">
             <img src="assets/images/big-picture01.jpg" alt=""/>
         </div>
@@ -480,30 +484,99 @@
     </div>
     <!-- end big picture -->
 
-    <!--  glasses wipe -->
-    <div class="glasses glasses01" style="display: none;">
-        <canvas class="glasses-box pa" width="375" height="625"></canvas>
-        <img class="text pa" src="assets/images/texture-content01.png" alt="" width="375"/>
+    <!--  textures -->
+    <div class="textures" style="display: none;">
+        <div class="pr texture texture01">
+            <img class="a pa" src="assets/images/texture01-bg-n.jpg" alt="" width="375"/>
+
+            <div class="pa tc txt">
+                <img src="assets/images/click.png" alt="" width="84"/>
+
+                <div class="slider-arrow"></div>
+                <div class="slider-arrow slider-arrow02"></div>
+                <div class="slider-arrow slider-arrow03"></div>
+            </div>
+
+            <div class="blocks">
+                <img class="block block01 pa" src="assets/images/texture01-01.png" alt="" width="375"/>
+                <img class="block block02 pa" src="assets/images/texture01-02.png" alt="" width="375"/>
+                <img class="block block03 pa" src="assets/images/texture01-03.png" alt="" width="375"/>
+                <img class="block block04 pa" src="assets/images/texture01-04.png" alt="" width="375"/>
+                <img class="block block05 pa" src="assets/images/texture01-05.png" alt="" width="375"/>
+                <img class="block block06 pa" src="assets/images/texture01-06.png" alt="" width="375"/>
+                <img class="block block07 pa" src="assets/images/texture01-07.png" alt="" width="375"/>
+                <img class="block block08 pa" src="assets/images/texture01-08.png" alt="" width="375"/>
+                <img class="block block09 pa" src="assets/images/texture01-09.png" alt="" width="375"/>
+                <img class="block block10 pa" src="assets/images/texture01-10.png" alt="" width="375"/>
+                <img class="block block11 pa" src="assets/images/texture01-11.png" alt="" width="375"/>
+                <img class="block block12 pa" src="assets/images/texture01-12.png" alt="" width="375"/>
+            </div>
+
+            <img class="text pa" src="assets/images/texture-content01.png" alt="" width="375"/>
+        </div>
+        <div class="pr texture texture02">
+            <div class="a pa tc">
+                <div class="lunzi pa">
+                    <img src="assets/images/lunzi.png" alt="" width="179"/>
+                </div>
+            </div>
+
+            <div class="pa tc txt">
+                <img src="assets/images/click.png" alt="" width="84"/>
+
+                <div class="slider-arrow"></div>
+                <div class="slider-arrow slider-arrow02"></div>
+                <div class="slider-arrow slider-arrow03"></div>
+            </div>
+
+            <img class="text pa" src="assets/images/texture-content02.png" alt="" width="375"/>
+        </div>
+        <div class="pr texture texture03">
+            <div class="a pa"></div>
+
+            <div class="pa tc txt">
+                <img src="assets/images/scratch.png" alt="" width="84"/>
+            </div>
+
+            <img class="text pa" src="assets/images/texture-content03.png" alt="" width="375"/>
+        </div>
+        <div class="pr texture texture04">
+            <div class="a pa"></div>
+
+            <div class="pa tc txt">
+                <img src="assets/images/slide.png" alt="" width="84"/>
+            </div>
+
+            <img class="text pa" src="assets/images/texture-content04.png" alt="" width="375"/>
+        </div>
+        <div class="pr texture texture05">
+            <canvas class="textures-box pa" width="375" height="625"></canvas>
+            <img class="text pa" src="assets/images/texture-content01.png" alt="" width="375"/>
+        </div>
     </div>
+    <!--  end textures -->
 
     <!-- audio -->
-    <audio id="audio" src=""></audio>
+    <audio id="audio" class="loading-statue" src=""></audio>
+    <!-- end audio -->
 
     <!-- another -->
-    <div class="btn-back">
+    <div class="btn-back loading-statue">
         <img src="assets/images/btn03.png" width="30" alt=""/>
     </div>
 
-    <div class="btn-main active">
+    <div class="btn-main active loading-statue">
         <img src="assets/images/btn01.png" width="30" alt=""/>
     </div>
 
-    <div class="btn-menu active">
+    <div class="btn-menu active loading-statue">
         <img src="assets/images/btn02.png" width="30" alt=""/>
     </div>
 
-    <div class="slider-arrow"></div>
-    <div class="slider-arrow slider-arrow02"></div>
+    <div class="tips-arrow" style="display: none;">
+        <div class="slider-arrow"></div>
+        <div class="slider-arrow slider-arrow02"></div>
+    </div>
     <!-- end another -->
 </div>
 <!-- end wrap -->
@@ -515,10 +588,12 @@
 <script src="assets/scripts/jquery-2.1.3.min.js"></script>
 <script src="assets/scripts/fastclick.js"></script>
 <script src="assets/scripts/swiper.js"></script>
-<script src="assets/scripts/pageResponse.min.js"></script>
-<script src="assets/scripts/scratch.min.js"></script>
 <script src="assets/scripts/jquery.bxslider.min.js"></script>
 <script src="assets/scripts/main.js"></script>
+<script src="assets/scripts/stone.js"></script>
+<script src="assets/scripts/wave.js"></script>
+<script src="assets/scripts/textures.js"></script>
+<script src="assets/scripts/picture.js"></script>
 
 <!-- TODO: DEBUG CLICK DELAY-->
 

@@ -39,6 +39,10 @@ input {
   outline: none;
 }
 
+.pr {
+  position: relative;
+}
+
 .pa {
   position: absolute;
 }
@@ -105,7 +109,8 @@ input {
     width: 100%-18.4*2;
     height: 1px;
     background: #8d837a url("../images/loading-line.png") no-repeat;
-    background-position: -58% 0;
+    background-position: -24% 0;
+    background-size: 58px 1px;
   }
 
   .counter {
@@ -113,9 +118,13 @@ input {
     left: 0;
     right: 0;
     text-align: center;
-    font-size: 40px/2;
+    font-size: 40px/zoomInTablet2;
     color: #614c3f;
   }
+}
+
+.loading-statue {
+  display: none;
 }
 
 .loading.play {
@@ -756,7 +765,7 @@ input {
 }
 
 /* glasses */
-.glasses {
+.textures {
   position: absolute;
   top: 0;
   left: 0;
@@ -767,7 +776,149 @@ input {
   overflow: hidden;
   z-index: 400;
 
-  .glasses-box {
+  .texture {
+    display: none;
+    height: 100%;
+
+    .a {
+      z-index: 10;
+      height: 100%;
+      transition: all 2s;
+    }
+
+    .a.active {
+      opacity: 0;
+      transform: scale(10);
+    }
+
+    .txt {
+      left: 0;
+      right: 0;
+      bottom: 35px;
+      z-index: 30;
+      text-align: center;
+
+      .slider-arrow { bottom: 110px; transition-delay: .4s; }
+      .slider-arrow02 { bottom: 90px; transition-delay: .2s; }
+      .slider-arrow03 { bottom: 80px; }
+    }
+  }
+
+  .texture01 {
+    background: url("../images/bg06-01.jpg") no-repeat;
+    background-size: cover;
+
+    .blocks {
+      z-index: 20;
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+
+      @transition-delay-basic: .5s;
+      .block { transition: all 2s ease-in; }
+      .block01 { top: 341px/2; transition-delay: @transition-delay-basic;}
+      .block02 { top: 457px/2; transition-delay: @transition-delay-basic*1.9; }
+      .block03 { top: 540px/2; transition-delay: @transition-delay-basic*1.8; }
+      .block04 { top: 647px/2; transition-delay: @transition-delay-basic*1.7; }
+      .block05 { top: 650px/2; transition-delay: @transition-delay-basic*1.6; }
+      .block06 { top: 651px/2; transition-delay: @transition-delay-basic*1.5; }
+      .block07 { top: 684px/2; transition-delay: @transition-delay-basic*1.4; }
+      .block08 { top: 687px/2; transition-delay: @transition-delay-basic*1.3; }
+      .block09 { top: 743px/2; transition-delay: @transition-delay-basic*1.2; }
+      .block10 { top: 793px/2; transition-delay: @transition-delay-basic*1.1; }
+      .block11 { top: 797px/2; transition-delay: @transition-delay-basic; }
+      .block12 { top: 867px/2; transition-delay: @transition-delay-basic; }
+    }
+  }
+
+  .texture01.active {
+    .block01 { top: 341px/2; transform: translate3d(0, 1000px, 0); }
+    .block02 { top: 457px/2; transform: translate3d(0, 1000px, 0); }
+    .block03 { top: 540px/2; transform: translate3d(0, 1000px, 0); }
+    .block04 { top: 647px/2; transform: translate3d(0, 1000px, 0); }
+    .block05 { top: 650px/2; transform: translate3d(0, 1000px, 0); }
+    .block06 { top: 651px/2; transform: translate3d(0, 1000px, 0); }
+    .block07 { top: 684px/2; transform: translate3d(0, 1000px, 0); }
+    .block08 { top: 687px/2; transform: translate3d(0, 1000px, 0); }
+    .block09 { top: 743px/2; transform: translate3d(0, 1000px, 0); }
+    .block10 { top: 793px/2; transform: translate3d(0, 1000px, 0); }
+    .block11 { top: 797px/2; transform: translate3d(0, 1000px, 0); }
+    .block12 { top: 867px/2; transform: translate3d(0, 1000px, 0); }
+  }
+
+  .texture02 {
+    background: url("../images/bg06-02.jpg") no-repeat;
+    background-size: cover;
+
+    .a {
+      background: url("../images/texture02-bg-n.jpg") no-repeat;
+      background-size: cover;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+
+      .lunzi {
+        top: 330px/2;
+        left: 0;
+        right: 0;
+      }
+    }
+
+  }
+
+  .texture02.active {
+    .lunzi {
+      img {
+        -webkit-animation: rotate 2s 1 forwards;
+      }
+    }
+  }
+
+  .texture03 {
+    background: url("../images/bg06-03.jpg") no-repeat;
+    background-size: cover;
+
+    .a {
+      background: url("../images/texture03-bg.jpg") no-repeat;
+      background-size: 100% 300%;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      transition: none;
+    }
+
+    .a.step01 { background-position: 0 0;}
+    .a.step02 { background-position: 0 50%;}
+    .a.step03 { background-position: 0 100%;}
+  }
+
+  .texture04 {
+    background: url("../images/bg06-04.jpg") no-repeat;
+    background-size: cover;
+
+    .a {
+      background: url("../images/texture04-bg.png") no-repeat;
+      background-size: 100% 300%;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      transition: all 1.2s ease-out;
+    }
+  }
+
+  .texture04.active {
+    .a {
+      transform: translate3d(100%, 0, 0);
+    }
+  }
+
+  //  glasses wipe
+  .textures-box {
     z-index: 300;
     opacity: .8;
   }
@@ -778,29 +929,13 @@ input {
   }
 }
 
-.glasses.active {
+.textures.active {
   transform: translate3d(0, 0, 0);
   display: block;
 }
 
-.glasses01 {
-  background: url("../images/bg06-01.jpg");
-  background-size: cover;
-}
-
-.glasses02 {
-  background: url("../images/bg06-02.jpg");
-  background-size: cover;
-}
-
-.glasses03 {
-  background: url("../images/bg06-03.jpg");
-  background-size: cover;
-}
-
-.glasses04 {
-  background: url("../images/bg06-04.jpg");
-  background-size: cover;
+.textures.inFrontLayer {
+  z-index: 500;
 }
 
 .big-bird {
@@ -1326,20 +1461,6 @@ input {
   }
 }
 
-.room01 {
-  background: url("../images/room-1.jpg");
-  background-size: cover;
-}
-
-.room02 {
-  background: url("../images/room-2.jpg");
-  background-size: cover;
-}
-
-.room03 {
-  background: url("../images/room-3.jpg");
-  background-size: cover;
-}
 
 .scene-final {
   background: url("../images/bg-final.jpg");
@@ -1473,6 +1594,26 @@ input {
   50% {
     opacity: 1;
     transform: scale(1.2);
+  }
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotateZ(0);
+  }
+
+  100% {
+    transform: rotateZ(360deg);
+  }
+}
+
+@-webkit-keyframes rotate {
+  0% {
+    transform: rotateZ(0);
+  }
+
+  100% {
+    transform: rotateZ(360deg);
   }
 }
 /*======================================================================
