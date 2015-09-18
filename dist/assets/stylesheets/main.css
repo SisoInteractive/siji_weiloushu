@@ -34,6 +34,9 @@ span {
 input {
   outline: none;
 }
+img {
+  vertical-align: top;
+}
 .pr {
   position: relative;
 }

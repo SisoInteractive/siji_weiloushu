@@ -26,24 +26,8 @@ var app = {
         var ctx = Canvas.getContext('2d');
 
         //  set scene info
-        that.scene.availWidth = screen.availWidth;
-        that.scene.availHeight = screen.availHeight;
-
-        //  init page response plugin, if device is mobile device
-        if (that.scene.availWidth <= 640) {
-            //var page = new pageResponse({
-            //    class : 'wrap',     //模块的类名，使用class来控制页面上的模块(1个或多个)
-            //    mode : 'cover',     // auto || contain || cover ，默认模式为auto
-            //    width : '375',      //输入页面的宽度，只支持输入数值，默认宽度为320px
-            //    height : '625'      //输入页面的高度，只支持输入数值，默认高度为504px
-            //});
-        } else {
-            $('.wrap').addClass('zoomInTablet');
-
-            //  set scene size to default size
-            that.scene.availWidth = 375;
-            that.scene.availHeight = 625;
-        }
+        that.scene.availWidth = 375;
+        that.scene.availHeight = 627;
 
         //  set images generator
         var imgPath = "assets/images/";
@@ -55,16 +39,38 @@ var app = {
         var endLoadTime = null;
 
         //  load loading image
+        var loadingCount = 0;
+
         var birdImg = new Image();
         birdImg.src = 'assets/images/bird-sprite.png';
         birdImg.onload = function () {
-            $('.loading-statue').removeClass('loading-statue');
+            loadingCount++;
 
-            //  show bird
-            $('.loading .bird').addClass('transform');
-            $('.loading').addClass('play');
+            if (loadingCount == 2 ) {
+                $('.loading-statue').removeClass('loading-statue');
 
-            loadMain();
+                //  show bird
+                $('.loading .bird').addClass('transform');
+                $('.loading').addClass('play');
+
+                loadMain();
+            }
+        };
+
+        var loadLine = new Image();
+        loadLine.src = 'assets/images/loading-line.png';
+        loadLine.onload = function () {
+            loadingCount++;
+
+            if (loadingCount == 2 ) {
+                $('.loading-statue').removeClass('loading-statue');
+
+                //  show bird
+                $('.loading .bird').addClass('transform');
+                $('.loading').addClass('play');
+
+                loadMain();
+            }
         };
 
         //  init fast click
