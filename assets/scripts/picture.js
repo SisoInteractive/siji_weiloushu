@@ -25,6 +25,8 @@ function Picture (app) {
     //  set default picture as undefined
     pictureWrap.picture = undefined;
 
+    var isZoomInited = false;
+
     //  bind entry button
     $('.circle').click(function () {
         //  add "in big picture" statue for "scene big picture"
@@ -47,6 +49,24 @@ function Picture (app) {
                 break;
         }
 
+        if (isZoomInited == true) {
+            $('#imageZoom').smoothZoom('Reset');
+        } else {
+            $('#imageZoom').smoothZoom({
+                width: '100%',
+                height: '100%',
+                zoom_MIN: 20,
+                animation_SPEED_PAN: 10,
+                zoom_OUT_TO_FIT: false,
+                zoom_BUTTONS_SHOW: false,
+                pan_BUTTONS_SHOW: false
+            });
+
+            isZoomInited = true;
+        }
+
+
+
         //  set big picture show, and set big picture layout to the front
         $('.big-picture').addClass('inBigPicture');
         setTimeout(function () {
@@ -63,7 +83,6 @@ function Picture (app) {
         pictureImgDom.src = bigPictureArr[0].src;
         pictureImgDom.width = bigPictureArr[0].width*pictureZoom;
         pictureImgDom.height = bigPictureArr[0].height*pictureZoom;
-        pictureImgDom.setAttribute('style', 'transform: translate3d(-300px, -300px, 0); -webkit-transform: translate3d(-300px, -300px, 0)');
         pictureTitleDom.src = imgPath + 'big-picture-title01.png';
     };
 
@@ -72,7 +91,6 @@ function Picture (app) {
         pictureImgDom.src = bigPictureArr[1].src;
         pictureImgDom.width = bigPictureArr[1].width*pictureZoom;
         pictureImgDom.height = bigPictureArr[1].height*pictureZoom;
-        pictureImgDom.setAttribute('style', 'transform: translate3d(-1955px, -887px, 0); -webkit-transform: translate3d(-1955, -887px, 0)');
         pictureTitleDom.src = imgPath + 'big-picture-title02.png';
     };
 
@@ -81,75 +99,7 @@ function Picture (app) {
         pictureImgDom.src = bigPictureArr[2].src;
         pictureImgDom.width = bigPictureArr[2].width*pictureZoom;
         pictureImgDom.height = bigPictureArr[2].height*pictureZoom;
-        pictureImgDom.setAttribute('style', 'transform: translate3d(-1117px, -292px, 0); -webkit-transform: translate3d(-1117px, -292px, 0)');
         pictureTitleDom.src = imgPath + 'big-picture-title03.png';
-    };
-
-    this.pictureTouchStartHandler = function (e) {
-        this.touchStartPointX = e.touches[0].pageX;
-        this.touchStartPointY = e.touches[0].pageY;
-
-        //  catch picture
-        if (!this.picture) {
-            this.picture = this.getElementsByTagName('img')[0];
-        }
-    };
-
-    this.pictureTouchMoveHandler = function (e) {
-        var canSetNewPosition = true;
-        var picture = this.picture;
-        var oldPosition = that.matrixToArray(this.picture.getAttribute('style'));
-        var oldPositionX = oldPosition[0];
-        var oldPositionY = oldPosition[1];
-
-        //  get current touch position
-        var curPointX = e.touches[0].pageX;
-        var curPointY = e.touches[0].pageY;
-        var oldPointX = this.touchStartPointX;
-        var oldPointY = this.touchStartPointY;
-
-        var distanceX = Math.abs(curPointX - oldPointX);
-        var distanceY = Math.abs(curPointY - oldPointY);
-
-        var newX = 0;
-        var newY = 0;
-
-        //  set new position changed value
-        curPointX < oldPointX ? newX = -distanceX : newX = distanceX;
-        curPointY < oldPointY ? newY = -distanceY : newY = distanceY;
-
-        //  calculate final position
-        newX = (newX + parseInt(oldPositionX));
-        newY = (newY + parseInt(oldPositionY));
-
-        //console.log(newX, newY);
-
-        var isTheMaxLeftTop = newX > 0 || newY > 0;
-        var isTheMaxLeftBottom = newX > 0 || newY < -(picture.height - app.scene.availHeight);
-        var isTheMaxRightTop = newX < -(picture.width - app.scene.availWidth) || newY > 0;
-        var isTheMaxRightBottom = newX < -(picture.width - app.scene.availWidth) || newY < -(picture.height - app.scene.availHeight);
-
-
-        /**  if drag out of boundary */
-        if ( isTheMaxLeftTop || isTheMaxLeftBottom || isTheMaxRightTop || isTheMaxRightBottom ) {
-            canSetNewPosition = false;
-
-            //  debug
-            //console.log('\n', ' isTheMaxLeftTop', isTheMaxLeftTop);
-            //console.log('isTheMaxLeftBottom', isTheMaxLeftBottom);
-            //console.log('isTheMaxRightTop', isTheMaxRightTop);
-            //console.log('isTheMaxRightBottom', isTheMaxRightBottom);
-        }
-
-        //  if can set new position
-        if (canSetNewPosition) {
-            //  set image new position
-            picture.setAttribute('style', 'transform: translate3d(' + newX  +'px, ' + newY +  'px, 0);' + '-webkit-transform: translate3d(' + newX  +'px, ' + newY +  'px, 0);');
-
-            //  update touchStart point
-            this.touchStartPointX = curPointX;
-            this.touchStartPointY = curPointY;
-        }
     };
 
     this.matrixToArray = function (matrix) {
