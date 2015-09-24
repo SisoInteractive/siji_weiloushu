@@ -56,7 +56,8 @@ function Picture (app) {
                 width: '100%',
                 height: '100%',
                 zoom_MIN: 20,
-                animation_SPEED_PAN: 10,
+                animation_SPEED_PAN: 7,
+                animation_SMOOTHNESS: 7,
                 zoom_OUT_TO_FIT: false,
                 zoom_BUTTONS_SHOW: false,
                 pan_BUTTONS_SHOW: false
