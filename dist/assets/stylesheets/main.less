@@ -666,9 +666,9 @@ img { vertical-align: top;}
 
 .subtitle-b-02 { top: 899px/2; }
 
-.subtitle-b-03 { top: 947px/2; }
+.subtitle-b-03 { top: 950px/2; }
 
-.subtitle-b-04 { top: 1000px/2; }
+.subtitle-b-04 { top: 994px/2; }
 
 .line02 {
   top: 293px/2;
@@ -700,23 +700,23 @@ img { vertical-align: top;}
 }
 
 .mountain01 {
-  top: 446px/2;
+  top: 446px/2-20;
   left: 168px/2;
 }
 
 .mountain02 {
-  top: 322px/2;
+  top: 322px/2-20;
   left: 244px/2;
   z-index: 10;
 }
 
 .mountain03 {
-  top: 393px/2;
+  top: 393px/2-20;
   left: 410px/2;
 }
 
 .mountain04 {
-  top: 434px/2;
+  top: 434px/2-20;
   left: 560px/2;
 }
 
@@ -957,11 +957,11 @@ img { vertical-align: top;}
     right: 0;
     left: 0;
     bottom: 0;
-    background: url("../images/bg.jpg");   background-size: cover;
+    background: url("../images/bg_scene_big_picture.png") no-repeat 0 210px;
+    background-size: 375px 110px;
     transition: all .7s ease-out;
     transition-delay: .3s;
-    opacity: 1;
-    z-index: 300;
+    opacity: 1;    z-index: 300;
   }
 }
 
@@ -1108,6 +1108,12 @@ img { vertical-align: top;}
   .subtitle-b-03 {
     -webkit-animation: bounceInTop1 2s 1;
     -webkit-animation-delay: 2.2s;
+    -webkit-animation-fill-mode: forwards;
+  }
+
+  .subtitle-b-04 {
+    -webkit-animation: bounceInTop1 2s 1;
+    -webkit-animation-delay: 2.5s;
     -webkit-animation-fill-mode: forwards;
   }
 
@@ -1441,6 +1447,7 @@ img { vertical-align: top;}
 .scene09 {
   .bx-wrapper, ul, li {
     height: 100%;
+    min-height: 625px;
   }
 
   img {
@@ -1461,12 +1468,13 @@ img { vertical-align: top;}
 
 
 .scene-final {
+  overflow: hidden;
   background: url("../images/bg-final.jpg");
   background-size: cover;
 
   .final01 {
     opacity: 0;
-    top: 148px/2;
+    top: 70px/2;
     left: 0;
     right: 0;
     transform: translate3d(0, -200px/2, 0);
@@ -1476,7 +1484,7 @@ img { vertical-align: top;}
 
   .final02 {
     opacity: 0;
-    top: 764px/2;
+    top: 677px/2;
     left: 0;
     right: 0;
     transform: translate3d(0, 440px/2, 0);
@@ -1485,7 +1493,7 @@ img { vertical-align: top;}
   }
 
   .book {
-    top: (436px-50)/2;
+    top: 168px;
     left: 0;
     right: 0;
     padding: 25px;
@@ -1493,6 +1501,9 @@ img { vertical-align: top;}
 
   .brand {
     opacity: 0;
+    left: 0;
+    right: 0;
+    top: 925px/2;
     transform: translate3d(0, 440px/2, 0);
     transition: all 1.4s;
     transition-delay: .8s;

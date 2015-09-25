@@ -607,10 +607,10 @@ img {
   top: 449.5px;
 }
 .subtitle-b-03 {
-  top: 473.5px;
+  top: 475px;
 }
 .subtitle-b-04 {
-  top: 500px;
+  top: 497px;
 }
 .line02 {
   top: 146.5px;
@@ -638,20 +638,20 @@ img {
   opacity: 0;
 }
 .mountain01 {
-  top: 223px;
+  top: 203px;
   left: 84px;
 }
 .mountain02 {
-  top: 161px;
+  top: 141px;
   left: 122px;
   z-index: 10;
 }
 .mountain03 {
-  top: 196.5px;
+  top: 176.5px;
   left: 205px;
 }
 .mountain04 {
-  top: 217px;
+  top: 197px;
   left: 280px;
 }
 /* board */
@@ -969,8 +969,8 @@ img {
   right: 0;
   left: 0;
   bottom: 0;
-  background: url("../images/bg.jpg");
-  background-size: cover;
+  background: url("../images/bg_scene_big_picture.png") no-repeat 0 210px;
+  background-size: 375px 110px;
   -webkit-transition: all 0.7s ease-out;
           transition: all 0.7s ease-out;
   -webkit-transition-delay: .3s;
@@ -1119,6 +1119,11 @@ img {
 .scene.active .subtitle-b-03 {
   -webkit-animation: bounceInTop1 2s 1;
   -webkit-animation-delay: 2.2s;
+  -webkit-animation-fill-mode: forwards;
+}
+.scene.active .subtitle-b-04 {
+  -webkit-animation: bounceInTop1 2s 1;
+  -webkit-animation-delay: 2.5s;
   -webkit-animation-fill-mode: forwards;
 }
 .scene.active .texture-title01 {
@@ -1422,6 +1427,7 @@ img {
 .scene09 ul,
 .scene09 li {
   height: 100%;
+  min-height: 625px;
 }
 .scene09 img {
   width: 100%;
@@ -1437,12 +1443,13 @@ img {
   top: 73.8%;
 }
 .scene-final {
+  overflow: hidden;
   background: url("../images/bg-final.jpg");
   background-size: cover;
 }
 .scene-final .final01 {
   opacity: 0;
-  top: 74px;
+  top: 35px;
   left: 0;
   right: 0;
   -webkit-transform: translate3d(0, -100px, 0);
@@ -1454,7 +1461,7 @@ img {
 }
 .scene-final .final02 {
   opacity: 0;
-  top: 382px;
+  top: 338.5px;
   left: 0;
   right: 0;
   -webkit-transform: translate3d(0, 220px, 0);
@@ -1465,13 +1472,16 @@ img {
           transition-delay: .6s;
 }
 .scene-final .book {
-  top: 193px;
+  top: 168px;
   left: 0;
   right: 0;
   padding: 25px;
 }
 .scene-final .brand {
   opacity: 0;
+  left: 0;
+  right: 0;
+  top: 462.5px;
   -webkit-transform: translate3d(0, 220px, 0);
           transform: translate3d(0, 220px, 0);
   -webkit-transition: all 1.4s;

@@ -452,6 +452,14 @@ var app = {
         $('.texture-title05').click(function () {
             that.textures.texture05();
         });
+
+        //  lazyload images
+        setTimeout(function () {
+            $('img').each(function () {
+                var lazySrc = $(this).attr('delay-src');
+                if (lazySrc) { $(this).attr('src', lazySrc) }
+            });
+        }, 6000);
     },
 
     start: function (){
