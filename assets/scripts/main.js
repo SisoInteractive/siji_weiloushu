@@ -454,12 +454,12 @@ var app = {
         });
 
         //  lazyload images
-        setTimeout(function () {
-            $('img').each(function () {
-                var lazySrc = $(this).attr('delay-src');
-                if (lazySrc) { $(this).attr('src', lazySrc) }
-            });
-        }, 6000);
+        //setTimeout(function () {
+        //    $('img').each(function () {
+        //        var lazySrc = $(this).attr('delay-src');
+        //        if (lazySrc) { $(this).attr('src', lazySrc) }
+        //    });
+        //}, 6000);
     },
 
     start: function (){
