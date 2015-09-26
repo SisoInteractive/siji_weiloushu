@@ -29,11 +29,7 @@
                 loadingCount++;
 
                 if (loadingCount == 2 ) {
-                    $('.loading-statue').removeClass('loading-statue');
-
-                    //  show bird
-                    $('.loading .bird').addClass('transform');
-                    $('.loading').addClass('play');
+                    startPreload();
                 }
             };
 
@@ -43,13 +39,27 @@
                 loadingCount++;
 
                 if (loadingCount == 2 ) {
-                    $('.loading-statue').removeClass('loading-statue');
-
-                    //  show bird
-                    $('.loading .bird').addClass('transform');
-                    $('.loading').addClass('play');
+                    startPreload();
                 }
             };
+
+            function startPreload () {
+                $('.loading-statue').removeClass('loading-statue');
+
+                //  show bird
+                $('.loading .bird').addClass('transform');
+                $('.loading').addClass('play');
+
+                $(function (){
+                    // init app
+                    app.preload();
+
+                    //  let main scene active
+                    //$('.loading').addClass('leave');
+
+                    console.log('app started success...');
+                });
+            }
         })();
     </script>
 </head>

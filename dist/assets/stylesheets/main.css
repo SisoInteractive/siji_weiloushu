@@ -1014,6 +1014,9 @@ img {
   left: 0;
   overflow: hidden;
 }
+.picture-wrap .smooth_zoom_preloader div {
+  z-index: 1000;
+}
 .big-picture.inBigPicture {
   opacity: 1;
 }

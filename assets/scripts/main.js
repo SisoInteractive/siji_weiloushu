@@ -447,17 +447,7 @@ var app = {
     }
 };
 
-$(function (){
-    //  limit browser drag move
-    document.addEventListener('touchmove', function (e) {
-        e.preventDefault();
-    },true);
-
-    // init app
-    app.preload();
-
-    //  let main scene active
-    //$('.loading').addClass('leave');
-
-    console.log('app started success...');
-});
+//  limit browser drag move
+document.addEventListener('touchmove', function (e) {
+    e.preventDefault();
+},true);
