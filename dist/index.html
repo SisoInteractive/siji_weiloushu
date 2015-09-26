@@ -16,6 +16,42 @@
     <link rel="stylesheet" href="assets/stylesheets/jquery.bxslider.css"/>
     <link rel="stylesheet" href="assets/stylesheets/main.css"/>
     <!-- endinjector -->
+
+    <script>
+        //  loading animation
+        (function () {
+            //  load loading image
+            var loadingCount = 0;
+
+            var birdImg = new Image();
+            birdImg.src = 'assets/images/bird-sprite.png';
+            birdImg.onload = function () {
+                loadingCount++;
+
+                if (loadingCount == 2 ) {
+                    $('.loading-statue').removeClass('loading-statue');
+
+                    //  show bird
+                    $('.loading .bird').addClass('transform');
+                    $('.loading').addClass('play');
+                }
+            };
+
+            var loadLine = new Image();
+            loadLine.src = 'assets/images/loading-line.png';
+            loadLine.onload = function () {
+                loadingCount++;
+
+                if (loadingCount == 2 ) {
+                    $('.loading-statue').removeClass('loading-statue');
+
+                    //  show bird
+                    $('.loading .bird').addClass('transform');
+                    $('.loading').addClass('play');
+                }
+            };
+        })();
+    </script>
 </head>
 <body style="background-color: #c2beb8;">
 
@@ -311,33 +347,20 @@
 
             <div class="swiper-slide scene scene04">
                 <div class="t-a-01 pa tc">
-                    <img src="assets/images/scene04-01.png" alt="" width="75"/>
+                    <img lazy-src="assets/images/scene04-01.png" alt="" width="75"/>
                 </div>
                 <div class="t-a-02 pa tc">
-                    <img src="assets/images/scene04-02.png" alt="" width="62"/>
+                    <img lazy-src="assets/images/scene04-02.png" alt="" width="62"/>
                 </div>
                 <div class="t-a-03 pa tc">
-                    <img src="assets/images/scene04-03.png" alt="" width="75"/>
+                    <img lazy-src="assets/images/scene04-03.png" alt="" width="75"/>
                 </div>
                 <div class="line01 pa"></div>
             </div>
 
-            <div class="swiper-slide scene master master01">
-                <div class="title pa tc">
-                    <img src="assets/images/master-title01.png" alt="" width="280"/>
-                </div>
-
-                <div class="desc pa">
-                    <img src="assets/images/master-desc01.png" alt="" width="280"/>
-                </div>
-                <div class="country pa">
-                    <img src="assets/images/master-country01.png" alt="" width="280"/>
-                </div>
-            </div>
-
             <div class="swiper-slide scene scene05">
-                <img class="title-c-01 pa" src="assets/images/s05-title.png" alt="" width="280"/>
-                <img class="txt-block-c-01 pa" src="assets/images/s05-para.png" alt="" width="316"/>
+                <img class="title-c-01 pa" lazy-src="assets/images/s05-title.png" alt="" width="280"/>
+                <img class="txt-block-c-01 pa" lazy-src="assets/images/s05-para.png" alt="" width="316"/>
 
                 <div class="line04 pa"></div>
             </div>
@@ -345,19 +368,19 @@
             <div class="swiper-slide scene scene06">
                 <div class="content">
                     <div  class="texture-title texture-title01 pa" >
-                        <img src="assets/images/texture-title01.png" alt=""/>
+                        <img lazy-src="assets/images/texture-title01.png" alt=""/>
                     </div>
                     <div  class="texture-title texture-title02 pa" >
-                        <img src="assets/images/texture-title02.png" alt=""/>
+                        <img lazy-src="assets/images/texture-title02.png" alt=""/>
                     </div>
                     <div  class="texture-title texture-title03 pa" >
-                        <img src="assets/images/texture-title03.png" alt=""/>
+                        <img lazy-src="assets/images/texture-title03.png" alt=""/>
                     </div>
                     <div  class="texture-title texture-title04 pa" >
-                        <img src="assets/images/texture-title04.png" alt=""/>
+                        <img lazy-src="assets/images/texture-title04.png" alt=""/>
                     </div>
                     <div  class="texture-title texture-title05 pa" >
-                        <img src="assets/images/texture-title05.png" alt=""/>
+                        <img lazy-src="assets/images/texture-title05.png" alt=""/>
                     </div>
                 </div>
             </div>
@@ -367,37 +390,17 @@
                 <ul class="bxslider">
                     <li>
                         <div class="bg">
-                            <img src="assets/images/bg07-01.jpg" width="376" />
+                            <img lazy-src="assets/images/bg07-01.jpg" width="376" />
                         </div>
                     </li>
                     <li>
                         <div class="bg">
-                            <img src="assets/images/bg07-02.jpg" width="376" />
+                            <img lazy-src="assets/images/bg07-02.jpg" width="376" />
                         </div>
                     </li>
                     <li>
                         <div class="bg">
-                            <img src="assets/images/bg07-03.jpg" width="376" />
-                        </div>
-                    </li>
-                </ul>
-            </div>
-
-            <div class="swiper-slide scene scene-slider scene07">
-                <ul class="bxslider">
-                    <li>
-                        <div class="bg">
-                            <img src="assets/images/bg07-04.jpg" width="376" />
-                        </div>
-                    </li>
-                    <li>
-                        <div class="bg">
-                            <img src="assets/images/bg07-05.jpg" width="376" />
-                        </div>
-                    </li>
-                    <li>
-                        <div class="bg">
-                            <img src="assets/images/bg07-06.jpg" width="376" />
+                            <img lazy-src="assets/images/bg07-03.jpg" width="376" />
                         </div>
                     </li>
                 </ul>
@@ -407,17 +410,37 @@
                 <ul class="bxslider">
                     <li>
                         <div class="bg">
-                            <img src="assets/images/bg07-07.jpg" width="376" />
+                            <img lazy-src="assets/images/bg07-04.jpg" width="376" />
                         </div>
                     </li>
                     <li>
                         <div class="bg">
-                            <img src="assets/images/bg07-08.jpg" width="376" />
+                            <img lazy-src="assets/images/bg07-05.jpg" width="376" />
                         </div>
                     </li>
                     <li>
                         <div class="bg">
-                            <img src="assets/images/bg07-09.jpg" width="376" />
+                            <img lazy-src="assets/images/bg07-06.jpg" width="376" />
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="swiper-slide scene scene-slider scene07">
+                <ul class="bxslider">
+                    <li>
+                        <div class="bg">
+                            <img lazy-src="assets/images/bg07-07.jpg" width="376" />
+                        </div>
+                    </li>
+                    <li>
+                        <div class="bg">
+                            <img lazy-src="assets/images/bg07-08.jpg" width="376" />
+                        </div>
+                    </li>
+                    <li>
+                        <div class="bg">
+                            <img lazy-src="assets/images/bg07-09.jpg" width="376" />
                         </div>
                     </li>
                 </ul>
@@ -426,23 +449,23 @@
 
             <div class="swiper-slide scene scene08">
                 <div class="t-a-01 pa tc">
-                    <img src="assets/images/scene08-01.png" alt="" width="75"/>
+                    <img lazy-src="assets/images/scene08-01.png" alt="" width="75"/>
                 </div>
                 <div class="t-a-02 pa tc">
-                    <img src="assets/images/scene08-02.png" alt="" width="106"/>
+                    <img lazy-src="assets/images/scene08-02.png" alt="" width="106"/>
                 </div>
                 <div class="t-a-03 pa tc">
-                    <img src="assets/images/scene08-03.png" alt="" width="75"/>
+                    <img lazy-src="assets/images/scene08-03.png" alt="" width="75"/>
                 </div>
                 <div class="line01 pa"></div>
             </div>
 
             <div class="swiper-slide scene scene09-before">
                 <div class="img01 pa tc">
-                    <img src="assets/images/scene09-01.png" alt="" width="110"/>
+                    <img lazy-src="assets/images/scene09-01.png" alt="" width="110"/>
                 </div>
                 <div class="img02 pa tc">
-                    <img src="assets/images/scene09-02.png" alt="" width="274"/>
+                    <img lazy-src="assets/images/scene09-02.png" alt="" width="274"/>
                 </div>
                 <div class="line05 pa"></div>
             </div>
@@ -450,61 +473,61 @@
             <div class="swiper-slide scene scene-slider scene09">
                 <ul class="bxslider">
                     <li>
-                        <img src="assets/images/room-01.jpg" alt="" width="375"/>
+                        <img lazy-src="assets/images/room-01.jpg" alt="" width="375"/>
                     </li>
 
                     <li>
-                        <img src="assets/images/room-02.jpg" alt="" width="375"/>
+                        <img lazy-src="assets/images/room-02.jpg" alt="" width="375"/>
                     </li>
 
                     <li>
-                        <img src="assets/images/room-03.jpg" alt="" width="375"/>
+                        <img lazy-src="assets/images/room-03.jpg" alt="" width="375"/>
                     </li>
 
                     <li>
-                        <img src="assets/images/room-04.jpg" alt="" width="375"/>
+                        <img lazy-src="assets/images/room-04.jpg" alt="" width="375"/>
                     </li>
 
                     <li>
-                        <img src="assets/images/room-05.jpg" alt="" width="375"/>
+                        <img lazy-src="assets/images/room-05.jpg" alt="" width="375"/>
                     </li>
 
                     <li>
-                        <img src="assets/images/room-06.jpg" alt="" width="375"/>
+                        <img lazy-src="assets/images/room-06.jpg" alt="" width="375"/>
                     </li>
 
                     <li>
-                        <img src="assets/images/room-07.jpg" alt="" width="375"/>
+                        <img lazy-src="assets/images/room-07.jpg" alt="" width="375"/>
                     </li>
 
                     <li>
-                        <img src="assets/images/room-08.jpg" alt="" width="375"/>
+                        <img lazy-src="assets/images/room-08.jpg" alt="" width="375"/>
                     </li>
 
                     <li>
-                        <img src="assets/images/room-09.jpg" alt="" width="375"/>
+                        <img lazy-src="assets/images/room-09.jpg" alt="" width="375"/>
                     </li>
 
                     <li>
-                        <img src="assets/images/room-10.jpg" alt="" width="375"/>
+                        <img lazy-src="assets/images/room-10.jpg" alt="" width="375"/>
                     </li>
                 </ul>
             </div>
 
             <div class="swiper-slide scene scene-final">
                 <div class="final01 pa tc">
-                    <img src="assets/images/final01.png" alt="" width="375"/>
+                    <img lazy-src="assets/images/final01.png" alt="" width="375"/>
                     <div class="book pa">
                         <img src="assets/images/book.png" alt="" width="92"/>
                     </div>
                 </div>
 
                 <div class="final02 pa tc">
-                    <img src="assets/images/final02.png" alt="" width="90"/>
+                    <img lazy-src="assets/images/final02.png" alt="" width="90"/>
                 </div>
 
                 <div class="brand pa tc">
-                    <img src="assets/images/brand.png" alt="" width="111"/>
+                    <img lazy-src="assets/images/brand.png" alt="" width="111"/>
                 </div>
             </div>
         </div>
@@ -537,18 +560,18 @@
             </div>
 
             <div class="blocks">
-                <img class="block block01 pa" src="assets/images/texture01-01.png" alt="" width="375"/>
-                <img class="block block02 pa" src="assets/images/texture01-02.png" alt="" width="375"/>
-                <img class="block block03 pa" src="assets/images/texture01-03.png" alt="" width="375"/>
-                <img class="block block04 pa" src="assets/images/texture01-04.png" alt="" width="375"/>
-                <img class="block block05 pa" src="assets/images/texture01-05.png" alt="" width="375"/>
-                <img class="block block06 pa" src="assets/images/texture01-06.png" alt="" width="375"/>
-                <img class="block block07 pa" src="assets/images/texture01-07.png" alt="" width="375"/>
-                <img class="block block08 pa" src="assets/images/texture01-08.png" alt="" width="375"/>
-                <img class="block block09 pa" src="assets/images/texture01-09.png" alt="" width="375"/>
-                <img class="block block10 pa" src="assets/images/texture01-10.png" alt="" width="375"/>
-                <img class="block block11 pa" src="assets/images/texture01-11.png" alt="" width="375"/>
-                <img class="block block12 pa" src="assets/images/texture01-12.png" alt="" width="375"/>
+                <img class="block block01 pa" lazy-src="assets/images/texture01-01.png" alt="" width="375"/>
+                <img class="block block02 pa" lazy-src="assets/images/texture01-02.png" alt="" width="375"/>
+                <img class="block block03 pa" lazy-src="assets/images/texture01-03.png" alt="" width="375"/>
+                <img class="block block04 pa" lazy-src="assets/images/texture01-04.png" alt="" width="375"/>
+                <img class="block block05 pa" lazy-src="assets/images/texture01-05.png" alt="" width="375"/>
+                <img class="block block06 pa" lazy-src="assets/images/texture01-06.png" alt="" width="375"/>
+                <img class="block block07 pa" lazy-src="assets/images/texture01-07.png" alt="" width="375"/>
+                <img class="block block08 pa" lazy-src="assets/images/texture01-08.png" alt="" width="375"/>
+                <img class="block block09 pa" lazy-src="assets/images/texture01-09.png" alt="" width="375"/>
+                <img class="block block10 pa" lazy-src="assets/images/texture01-10.png" alt="" width="375"/>
+                <img class="block block11 pa" lazy-src="assets/images/texture01-11.png" alt="" width="375"/>
+                <img class="block block12 pa" lazy-src="assets/images/texture01-12.png" alt="" width="375"/>
             </div>
 
             <img class="text pa" src="assets/images/texture-content01.png" alt="" width="375"/>
@@ -556,7 +579,7 @@
         <div class="pr texture texture02">
             <div class="a pa tc">
                 <div class="lunzi pa">
-                    <img src="assets/images/lunzi.png" alt="" width="179"/>
+                    <img lazy-src="assets/images/lunzi.png" alt="" width="179"/>
                 </div>
             </div>
 
@@ -568,29 +591,29 @@
                 <div class="slider-arrow slider-arrow03"></div>
             </div>
 
-            <img class="text pa" src="assets/images/texture-content02.png" alt="" width="375"/>
+            <img class="text pa" lazy-src="assets/images/texture-content02.png" alt="" width="375"/>
         </div>
         <div class="pr texture texture03">
             <div class="a pa"></div>
 
             <div class="pa tc txt">
-                <img src="assets/images/scratch.png" alt="" width="84"/>
+                <img lazy-src="assets/images/scratch.png" alt="" width="84"/>
             </div>
 
-            <img class="text pa" src="assets/images/texture-content03.png" alt="" width="375"/>
+            <img class="text pa" lazy-src="assets/images/texture-content03.png" alt="" width="375"/>
         </div>
         <div class="pr texture texture04">
             <div class="a pa"></div>
 
             <div class="pa tc txt">
-                <img src="assets/images/slide.png" alt="" width="84"/>
+                <img lazy-src="assets/images/slide.png" alt="" width="84"/>
             </div>
 
             <img class="text pa" src="assets/images/texture-content04.png" alt="" width="375"/>
         </div>
         <div class="pr texture texture05">
             <canvas class="textures-box pa" width="375" height="625"></canvas>
-            <img class="text pa" src="assets/images/texture-content01.png" alt="" width="375"/>
+            <img class="text pa" lazy-src="assets/images/texture-content01.png" alt="" width="375"/>
         </div>
     </div>
     <!--  end textures -->

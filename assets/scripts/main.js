@@ -38,40 +38,6 @@ var app = {
         var startLoadTime = new Date().getTime();
         var endLoadTime = null;
 
-        //  load loading image
-        var loadingCount = 0;
-
-        var birdImg = new Image();
-        birdImg.src = 'assets/images/bird-sprite.png';
-        birdImg.onload = function () {
-            loadingCount++;
-
-            if (loadingCount == 2 ) {
-                $('.loading-statue').removeClass('loading-statue');
-
-                //  show bird
-                $('.loading .bird').addClass('transform');
-                $('.loading').addClass('play');
-
-                loadMain();
-            }
-        };
-
-        var loadLine = new Image();
-        loadLine.src = 'assets/images/loading-line.png';
-        loadLine.onload = function () {
-            loadingCount++;
-
-            if (loadingCount == 2 ) {
-                $('.loading-statue').removeClass('loading-statue');
-
-                //  show bird
-                $('.loading .bird').addClass('transform');
-                $('.loading').addClass('play');
-
-                loadMain();
-            }
-        };
 
         //  init fast click
         FastClick.attach(document.body);
@@ -83,62 +49,60 @@ var app = {
         }
 
         //  load main images
-        function loadMain () {
-            //  load stone scene frames
-            for (var i = 1; i <= 24; i++) {
-                //for (var i = 0; i <= 23; i++) {
-                var img = new Image();
-                img.src = imgPath + 's01-stone-body' + fixZero(i) + '.png';
-                //img.src = 'assets/img/' + 's01-stone-body' + fixZero(i) + '.png';
+        //  load stone scene frames
+        for (var i = 1; i <= 24; i++) {
+            //for (var i = 0; i <= 23; i++) {
+            var img = new Image();
+            img.src = imgPath + 's01-stone-body' + fixZero(i) + '.png';
+            //img.src = 'assets/img/' + 's01-stone-body' + fixZero(i) + '.png';
 
-                img.index = i;
+            img.index = i;
 
+            loadedAmounts++;
+
+            img.onload = function () {
+                that.sprites.stone[this.index] = this;
+                /* check img load progress */
+                if (checkIsAllMainImagesLoaded() && isLoaded == false) {
+                    goCreatingProcess();
+                }
+            };
+
+            img.onerror = function (error) {
+                imgAmounts -= 1;
+
+                /* check img load progress */
+                if (checkIsAllMainImagesLoaded() && isLoaded == false) {
+                    goCreatingProcess();
+                }
+            };
+        }
+
+        //  load wave scene frames
+        for (var i = 1; i <= 169; i++) {
+            var img = new Image();
+            img.src = imgPath + 'wave_00' + fixZeroForWave(i) + '.png';
+
+            img.index = i;
+
+            img.onload = function () {
+                that.sprites.wave[this.index] = this;
                 loadedAmounts++;
 
-                img.onload = function () {
-                    that.sprites.stone[this.index] = this;
-                    /* check img load progress */
-                    if (checkIsAllMainImagesLoaded() && isLoaded == false) {
-                        goCreatingProcess();
-                    }
-                };
+                /* check img load progress */
+                if (checkIsAllMainImagesLoaded() && isLoaded == false) {
+                    goCreatingProcess();
+                }
+            };
 
-                img.onerror = function (error) {
-                    imgAmounts -= 1;
+            img.onerror = function (error) {
+                imgAmounts -= 1;
 
-                    /* check img load progress */
-                    if (checkIsAllMainImagesLoaded() && isLoaded == false) {
-                        goCreatingProcess();
-                    }
-                };
-            }
-
-            //  load wave scene frames
-            for (var i = 1; i <= 169; i++) {
-                var img = new Image();
-                img.src = imgPath + 'wave_00' + fixZeroForWave(i) + '.png';
-
-                img.index = i;
-
-                img.onload = function () {
-                    that.sprites.wave[this.index] = this;
-                    loadedAmounts++;
-
-                    /* check img load progress */
-                    if (checkIsAllMainImagesLoaded() && isLoaded == false) {
-                        goCreatingProcess();
-                    }
-                };
-
-                img.onerror = function (error) {
-                    imgAmounts -= 1;
-
-                    /* check img load progress */
-                    if (checkIsAllMainImagesLoaded() && isLoaded == false) {
-                        goCreatingProcess();
-                    }
-                };
-            }
+                /* check img load progress */
+                if (checkIsAllMainImagesLoaded() && isLoaded == false) {
+                    goCreatingProcess();
+                }
+            };
         }
 
         function goCreatingProcess () {
@@ -214,7 +178,7 @@ var app = {
         var that = this;
 
         //  init swiper
-        $('.swiper-container').show();
+        $('.swiper-container').fadeIn(1200);
 
         var swiperItemsLength = $('.scene').length;
 
@@ -454,12 +418,25 @@ var app = {
         });
 
         //  lazyload images
-        //setTimeout(function () {
-        //    $('img').each(function () {
-        //        var lazySrc = $(this).attr('delay-src');
-        //        if (lazySrc) { $(this).attr('src', lazySrc) }
-        //    });
-        //}, 6000);
+        if ( localStorage.isWeiloushuLoaded == false ) {
+            setTimeout(function () {
+                $('img').each(function () {
+                    var lazySrc = $(this).attr('lazy-src');
+                    if (lazySrc) { $(this).attr('src', lazySrc) }
+                    localStorage.isWeiloushuLoaded = true;
+                });
+            }, 6000);
+        } else {
+            $('img').each(function () {
+                var lazySrc = $(this).attr('lazy-src');
+                if (lazySrc) { $(this).attr('src', lazySrc) }
+            });
+        }
+
+        function cleanImageCache () {
+            localStorage.removeItem('isWeiloushuLoaded');
+        }
+
     },
 
     start: function (){
@@ -470,7 +447,7 @@ var app = {
 
         setTimeout(function () {
             that.create()
-        }, 1000);
+        }, 400);
     }
 };
 
