@@ -2,7 +2,7 @@ function Wave (app) {
     var that = this;
 
     this.waveFrameIndexes = [1, 169];
-    this.waveTimer = null;
+    this.playTimer = null;
 
     //  set wave info
     var waveCanvas = document.getElementById('stone-wave');
@@ -14,21 +14,21 @@ function Wave (app) {
     //  recursive to drawStone sprites
     this.drawWaveSprite = function (curFrameIndex, endFrameIndex) {
         //  clear timer
-        clearTimeout(that.waveTimer);
+        clearTimeout(that.playTimer);
 
         //  check whether currentFrame is the last frame of the current scene.
         if (curFrameIndex == endFrameIndex) {
             that.draw(curFrameIndex);
 
             // drawStone next frame
-            that.waveTimer = setTimeout(function () {
+            that.playTimer = setTimeout(function () {
                 that.drawWaveSprite(that.waveFrameIndexes[0], that.waveFrameIndexes[1]);
             }, 1000/25);
         } else {
             that.draw(curFrameIndex);
 
             // drawStone next frame
-            that.waveTimer = setTimeout(function () {
+            that.playTimer = setTimeout(function () {
                 //  drawStone direction
                 that.drawWaveSprite(parseInt(curFrameIndex)+1, endFrameIndex);
             }, 1000/25);
@@ -56,5 +56,9 @@ function Wave (app) {
         } else {
 
         }
+    };
+
+    this.pause = function () {
+        clearTimeout(that.playTimer);
     };
 }

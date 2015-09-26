@@ -127,11 +127,12 @@ module.exports = function (grunt){
                     dest: 'dist/'
                 }],
                 options: {
-                    replacements: [{
-                        //  remove livereload
-                        pattern: /<script src="\/\/localhost:35729\/livereload.js"><\/script>/ig,
-                        replacement: ''
-                    },
+                    replacements: [
+                        {
+                            //  remove livereload
+                            pattern: /<script src="\/\/localhost:35729\/livereload.js"><\/script>/ig,
+                            replacement: ''
+                        },
                         {
                             //  remove less compiler
                             pattern: /<script src="assets\/scripts\/less.min.js"><\/script>/ig,

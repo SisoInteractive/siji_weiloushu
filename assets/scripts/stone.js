@@ -210,5 +210,9 @@ function Stone (app) {
             that.curFrameIndex +1 == that.stoneFrameIndexes[1] ? that.curFrameIndex = 0 : that.curFrameIndex++;
             that.drawStoneSprite(that.curFrameIndex, that.stoneFrameIndexes[1]);
         }, 3200);
-    }
+    };
+
+    this.pause = function () {
+      clearTimeout(that.playTimer);
+    };
 }

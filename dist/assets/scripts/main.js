@@ -114,8 +114,8 @@ var app = {
             //  delay then start app
             if (timeDifference < 3) {
                 console.log('images loader end..');
-                //var delay = 3500 - timeDifference*1000;
-                var delay = 10;
+                var delay = 3500 - timeDifference*1000;
+                //var delay = 10;
 
                 setTimeout(function () {
                     //  update loading bar
@@ -136,12 +136,6 @@ var app = {
                     app.start();
                 }, 300);
             }
-
-            ////  TODO Developing
-            //console.log('images loader end..');
-            //setTimeout(function () {
-            //    app.start();
-            //}, 300);
         }
 
         function checkIsAllMainImagesLoaded () {
@@ -196,10 +190,6 @@ var app = {
                 $('.scene').eq(swiper.activeIndex).addClass('active');
 
                 $('.tips-arrow, .big-picture').show();
-
-                //  init texture
-                that.textures = new Textures();
-                that.textures.init();
 
                 //  bound menu button
                 $('.btn-main').click(function (e) {
@@ -301,7 +291,7 @@ var app = {
 
                 $('.item04 .stone-txt, .menu-scene .item04').click(function(e){
                     e.stopPropagation();
-                    slideTo(15);
+                    slideTo(14);
                 });
 
                 //  cursor for content entry
@@ -323,7 +313,7 @@ var app = {
                             slideTo(8);
                             break;
                         case 4:
-                            slideTo(15);
+                            slideTo(14);
                             break;
                     }
                 });
@@ -354,8 +344,14 @@ var app = {
                 //  show menu button if current page is not the first page
                 if (swiper.activeIndex == 0) {
                     $('.btn-menu, .btn-main').addClass('active');
+
+                    that.stone.drawStoneSprite(that.stone.curFrameIndex, that.stoneFrameIndexes[1]);
+                    that.wave.drawWaveSprite(that.wave.waveFrameIndexes[0], that.wave.waveFrameIndexes[0]);
                 } else {
                     $('.btn-menu, .btn-main').removeClass('active');
+
+                    that.stone.pause();
+                    that.wave.pause();
                 }
             }
         });
@@ -377,12 +373,15 @@ var app = {
         /** Animation parts * */
         //  init objects
         that.stone = new Stone(app);
+        that.stone.playFirstTime();
+
         that.wave = new Wave(app);
+        that.wave.drawWaveSprite(that.wave.waveFrameIndexes[0], that.wave.waveFrameIndexes[0]);
+
         that.picture = new Picture(app);
 
-        //  stone
-        //  play stone animation
-        that.stone.playFirstTime();
+        that.textures = new Textures();
+        that.textures.init();
 
         //  bind touch event
         var toucharea = document.getElementsByClassName('wrap')[0];
@@ -392,9 +391,6 @@ var app = {
         toucharea.addEventListener('touchmove', that.stone.setCurrentFrame);
 
         toucharea.addEventListener('touchend', that.stone.touchEndHandler);
-
-        //  wave
-        that.wave.drawWaveSprite(that.wave.waveFrameIndexes[0], that.wave.waveFrameIndexes[0]);
 
         //  bind texture entry
         $('.texture-title01').click(function () {
