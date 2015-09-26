@@ -98,7 +98,7 @@ img {
   width: 63.2%;
   height: 1px;
   background: #8d837a url("../images/loading-line.png") no-repeat;
-  background-position: -24% 0;
+  background-position: -34% 0;
   background-size: 58px 1px;
 }
 .loading .counter {

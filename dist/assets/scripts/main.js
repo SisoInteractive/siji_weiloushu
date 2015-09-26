@@ -2,6 +2,11 @@
 
 "use strict";
 
+//  limit browser drag move
+document.addEventListener('touchmove', function (e) {
+    e.preventDefault();
+},true);
+
 var app = {
     sprites: {
         stone: [],
@@ -381,7 +386,6 @@ var app = {
         that.picture = new Picture(app);
 
         that.textures = new Textures();
-        that.textures.init();
 
         //  bind touch event
         var toucharea = document.getElementsByClassName('wrap')[0];
@@ -421,12 +425,20 @@ var app = {
                     if (lazySrc) { $(this).attr('src', lazySrc) }
                     localStorage.isWeiloushuLoaded = true;
                 });
+
+                setTimeout(function () {
+                    that.textures.init();
+                }, 4000);
             }, 6000);
         } else {
             $('img').each(function () {
                 var lazySrc = $(this).attr('lazy-src');
                 if (lazySrc) { $(this).attr('src', lazySrc) }
             });
+
+            setTimeout(function () {
+                that.textures.init();
+            }, 4000);
         }
 
         function cleanImageCache () {
@@ -446,8 +458,3 @@ var app = {
         }, 400);
     }
 };
-
-//  limit browser drag move
-document.addEventListener('touchmove', function (e) {
-    e.preventDefault();
-},true);

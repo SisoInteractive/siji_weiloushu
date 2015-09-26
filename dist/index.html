@@ -19,7 +19,7 @@
 
     <script>
         //  loading animation
-        (function () {
+        function loadingAnimation() {
             //  load loading image
             var loadingCount = 0;
 
@@ -60,7 +60,9 @@
                     console.log('app started success...');
                 });
             }
-        })();
+        }
+
+        loadingAnimation();
     </script>
 </head>
 <body style="background-color: #c2beb8;">
