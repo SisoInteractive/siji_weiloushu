@@ -706,18 +706,18 @@ img { vertical-align: top;}
 
 .mountain02 {
   top: 322px/2-20;
-  left: 244px/2;
+  left: 115px;
   z-index: 10;
 }
 
 .mountain03 {
   top: 393px/2-20;
-  left: 410px/2;
+  left: 201px;
 }
 
 .mountain04 {
   top: 434px/2-20;
-  left: 560px/2;
+  left: 260px;
 }
 
 /* board */
@@ -1002,7 +1002,10 @@ img { vertical-align: top;}
   overflow: hidden;
 
   .smooth_zoom_preloader {
-    div { z-index: 1000; }
+    div {
+      position: fixed!important;
+      z-index: 1000!important;
+    }
   }
 }
 
@@ -1212,19 +1215,27 @@ img { vertical-align: top;}
     top: 145px/2;
     left: 550px/2;
   }
+
+  .circle {
+    top: 191px;
+    left: 92px;
+    padding: 60px;
+    opacity: 0;
+    z-index: 200;
+  }
 }
 
 .scene03-02 {
   .circle {
-    top: 414px/2-60;
-    left: 384px/2-60;
+    top: 193px;
+    left: 103px;
   }
 }
 
 .scene03-03 {
   .circle {
-    top: 418px/2-60;
-    left: 452px/2-60;
+    top: 139px;
+    left: 142px;
   }
 
   .lack {

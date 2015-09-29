@@ -643,16 +643,16 @@ img {
 }
 .mountain02 {
   top: 141px;
-  left: 122px;
+  left: 115px;
   z-index: 10;
 }
 .mountain03 {
   top: 176.5px;
-  left: 205px;
+  left: 201px;
 }
 .mountain04 {
   top: 197px;
-  left: 280px;
+  left: 260px;
 }
 /* board */
 .board {
@@ -1015,7 +1015,8 @@ img {
   overflow: hidden;
 }
 .picture-wrap .smooth_zoom_preloader div {
-  z-index: 1000;
+  position: fixed!important;
+  z-index: 1000!important;
 }
 .big-picture.inBigPicture {
   opacity: 1;
@@ -1237,13 +1238,20 @@ img {
   top: 72.5px;
   left: 275px;
 }
+.scene03-01 .circle {
+  top: 191px;
+  left: 92px;
+  padding: 60px;
+  opacity: 0;
+  z-index: 200;
+}
 .scene03-02 .circle {
-  top: 147px;
-  left: 132px;
+  top: 193px;
+  left: 103px;
 }
 .scene03-03 .circle {
-  top: 149px;
-  left: 166px;
+  top: 139px;
+  left: 142px;
 }
 .scene03-03 .lack {
   width: 100%;
