@@ -55,11 +55,11 @@ var app = {
 
         //  load main images
         //  load stone scene frames
-        for (var i = 1; i <= 24; i++) {
-            //for (var i = 0; i <= 23; i++) {
+        for (var i = 0; i < 24; i++) {
             var img = new Image();
-            img.src = imgPath + 's01-stone-body' + fixZero(i) + '.png';
+            //img.src = imgPath + 's01-stone-body' + fixZero(i) + '.png';
             //img.src = 'assets/img/' + 's01-stone-body' + fixZero(i) + '.png';
+            img.src = 'assets/img2/shitou_0929.' + (i > 11 ? i - 12 : i) + '.png';
 
             img.index = i;
 
@@ -337,7 +337,7 @@ var app = {
                 if (swiper.activeIndex == swiperItemsLength) {
                     $('.slider-arrow').hide();
                 } else {
-                    $('.slider-arrow').hide();
+                    $('.slider-arrow').show();
                 }
             },
 
@@ -350,7 +350,7 @@ var app = {
                 if (swiper.activeIndex == 0) {
                     $('.btn-menu, .btn-main').addClass('active');
 
-                    that.stone.drawStoneSprite(that.stone.curFrameIndex, that.stoneFrameIndexes[1]);
+                    that.stone.drawStoneSprite(that.stone.curFrameIndex, that.stone.stoneFrameIndexes[1]);
                     that.wave.drawWaveSprite(that.wave.waveFrameIndexes[0], that.wave.waveFrameIndexes[0]);
                 } else {
                     $('.btn-menu, .btn-main').removeClass('active');

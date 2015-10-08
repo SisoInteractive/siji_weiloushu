@@ -18,7 +18,7 @@ function Stone (app) {
 
     //  set touch info
     var touchStartPoint = 0;
-    var minMove = 2;
+    var minMove = 5;
 
     //  play the first time animation
     this.playFirstTime = function () {
