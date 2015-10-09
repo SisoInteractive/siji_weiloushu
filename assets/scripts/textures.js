@@ -254,6 +254,7 @@ function Textures () {
 
                 if (covered >= 20) {
                     $('.textures-box').fadeOut('slow');
+                    $('.texture05 .txt').fadeOut('slow');
                 }
             }
         }

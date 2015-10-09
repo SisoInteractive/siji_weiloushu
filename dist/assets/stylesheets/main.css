@@ -1318,6 +1318,15 @@ img {
 .scene06 .texture-title img {
   width: 163px;
 }
+.scene06 .circle2 {
+  width: 25px;
+  height: 25px;
+  right: 34px;
+  bottom: 45px;
+  background: url("../images/circle2.png") no-repeat;
+  background-size: 25px;
+  -webkit-animation: breath 2s infinite forwards 3s;
+}
 .scene06 .texture-title01 {
   top: 0;
 }
