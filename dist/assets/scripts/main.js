@@ -291,12 +291,12 @@ var app = {
 
                 $('.item03 .stone-txt, .menu-scene .item03').click(function(e){
                     e.stopPropagation();
-                    slideTo(8);
+                    slideTo(9);
                 });
 
                 $('.item04 .stone-txt, .menu-scene .item04').click(function(e){
                     e.stopPropagation();
-                    slideTo(17);
+                    slideTo(18);
                 });
 
                 //  cursor for content entry
@@ -315,10 +315,10 @@ var app = {
                             slideTo(4);
                             break;
                         case 3:
-                            slideTo(8);
+                            slideTo(9);
                             break;
                         case 4:
-                            slideTo(17);
+                            slideTo(18);
                             break;
                     }
                 });
