@@ -152,7 +152,7 @@ img {
 .main-scene #stone-body {
   position: absolute;
   top: 171px;
-  left: 47px;
+  left: 0;
 }
 .main-scene #stone-wave {
   position: absolute;
