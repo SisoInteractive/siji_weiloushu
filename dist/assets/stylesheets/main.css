@@ -1356,7 +1356,7 @@ img {
 .scene06 .circle2 {
   width: 25px;
   height: 25px;
-  right: 34px;
+  right: 44px;
   bottom: 45px;
   background: url("../images/circle2.png") no-repeat;
   background-size: 25px;
@@ -1530,6 +1530,9 @@ img {
   top: 168px;
   left: 0;
   right: 0;
+}
+.scene-final .book a {
+  display: block;
   padding: 25px;
 }
 .scene-final .brand {
