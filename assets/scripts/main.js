@@ -296,7 +296,7 @@ var app = {
 
                 $('.item04 .stone-txt, .menu-scene .item04').click(function(e){
                     e.stopPropagation();
-                    slideTo(18);
+                    slideTo(15);
                 });
 
                 //  cursor for content entry
@@ -318,7 +318,7 @@ var app = {
                             slideTo(9);
                             break;
                         case 4:
-                            slideTo(18);
+                            slideTo(15);
                             break;
                     }
                 });
