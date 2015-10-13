@@ -125,6 +125,10 @@ img {
 .scene {
   background: url("../images/bg.jpg");
   background-size: cover;
+  -webkit-perspective: 3000;
+          perspective: 3000;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
 }
 .main-scene .logo,
 .main-scene .bird,

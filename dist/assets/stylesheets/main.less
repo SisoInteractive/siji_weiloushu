@@ -136,7 +136,10 @@ img { vertical-align: top;}
 
 /** hide animated elements as default */
 .scene {
-  background: url("../images/bg.jpg");   background-size: cover;
+  background: url("../images/bg.jpg");
+  background-size: cover;
+  perspective: 3000;
+  backface-visibility: hidden;
 }
 
 .main-scene {
