@@ -40,19 +40,46 @@ function Wave (app) {
          * Draw frame into canvas
          * @param {Number} frameIndex  the index of frame you want to drawStone into canvas
          * */
-        var img = app.sprites.wave[frameIndex];
+
+        var img;
+
+        //  get current sprite image
+        if (frameIndex <= 40) {
+            img = app.sprites.wave[1];
+        }
+        else if (frameIndex <= 80) {
+            img = app.sprites.wave[2];
+        }
+        else if (frameIndex <= 120) {
+            img = app.sprites.wave[3];
+        }
+        else if (frameIndex <= 160) {
+            img = app.sprites.wave[4];
+        }
+        else if (frameIndex <= 169) {
+            img = app.sprites.wave[5];
+        }
 
         if (img) {
             //  clear paper
             waveCtx.clearRect(0, 0, waveCanvasWidth, waveCanvasHeight);
 
-            //  drawStone image
-            waveCtx.drawImage(img, 0, 0, waveCanvasWidth, waveCanvasHeight);
-
-            waveCtx.save();
-            waveCtx.globalAlpha = 0.2;
-            waveCtx.drawImage(img, 0, 0, waveCanvasWidth, waveCanvasHeight);
-            waveCtx.restore();
+            //  draw sprite
+            if (frameIndex <= 40) {
+                waveCtx.drawImage(img, 750*(frameIndex-1), 0, 750, 350, 0, 0, waveCanvasWidth, waveCanvasHeight);
+            }
+            else if (frameIndex <= 80) {
+                waveCtx.drawImage(img, 750*(frameIndex-41), 0, 750, 350, 0, 0, waveCanvasWidth, waveCanvasHeight);
+            }
+            else if (frameIndex <= 120) {
+                waveCtx.drawImage(img, 750*(frameIndex-81), 0, 750, 350, 0, 0, waveCanvasWidth, waveCanvasHeight);
+            }
+            else if (frameIndex <= 160) {
+                waveCtx.drawImage(img, 750*(frameIndex-121), 0, 750, 350, 0, 0, waveCanvasWidth, waveCanvasHeight);
+            }
+            else if (frameIndex <= 169) {
+                waveCtx.drawImage(img, 750*(frameIndex-161), 0, 750, 350, 0, 0, waveCanvasWidth, waveCanvasHeight);
+            }
         } else {
 
         }

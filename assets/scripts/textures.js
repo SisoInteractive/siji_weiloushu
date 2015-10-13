@@ -29,7 +29,7 @@ function Textures () {
         img.src = 'assets/images/texture02-bg.jpg';
         img.src = 'assets/images/texture03-bg.jpg';
         img.src = 'assets/images/texture04-bg.png';
-        img.src = 'assets/images/texture05-bg.jpg';
+        img.src = 'assets/images/bg06-05.jpg';
 
         //  bind click
         $('.texture01').click(function () {

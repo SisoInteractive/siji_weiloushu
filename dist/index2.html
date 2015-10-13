@@ -9,127 +9,122 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
     <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
     <title></title>
-
-    <style>
-        * { padding: 0; margin: 0; }
-        .top {
-            position: fixed;
-            left: 0;
-            right: 0;
-            height: 60px;
-            background: black;
-        }
-
-        li { height: 40px; border: 1px solid red; margin-top: -1px;}
-        span {position: absolute;}
-    </style>
 </head>
 <body>
-<div class="wrap">
-    <div class="top">123</div>
+<a id="link1" href="">download1</a>
+<a id="link2" href="">download2</a>
+<a id="link3" href="">download3</a>
+<a id="link4" href="">download4</a>
+<a id="link5" href="">download5</a>
+<a id="link6" href="">download6</a>
+<canvas id="canvas1" style="border: 1px solid red;" height="350"></canvas>
+<canvas id="canvas2" style="border: 1px solid red;" height="350"></canvas>
+<canvas id="canvas3" style="border: 1px solid red;" height="350"></canvas>
+<canvas id="canvas4" style="border: 1px solid red;" height="350"></canvas>
+<canvas id="canvas5" style="border: 1px solid red;" height="350"></canvas>
 
-    <ul>
-        <li><span>123123</span></li>
-        <li><span>123123</span></li>
-        <li><span>123123</span></li>
-        <li><span>123123</span></li>
-        <li><span>123123</span></li>
-        <li><span>123123</span></li>
-        <li><span>123123</span></li>
-        <li><span>123123</span></li>
-        <li><span>123123</span></li>
-        <li><span>123123</span></li>
-        <li><span>123123</span></li>
-        <li><span>123123</span></li>
-        <li><span>123123</span></li>
-        <li><span>123123</span></li>
-        <li><span>123123</span></li>
-        <li><span>123123</span></li>
-        <li><span>123123</span></li>
-        <li><span>123123</span></li>
-        <li><span>123123</span></li>
-        <li><span>123123</span></li>
-        <li><span>123123</span></li>
-        <li><span>123123</span></li>
-        <li><span>123123</span></li>
-        <li><span>123123</span></li>
-        <li><span>123123</span></li>
-        <li><span>123123</span></li>
-        <li><span>123123</span></li>
-        <li><span>123123</span></li>
-        <li><span>123123</span></li>
-        <li><span>123123</span></li>
-        <li><span>123123</span></li>
-        <li><span>123123</span></li>
-        <li><span>123123</span></li>
-        <li><span>123123</span></li>
-        <li><span>123123</span></li>
-        <li><span>123123</span></li>
-        <li><span>123123</span></li>
-        <li><span>123123</span></li>
-        <li><span>123123</span></li>
-        <li><span>123123</span></li>
-        <li><span>123123</span></li>
-        <li><span>123123</span></li>
-        <li><span>123123</span></li>
-        <li><span>123123</span></li>
-        <li><span>123123</span></li>
-        <li><span>123123</span></li>
-        <li><span>123123</span></li>
-        <li><span>123123</span></li>
-        <li><span>123123</span></li>
-        <li><span>123123</span></li>
-        <li><span>123123</span></li>
-        <li><span>123123</span></li>
-        <li><span>123123</span></li>
-        <li><span>123123</span></li>
-        <li><span>123123</span></li>
-        <li><span>123123</span></li>
-        <li><span>123123</span></li>
-        <li><span>123123</span></li>
-        <li><span>123123</span></li>
-        <li><span>123123</span></li>
-        <li><span>123123</span></li>
-        <li><span>123123</span></li>
-        <li><span>123123</span></li>
-        <li><span>123123</span></li>
-        <li><span>123123</span></li>
-        <li><span>123123</span></li>
-        <li><span>123123</span></li>
-        <li><span>123123</span></li>
-        <li><span>123123</span></li>
-        <li><span>123123</span></li>
-        <li><span>123123</span></li>
-        <li><span>123123</span></li>
-        <li><span>123123</span></li>
-        <li><span>123123</span></li>
-        <li><span>123123</span></li>
-        <li><span>123123</span></li>
-        <li><span>123123</span></li>
-        <li><span>123123</span></li>
-        <li><span>123123</span></li>
-        <li><span>123123</span></li>
-        <li><span>123123</span></li>
-        <li><span>123123</span></li>
-        <li><span>123123</span></li>
-        <li><span>123123</span></li>
-        <li><span>123123</span></li>
-        <li><span>123123</span></li>
-        <li><span>123123</span></li>
-        <li><span>123123</span></li>
-        <li><span>123123</span></li>
-        <li><span>123123</span></li>
-        <li><span>123123</span></li>
-        <li><span>123123</span></li>
-        <li><span>123123</span></li>
-        <li><span>123123</span></li>
-        <li><span>123123</span></li>
-        <li><span>123123</span></li>
-        <li><span>123123</span></li>
-        <li><span>123123</span></li>
-        <li><span>123123</span></li>
-        <li><span>123123</span></li>
-    </ul>
-</div>
+
+
+<script>
+    //  set images generator
+    var imgPath = "assets/images/";
+    //  img amounts, use the amounts order to general image objects
+    var imgAmounts = 169;
+    var loadedAmounts = 0;
+    var isLoaded = false;
+
+    var canvas1 = document.getElementById('canvas1');
+    var canvas2 = document.getElementById('canvas2');
+    var canvas3 = document.getElementById('canvas3');
+    var canvas4 = document.getElementById('canvas4');
+    var canvas5 = document.getElementById('canvas5');
+    var spriteArr = [];
+
+    //  load wave scene frames
+    for (var i = 1; i <= 169; i++) {
+        var img = new Image();
+        img.src = imgPath + 'wave_00' + fixZeroForWave(i) + '.png';
+
+        img.index = i;
+
+        img.onload = function () {
+            spriteArr[this.index] = this;
+            loadedAmounts++;
+
+            /* check img load progress */
+            if (checkIsAllMainImagesLoaded() && isLoaded == false) {
+                goCreatingProcess();
+            }
+        };
+
+        img.onerror = function (error) {
+            imgAmounts -= 1;
+
+            /* check img load progress */
+            if (checkIsAllMainImagesLoaded() && isLoaded == false) {
+                goCreatingProcess();
+            }
+        };
+    }
+
+    function checkIsAllMainImagesLoaded () {
+        if (isLoaded == false) {
+            var loadedRate = 1;
+            return loadedAmounts / imgAmounts >= loadedRate;
+        }
+    }
+
+    function fixZeroForWave (num) {
+        if (num < 10) {
+            return '00' + num;
+        } else if (num <100) {
+            return '0' + num;
+        } else {
+            return num;
+        }
+    }
+
+    function goCreatingProcess (img) {
+        var ctx1 = canvas1.getContext('2d');
+        var ctx2 = canvas2.getContext('2d');
+        var ctx3 = canvas3.getContext('2d');
+        var ctx4 = canvas4.getContext('2d');
+        var ctx5 = canvas5.getContext('2d');
+
+        canvas1.width = 750*40;
+        canvas2.width = 750*40;
+        canvas3.width = 750*40;
+        canvas4.width = 750*40;
+        canvas5.width = 750*9;
+
+        var amount = [40, 40, 40, 40, 40, 9];
+
+        for (var i = 1; i < spriteArr.length; i++) {
+            if (i <= 40) {
+                ctx1.drawImage(spriteArr[i], 750*(i-1), 0, 750, 350);
+            }
+            else if (i <= 80) {
+                ctx2.drawImage(spriteArr[i], 750*(i-41), 0, 750, 350);
+            }
+            else if (i <= 120) {
+                ctx3.drawImage(spriteArr[i], 750*(i-81), 0, 750, 350);
+            }
+            else if (i <= 160) {
+                ctx4.drawImage(spriteArr[i], 750*(i-121), 0, 750, 350);
+            }
+            else if (i <= 169) {
+                ctx5.drawImage(spriteArr[i], 750*(i-161), 0, 750, 350);
+            }
+        }
+
+        document.getElementById('link1').href = canvas1.toDataURL();
+        document.getElementById('link2').href = canvas2.toDataURL();
+        document.getElementById('link3').href = canvas3.toDataURL();
+        document.getElementById('link4').href = canvas4.toDataURL();
+        document.getElementById('link5').href = canvas5.toDataURL();
+    }
+
+
+</script>
 </body>
 </html>

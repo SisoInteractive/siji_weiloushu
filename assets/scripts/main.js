@@ -37,7 +37,7 @@ var app = {
         //  set images generator
         var imgPath = "assets/images/";
         //  img amounts, use the amounts order to general image objects
-        var imgAmounts = 24+169;
+        var imgAmounts = 24+5;
         var loadedAmounts = 0;
         var isLoaded = false;
         var startLoadTime = new Date().getTime();
@@ -84,9 +84,9 @@ var app = {
         }
 
         //  load wave scene frames
-        for (var i = 1; i <= 169; i++) {
+        for (var i = 1; i <= 5; i++) {
             var img = new Image();
-            img.src = imgPath + 'wave_00' + fixZeroForWave(i) + '.png';
+            img.src = imgPath + 'wave0' + i + '.png';
 
             img.index = i;
 
@@ -160,16 +160,6 @@ var app = {
 
         function fixZero (num) {
             return num < 10 ? '0' + num : num;
-        }
-
-        function fixZeroForWave (num) {
-            if (num < 10) {
-                return '00' + num;
-            } else if (num <100) {
-                return '0' + num;
-            } else {
-                return num;
-            }
         }
     },
 
