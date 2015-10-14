@@ -167,7 +167,7 @@ var app = {
         var that = this;
 
         //  init swiper
-        $('.swiper-container').fadeIn(1200);
+        $('.swiper-container').show();
 
         var swiperItemsLength = $('.scene').length;
 
