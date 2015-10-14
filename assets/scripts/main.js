@@ -110,6 +110,13 @@ var app = {
             };
         }
 
+        //  load first big pictures
+        (function () {
+            var img = new Image();
+            var imgPath = 'assets/images/';
+            img.src = imgPath + 'big-picture01.jpg';
+        })();
+
         function goCreatingProcess () {
             isLoaded = true;
             endLoadTime = new Date().getTime();
@@ -420,7 +427,6 @@ var app = {
             $('img').each(function () {
                 var lazySrc = $(this).attr('lazy-src');
                 if (lazySrc) { $(this).attr('src', lazySrc) }
-                localStorage.isWeiloushuLoaded = true;
             });
 
             setTimeout(function () {
