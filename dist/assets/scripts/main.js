@@ -418,6 +418,7 @@ var app = {
         var audio = $('audio')[0];
         audio.src = 'assets/audio/music.mp3';
 
+        //  when music loaded, bind play event
         audio.oncanplaythrough = function () {
             //  first time play BGM
             var initSound = function () {
@@ -477,33 +478,17 @@ var app = {
         });
 
         //  lazyload images
-        if ( localStorage.isWeiloushuLoaded == false ) {
-            setTimeout(function () {
-                $('img').each(function () {
-                    var lazySrc = $(this).attr('lazy-src');
-                    if (lazySrc) { $(this).attr('src', lazySrc) }
-                    localStorage.isWeiloushuLoaded = true;
-                });
-
-                setTimeout(function () {
-                    that.textures.init();
-                }, 4000);
-            }, 6000);
-        } else {
+        setTimeout(function () {
             $('img').each(function () {
                 var lazySrc = $(this).attr('lazy-src');
                 if (lazySrc) { $(this).attr('src', lazySrc) }
+                localStorage.isWeiloushuLoaded = true;
             });
 
             setTimeout(function () {
                 that.textures.init();
             }, 4000);
-        }
-
-        function cleanImageCache () {
-            localStorage.removeItem('isWeiloushuLoaded');
-        }
-
+        }, 3000);
     },
 
     start: function (){
