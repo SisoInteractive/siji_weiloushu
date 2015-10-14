@@ -792,12 +792,12 @@
         };
 
         function startPreload () {
-            $(function (){
+            window.onload = function (){
                 // init app
                 app.preload();
 
                 console.log('app started success...');
-            });
+            };
         }
     }
 
