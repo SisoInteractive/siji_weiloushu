@@ -17,56 +17,8 @@
     <!-- endinjector -->
 
     <div id='wx_pic' style='margin:0 auto;display:none;'>
-        <img src="assets/images/thumb.jpg" alt="" width="600" height="600" style="position: absolute; opa"/>
+        <img src="assets/images/thumb.jpg" alt="" width="600" height="600"/>
     </div>
-
-    <script>
-        //  loading animation
-        function loadingAnimation() {
-            //  load loading image
-            var loadingCount = 0;
-
-            var birdImg = new Image();
-            birdImg.src = 'assets/images/bird-sprite.png';
-            birdImg.onload = function () {
-                loadingCount++;
-
-                if (loadingCount == 2 ) {
-                    startPreload();
-                }
-            };
-
-            var loadLine = new Image();
-            loadLine.src = 'assets/images/loading-line.png';
-            loadLine.onload = function () {
-                loadingCount++;
-
-                if (loadingCount == 2 ) {
-                    startPreload();
-                }
-            };
-
-            function startPreload () {
-                $('.loading-statue').removeClass('loading-statue');
-
-                //  show bird
-                $('.loading .bird').addClass('transform');
-                $('.loading').addClass('play');
-
-                $(function (){
-                    // init app
-                    app.preload();
-
-                    //  let main scene active
-                    //$('.loading').addClass('leave');
-
-                    console.log('app started success...');
-                });
-            }
-        }
-
-        loadingAnimation();
-    </script>
 </head>
 <body style="background-color: #c2beb8;">
 
@@ -810,6 +762,56 @@
 </div>
 <!-- end wrap -->
 
+
+<!-- loading -->
+<script>
+    //  loading animation
+    function loadingAnimation() {
+        //  load loading image
+        var loadingCount = 0;
+
+        var birdImg = new Image();
+        birdImg.src = 'assets/images/bird-sprite.png';
+        birdImg.onload = function () {
+            loadingCount++;
+
+            if (loadingCount == 2 ) {
+                startPreload();
+            }
+        };
+
+        var loadLine = new Image();
+        loadLine.src = 'assets/images/loading-line.png';
+        loadLine.onload = function () {
+            loadingCount++;
+
+            if (loadingCount == 2 ) {
+                startPreload();
+            }
+        };
+
+        function startPreload () {
+            $('.loading-statue').removeClass('loading-statue');
+
+            //  show bird
+            $('.loading .bird').addClass('transform');
+            $('.loading').addClass('play');
+
+            $(function (){
+                // init app
+                app.preload();
+
+                //  let main scene active
+                //$('.loading').addClass('leave');
+
+                console.log('app started success...');
+            });
+        }
+    }
+
+    loadingAnimation();
+</script>
+<!-- end loading -->
 
 <!-- injector:js -->
 <!-- page -->
