@@ -351,14 +351,21 @@ var app = {
             }
         });
 
-        //  first time play BGM
-        var initSound = function () {
-            //  delay play
-            $('#audio')[0].play();
 
-            document.removeEventListener('touchstart', initSound, false);
+        //  load music
+        var audio = $('audio')[0];
+        audio.src = 'assets/audio/music.mp3';
+
+        audio.oncanplaythrough = function () {
+            //  first time play BGM
+            var initSound = function () {
+                //  delay play
+                $('#audio')[0].play();
+
+                document.removeEventListener('touchstart', initSound, false);
+            };
+            document.addEventListener('touchstart', initSound, false);
         };
-        document.addEventListener('touchstart', initSound, false);
 
         //  init sliders
         $('.bxslider').bxSlider({

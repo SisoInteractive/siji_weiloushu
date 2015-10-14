@@ -22,8 +22,8 @@
 <!-- wrap -->
 <div class="wrap">
     <!-- loading -->
-    <div class="loading loading-statue">
-        <div class="bird pa"></div>
+    <div class="loading play">
+        <div class="bird pa transform"></div>
         <div class="line-wrap pa"></div>
         <div class="counter pa">1%</div>
     </div>
@@ -734,10 +734,6 @@
     </div>
     <!--  end textures -->
 
-    <!-- audio -->
-    <audio id="audio" class="loading-statue" src="assets/audio/music.mp3" loop="loop"></audio>
-    <!-- end audio -->
-
     <!-- another -->
     <div class="btn-back loading-statue">
         <img src="assets/images/btn03.png" width="30" alt=""/>
@@ -755,6 +751,11 @@
         <div class="slider-arrow"></div>
         <div class="slider-arrow slider-arrow02"></div>
     </div>
+
+    <!-- audio -->
+    <audio id="audio" loop="loop" style="display: none;"></audio>
+    <!-- end audio -->
+
     <!-- end another -->
 </div>
 <!-- end wrap -->
@@ -788,18 +789,9 @@
         };
 
         function startPreload () {
-            $('.loading-statue').removeClass('loading-statue');
-
-            //  show bird
-            $('.loading .bird').addClass('transform');
-            $('.loading').addClass('play');
-
             $(function (){
                 // init app
                 app.preload();
-
-                //  let main scene active
-                //$('.loading').addClass('leave');
 
                 console.log('app started success...');
             });
