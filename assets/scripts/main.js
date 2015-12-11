@@ -239,8 +239,14 @@ var app = {
                     slideTo(0);
                 });
 
-                $('.btn-menu').click(function (e) {
+                $('.btn-menu').click(function () {
+                    $('.menu-wrap').toggleClass('active');
+                });
+
+                $('.menu-wrap .menu02').click(function (e) {
                     e.stopPropagation();
+
+                    $('.menu-wrap').removeClass('active');
 
                     //  enable slider
                     app.mySwiper.unlockSwipes();
@@ -273,6 +279,15 @@ var app = {
 
                     //  exist texture active status
                     that.textures.hide();
+                });
+
+                $('.btn-audio').click(function () {
+                    $('#audio')[0].paused ? $('#audio')[0].play() : $('#audio')[0].pause();
+                });
+
+                //  scene02 toggle
+                $('.main-wrap').click(function () {
+                    $(this).toggleClass('active');
                 });
 
                 //  bound main scene content router
@@ -331,7 +346,7 @@ var app = {
                 //  hide menu button when transition start
                 $('.btn-menu, .btn-main').addClass('active');
 
-                if (swiper.activeIndex == swiperItemsLength) {
+                if (swiper.activeIndex == swiperItemsLength-1) {
                     $('.slider-arrow').hide();
                 } else {
                     $('.slider-arrow').show();
@@ -340,8 +355,8 @@ var app = {
 
             onTransitionEnd: function (swiper) {
                 $('.btn-menu, .btn-main').removeClass('active');
-                $('.scene').removeClass('active');
-                $('.scene').eq(swiper.activeIndex).addClass('active');
+                $('.scene').eq(swiper.activeIndex).addClass('active')
+                    .siblings('.scene').removeClass('active');
 
                 //  show menu button if current page is not the first page
                 if (swiper.activeIndex == 0) {
@@ -355,6 +370,9 @@ var app = {
                     that.stone.pause();
                     that.wave.pause();
                 }
+
+                //  toggle
+                $('.main-wrap').removeClass('active');
             }
         });
 
@@ -370,6 +388,11 @@ var app = {
         //  init sliders
         $('.bxslider').bxSlider({
             controls: false
+            //,
+            //nextText: '',
+            //prevText: '',
+            //infiniteLoop: false,
+            //hideControlOnEnd: true
         });
 
         /** Animation parts * */

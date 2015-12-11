@@ -52,7 +52,7 @@ function Textures () {
 
         //  texture03
         var texture03MaskDom = $('.texture03 .a');
-        var dragHeight = parseInt(screen.availHeight/6);
+        var dragHeight = parseInt(screen.availHeight/8);
 
         texture03MaskDom.on('touchstart', function (e) {
             touchStart = e.originalEvent.touches[0].pageY;

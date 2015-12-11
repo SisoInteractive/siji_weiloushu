@@ -18,10 +18,6 @@ function Picture (app) {
     img.src = imgPath + 'big-picture02.jpg';
     bigPictureArr.push(img);
 
-    img = new Image();
-    img.src = imgPath + 'big-picture03.jpg';
-    bigPictureArr.push(img);
-
     //  set default picture as undefined
     pictureWrap.picture = undefined;
 
@@ -40,33 +36,35 @@ function Picture (app) {
         switch ( bigPictureIndex ) {
             case 1:
                 that.showPicture01();
+                reset();
                 break;
             case 2:
                 that.showPicture02();
+                reset();
                 break;
             case 3:
                 that.showPicture03();
                 break;
         }
 
-        if (isZoomInited == true) {
-            $('#imageZoom').smoothZoom('Reset');
-        } else {
-            $('#imageZoom').smoothZoom({
-                width: '100%',
-                height: '100%',
-                zoom_MIN: 20,
-                animation_SPEED_PAN: 7,
-                animation_SMOOTHNESS: 7,
-                zoom_OUT_TO_FIT: false,
-                zoom_BUTTONS_SHOW: false,
-                pan_BUTTONS_SHOW: false
-            });
+        function reset () {
+            if (isZoomInited == true) {
+                $('#imageZoom').smoothZoom('Reset');
+            } else {
+                $('#imageZoom').smoothZoom({
+                    width: '100%',
+                    height: '100%',
+                    zoom_MIN: 20,
+                    animation_SPEED_PAN: 7,
+                    animation_SMOOTHNESS: 7,
+                    zoom_OUT_TO_FIT: false,
+                    zoom_BUTTONS_SHOW: false,
+                    pan_BUTTONS_SHOW: false
+                });
 
-            isZoomInited = true;
+                isZoomInited = true;
+            }
         }
-
-
 
         //  set big picture show, and set big picture layout to the front
         $('.big-picture').addClass('inBigPicture');
@@ -81,6 +79,7 @@ function Picture (app) {
 
     this.showPicture01 = function () {
         this.picture = null;
+        $('.big-picture').removeClass('active03');
         pictureImgDom.src = bigPictureArr[0].src;
         pictureImgDom.width = bigPictureArr[0].width*pictureZoom;
         pictureImgDom.height = bigPictureArr[0].height*pictureZoom;
@@ -89,6 +88,7 @@ function Picture (app) {
 
     this.showPicture02 = function () {
         this.picture = null;
+        $('.big-picture').removeClass('active03');
         pictureImgDom.src = bigPictureArr[1].src;
         pictureImgDom.width = bigPictureArr[1].width*pictureZoom;
         pictureImgDom.height = bigPictureArr[1].height*pictureZoom;
@@ -96,11 +96,7 @@ function Picture (app) {
     };
 
     this.showPicture03 = function () {
-        this.picture = null;
-        pictureImgDom.src = bigPictureArr[2].src;
-        pictureImgDom.width = bigPictureArr[2].width*pictureZoom;
-        pictureImgDom.height = bigPictureArr[2].height*pictureZoom;
-        pictureTitleDom.src = imgPath + 'big-picture-title03.png';
+        $('.big-picture').addClass('active03');
     };
 
     this.matrixToArray = function (matrix) {

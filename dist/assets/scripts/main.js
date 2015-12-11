@@ -301,8 +301,14 @@ var app = {
                     slideTo(0);
                 });
 
-                $('.btn-menu').click(function (e) {
+                $('.btn-menu').click(function () {
+                    $('.menu-wrap').toggleClass('active');
+                });
+
+                $('.menu-wrap .menu02').click(function (e) {
                     e.stopPropagation();
+
+                    $('.menu-wrap').removeClass('active');
 
                     //  enable slider
                     app.mySwiper.unlockSwipes();
@@ -335,6 +341,15 @@ var app = {
 
                     //  exist texture active status
                     that.textures.hide();
+                });
+
+                $('.btn-audio').click(function () {
+                    $('#audio')[0].paused ? $('#audio')[0].play() : $('#audio')[0].pause();
+                });
+
+                //  scene02 toggle
+                $('.main-wrap').click(function () {
+                    $(this).toggleClass('active');
                 });
 
                 //  bound main scene content router
@@ -393,7 +408,7 @@ var app = {
                 //  hide menu button when transition start
                 $('.btn-menu, .btn-main').addClass('active');
 
-                if (swiper.activeIndex == swiperItemsLength) {
+                if (swiper.activeIndex == swiperItemsLength-1) {
                     $('.slider-arrow').hide();
                 } else {
                     $('.slider-arrow').show();
@@ -402,8 +417,8 @@ var app = {
 
             onTransitionEnd: function (swiper) {
                 $('.btn-menu, .btn-main').removeClass('active');
-                $('.scene').removeClass('active');
-                $('.scene').eq(swiper.activeIndex).addClass('active');
+                $('.scene').eq(swiper.activeIndex).addClass('active')
+                    .siblings('.scene').removeClass('active');
 
                 //  show menu button if current page is not the first page
                 if (swiper.activeIndex == 0) {
@@ -417,6 +432,9 @@ var app = {
                     that.stone.pause();
                     that.wave.pause();
                 }
+
+                //  toggle
+                $('.main-wrap').removeClass('active');
             }
         });
 
@@ -432,6 +450,11 @@ var app = {
         //  init sliders
         $('.bxslider').bxSlider({
             controls: false
+            //,
+            //nextText: '',
+            //prevText: '',
+            //infiniteLoop: false,
+            //hideControlOnEnd: true
         });
 
         /** Animation parts * */
@@ -863,7 +886,7 @@ function Textures () {
 
         //  texture03
         var texture03MaskDom = $('.texture03 .a');
-        var dragHeight = parseInt(screen.availHeight/6);
+        var dragHeight = parseInt(screen.availHeight/8);
 
         texture03MaskDom.on('touchstart', function (e) {
             touchStart = e.originalEvent.touches[0].pageY;
@@ -1115,10 +1138,6 @@ function Picture (app) {
     img.src = imgPath + 'big-picture02.jpg';
     bigPictureArr.push(img);
 
-    img = new Image();
-    img.src = imgPath + 'big-picture03.jpg';
-    bigPictureArr.push(img);
-
     //  set default picture as undefined
     pictureWrap.picture = undefined;
 
@@ -1137,33 +1156,35 @@ function Picture (app) {
         switch ( bigPictureIndex ) {
             case 1:
                 that.showPicture01();
+                reset();
                 break;
             case 2:
                 that.showPicture02();
+                reset();
                 break;
             case 3:
                 that.showPicture03();
                 break;
         }
 
-        if (isZoomInited == true) {
-            $('#imageZoom').smoothZoom('Reset');
-        } else {
-            $('#imageZoom').smoothZoom({
-                width: '100%',
-                height: '100%',
-                zoom_MIN: 20,
-                animation_SPEED_PAN: 7,
-                animation_SMOOTHNESS: 7,
-                zoom_OUT_TO_FIT: false,
-                zoom_BUTTONS_SHOW: false,
-                pan_BUTTONS_SHOW: false
-            });
+        function reset () {
+            if (isZoomInited == true) {
+                $('#imageZoom').smoothZoom('Reset');
+            } else {
+                $('#imageZoom').smoothZoom({
+                    width: '100%',
+                    height: '100%',
+                    zoom_MIN: 20,
+                    animation_SPEED_PAN: 7,
+                    animation_SMOOTHNESS: 7,
+                    zoom_OUT_TO_FIT: false,
+                    zoom_BUTTONS_SHOW: false,
+                    pan_BUTTONS_SHOW: false
+                });
 
-            isZoomInited = true;
+                isZoomInited = true;
+            }
         }
-
-
 
         //  set big picture show, and set big picture layout to the front
         $('.big-picture').addClass('inBigPicture');
@@ -1178,6 +1199,7 @@ function Picture (app) {
 
     this.showPicture01 = function () {
         this.picture = null;
+        $('.big-picture').removeClass('active03');
         pictureImgDom.src = bigPictureArr[0].src;
         pictureImgDom.width = bigPictureArr[0].width*pictureZoom;
         pictureImgDom.height = bigPictureArr[0].height*pictureZoom;
@@ -1186,6 +1208,7 @@ function Picture (app) {
 
     this.showPicture02 = function () {
         this.picture = null;
+        $('.big-picture').removeClass('active03');
         pictureImgDom.src = bigPictureArr[1].src;
         pictureImgDom.width = bigPictureArr[1].width*pictureZoom;
         pictureImgDom.height = bigPictureArr[1].height*pictureZoom;
@@ -1193,11 +1216,7 @@ function Picture (app) {
     };
 
     this.showPicture03 = function () {
-        this.picture = null;
-        pictureImgDom.src = bigPictureArr[2].src;
-        pictureImgDom.width = bigPictureArr[2].width*pictureZoom;
-        pictureImgDom.height = bigPictureArr[2].height*pictureZoom;
-        pictureTitleDom.src = imgPath + 'big-picture-title03.png';
+        $('.big-picture').addClass('active03');
     };
 
     this.matrixToArray = function (matrix) {
